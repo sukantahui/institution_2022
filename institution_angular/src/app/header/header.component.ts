@@ -6,12 +6,12 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
+  @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit(): void {
   }
-  toggleSlidebar(){
-    this.toggleSidebarForMe.emit();
+  toggleSlidebar(choice=true){
+    this.toggleSidebarForMe.emit({choice: choice});
   }
 }

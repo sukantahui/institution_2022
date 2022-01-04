@@ -14,6 +14,11 @@
               <mat-icon>exit_to_app</mat-icon>
               Logout
             </button>
+            <button (click)="toggleSlidebar(false)" mat-menu-item [routerLink]="['/login']">
+              <mat-icon aria-hidden="false">login</mat-icon>
+              Login
+            </button>
+
           </mat-menu>
         </li>
       </ul>

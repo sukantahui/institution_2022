@@ -15,7 +15,12 @@ export class AppComponent implements OnInit {
 
   title = 'adminDesign';
   sideBarOpen=true;
-  sideBarToggler(){
-    this.sideBarOpen=!this.sideBarOpen;
+
+  sideBarToggler($event: any){
+    if(!$event.choice){
+      this.sideBarOpen=false;
+    }else{
+      this.sideBarOpen=!this.sideBarOpen;
+    }
   }
 }
