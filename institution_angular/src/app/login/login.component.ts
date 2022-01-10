@@ -12,14 +12,15 @@ export class LoginComponent implements OnInit {
   hide: boolean = false;
   ngOnInit(): void {
     this.loginForm=new FormGroup({
-      email : new FormControl('',[Validators.required,Validators.email]),
-      password : new FormControl('',[Validators.required,Validators.minLength(6)])
+      loginId : new FormControl('',[Validators.required,Validators.email]),
+      loginPassword : new FormControl('',[Validators.required,Validators.minLength(6)])
     })
   }
-  onLogin(){
+  login(){
     if (!this.loginForm.valid) {
-      return;
+      // return;
     }
+    console.log(this.loginForm.value);
 
 
   }
