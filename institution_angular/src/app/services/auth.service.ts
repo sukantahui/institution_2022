@@ -33,6 +33,7 @@ export class AuthService {
   userBehaviorSubject = new BehaviorSubject<User>(null);
   constructor(private commonService: CommonService , private  http: HttpClient, private router: Router, private errorService: ErrorService) { }
 
+
   isAuthenticated(){
     if (this.userBehaviorSubject.value){
       return true;

@@ -34,6 +34,9 @@ export class LoginComponent implements OnInit {
         if (this.authService.isOwner()){
           this.router.navigate(['/owner']).then(r => {});
         }
+        if (this.authService.isDeveloper()){
+          this.router.navigate(['/developer']).then(r => {});
+        }
       }
     });
 

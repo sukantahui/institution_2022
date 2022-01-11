@@ -29,7 +29,7 @@ export class User{
     // tslint:disable-next-line:triple-equals
     return this.userTypeId == 1;
   }
-  get isManager(){
+  get isDeveloper(){
     // tslint:disable-next-line:triple-equals
     return this.userTypeId == 2;
   }
@@ -49,10 +49,7 @@ export class User{
     // tslint:disable-next-line:triple-equals
     return this.userTypeId == 6;
   }
-  get isDeveloper(){
-    // tslint:disable-next-line:triple-equals
-    return this.userTypeId == 7;
-  }
+
   get isRefinish(){
     // tslint:disable-next-line:triple-equals
     return this.userTypeId == 9;

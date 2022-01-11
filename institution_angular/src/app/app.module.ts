@@ -19,10 +19,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 
 // import { ReactiveFormsModule } from '@angular/forms';
 // import { SidenavComponent } from './sidenav/sidenav.component';
-import {SidenavModule} from "./sidenav/sidenav.module";
+import {SidenavModule} from "./sidenavs/sidenav/sidenav.module";
 import {HeaderModule} from "./header/header.module";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptor} from "./services/auth.interceptor";
+import {SidenavOwnerModule} from "./sidenavs/sidenav-owner/sidenav-owner.module";
+import {SidenavDeveloperModule} from "./sidenavs/sidenav-developer/sidenav-developer.module";
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import {AuthInterceptor} from "./services/auth.interceptor";
     // MatButtonModule,
     // ReactiveFormsModule,
     SidenavModule,
-    HeaderModule
+    HeaderModule,
+    SidenavOwnerModule,
+    SidenavDeveloperModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
