@@ -2,6 +2,7 @@
     <mat-drawer mode="side" [opened]="sideBarOpen">
       <app-sidenav *ngIf="authService.isNotAuthenticated()"></app-sidenav>
       <app-sidenav-owner *ngIf="authService.isOwner()"></app-sidenav-owner>
+      <app-sidenav-developer *ngIf="authService.isDeveloper()"></app-sidenav-developer>
 
     </mat-drawer>
     <mat-drawer-content>

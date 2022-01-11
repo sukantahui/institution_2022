@@ -24,6 +24,7 @@ import {HeaderModule} from "./header/header.module";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptor} from "./services/auth.interceptor";
 import {SidenavOwnerModule} from "./sidenavs/sidenav-owner/sidenav-owner.module";
+import {SidenavDeveloperModule} from "./sidenavs/sidenav-developer/sidenav-developer.module";
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {SidenavOwnerModule} from "./sidenavs/sidenav-owner/sidenav-owner.module"
     // ReactiveFormsModule,
     SidenavModule,
     HeaderModule,
-    SidenavOwnerModule
+    SidenavOwnerModule,
+    SidenavDeveloperModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
