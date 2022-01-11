@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../services/auth.service";
 import {Md5} from "ts-md5";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import {Md5} from "ts-md5";
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  constructor(private fb: FormBuilder, private authService: AuthService) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
   hide: boolean = false;
   ngOnInit(): void {
     this.loginForm=new FormGroup({
@@ -30,7 +31,9 @@ export class LoginComponent implements OnInit {
     this.authService.login({loginId: this.loginForm.value.loginId, loginPassword: passwordMd5}).subscribe(response => {
       console.log(response);
       if (response.status === true){
-        console.log(response.status);
+        if (this.authService.isOwner()){
+          this.router.navigate(['/owner']).then(r => {});
+        }
       }
     });
 
