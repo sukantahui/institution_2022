@@ -29,6 +29,9 @@ export class LoginComponent implements OnInit {
     // const formPassword = form.value.password;
     this.authService.login({loginId: this.loginForm.value.loginId, loginPassword: passwordMd5}).subscribe(response => {
       console.log(response);
+      if (response.status === true){
+        console.log(response.status);
+      }
     });
 
 

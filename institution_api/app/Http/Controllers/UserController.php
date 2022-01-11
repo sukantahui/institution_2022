@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event\UserRegistered;
+use App\Http\Resources\LoginResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
@@ -64,12 +65,9 @@ class UserController extends ApiController
         }
 
         $token = $user->createToken('my-app-token')->plainTextToken;
+        $user->setAttribute('token',$token);
+        return $this->successResponse(new LoginResource($user));
 
-        $response = [
-            'user' => new UserResource($user),
-            'token' => $token
-        ];
-        return response()->json(['success'=>1,'data'=>$response, 'message'=>'Welcome'], 200,[],JSON_NUMERIC_CHECK);
     }
 
 
