@@ -4,42 +4,62 @@ export class User{
   // tslint:disable-next-line:variable-name
   constructor(public uniqueId: number,
               public userName: string,
-              // public _authKey: string,
+              public _authKey: string,
               public userTypeId: number,
               public userTypeName: string,
-              // public balance: number
   ){}
 
 
 
-  // get authKey(){
-  //   if (this._authKey){
-  //     return this._authKey;
-  //   }else {
-  //     return null;
-  //   }
-  // }
-  // get isAuthenticated(){
-  //   if (this._authKey){
-  //     return true;
-  //   }else{
-  //     return false;
-  //   }
-  // }
-  get isAdmin(){
-    // tslint:disable-next-line:triple-equals
-     return this.userTypeId == 1;
+  get authKey(){
+    if (this._authKey){
+      return this._authKey;
+    }else {
+      return null;
+    }
   }
-  get isDeveloper(){
+  get isAuthenticated(){
+    if (this._authKey){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  get isOwner(){
+    // tslint:disable-next-line:triple-equals
+    return this.userTypeId == 1;
+  }
+  get isManager(){
     // tslint:disable-next-line:triple-equals
     return this.userTypeId == 2;
   }
-  get isStockist(){
+  get isManagerSales(){
     // tslint:disable-next-line:triple-equals
     return this.userTypeId == 3;
   }
-  get isTerminal(){
+  get isManagerAccounts(){
     // tslint:disable-next-line:triple-equals
     return this.userTypeId == 4;
   }
+  get isOfficeStaff(){
+    // tslint:disable-next-line:triple-equals
+    return this.userTypeId == 5;
+  }
+  get isWorker(){
+    // tslint:disable-next-line:triple-equals
+    return this.userTypeId == 6;
+  }
+  get isDeveloper(){
+    // tslint:disable-next-line:triple-equals
+    return this.userTypeId == 7;
+  }
+  get isRefinish(){
+    // tslint:disable-next-line:triple-equals
+    return this.userTypeId == 9;
+  }
+  get isPettyCash(){
+    // tslint:disable-next-line:triple-equals
+    return this.userTypeId == 10;
+  }
+
 }

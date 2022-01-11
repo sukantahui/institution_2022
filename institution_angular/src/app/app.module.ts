@@ -21,6 +21,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 // import { SidenavComponent } from './sidenav/sidenav.component';
 import {SidenavModule} from "./sidenav/sidenav.module";
 import {HeaderModule} from "./header/header.module";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {AuthInterceptor} from "./services/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import {HeaderModule} from "./header/header.module";
     NgbModule,
     BrowserAnimationsModule,
     MatSidenavModule,
+    HttpClientModule,
     // MatToolbarModule,
     // MatMenuModule,
     // MatIconModule,
@@ -47,7 +50,9 @@ import {HeaderModule} from "./header/header.module";
     SidenavModule,
     HeaderModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
