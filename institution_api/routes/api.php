@@ -48,6 +48,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 
     //get all users
     Route::get("users",[UserController::class,'getAllUsers']);
+    Route::post('uploadPicture',[UserController::class,'uploadPicture']);
 
 
 });
@@ -115,6 +116,7 @@ Route::group(array('prefix' => 'dev'), function() {
 
 
     Route::get("logout",[UserController::class,'logout']);
+
 
     Route::get("users",[UserController::class,'index']);
 

@@ -9,6 +9,7 @@ import {concatMap, tap} from "rxjs/operators";
 import {Router} from "@angular/router";
 import * as XLSX from 'xlsx';
 import * as FileSaver from 'file-saver';
+import {MediaChange} from "@angular/flex-layout";
 
 
 @Injectable({
@@ -24,7 +25,7 @@ export class CommonService {
   value$ = new BehaviorSubject(20);
   currentValue = 0;
 
-  deviceXs = false;
+  isDeviceXs = false;
   projectData: ProjectData | undefined;
   public currentTime: object | undefined;
   projectDataSubject = new Subject<ProjectData>();
@@ -32,7 +33,11 @@ export class CommonService {
   private BASE_API_URL = environment.BASE_API_URL;
   route: string | undefined;
   actual_base_api_url="";
+  private actual_base_public_url: string;
+  private BASE_PUBLIC_URL=environment.BASE_PUBLIC_URL;
   constructor() {
+
+
 
     setInterval(() => {
       this.currentValue += 10;
@@ -43,9 +48,13 @@ export class CommonService {
     let firstArray =  project_url.split("/");
     let secondArray =  firstArray[2].split(":");
     this.actual_base_api_url = (firstArray[0]+"//"+secondArray[0]+this.BASE_API_URL);
+    this.actual_base_public_url = (firstArray[0]+"//"+secondArray[0]+this.BASE_PUBLIC_URL);
   }
   getAPI(){
     return this.actual_base_api_url;
+  }
+  getPublic(){
+    return this.actual_base_public_url;
   }
   getProjectData(){
     return {...this.projectData};
@@ -58,10 +67,11 @@ export class CommonService {
     this.projectDataSubject.next({...this.projectData});
   }
   setDeviceXs(dx: boolean){
-    this.deviceXs = dx;
+    this.isDeviceXs = dx;
+    console.log('deviceXs changed', this.isDeviceXs);
   }
   getDeviceXs(): boolean{
-    return this.deviceXs;
+    return this.isDeviceXs;
   }
   getCurrentDate(){
     const now = new Date();

@@ -52,7 +52,7 @@ import {SidenavDeveloperModule} from "./sidenavs/sidenav-developer/sidenav-devel
     SidenavModule,
     HeaderModule,
     SidenavOwnerModule,
-    SidenavDeveloperModule
+    SidenavDeveloperModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

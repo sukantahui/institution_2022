@@ -8,6 +8,7 @@ import {User} from '../models/user.model';
 import {environment} from '../../environments/environment';
 import {ErrorService} from './error.service';
 import {CommonService} from "./common.service";
+import { Observable } from 'rxjs';
 
 export interface AuthResponseData {
   status: boolean;
@@ -204,4 +205,19 @@ export class AuthService {
         });
       });
     }
+
+  upload(file: string | Blob | undefined): Observable<any> {
+
+    // Create form data
+    const formData = new FormData();
+
+    // Store form name as "file" with file data
+    // @ts-ignore
+    formData.append('file', file);
+    formData.append('filename', 'profile_pic_' + JSON.parse(<string>localStorage.getItem('user')).uniqueId + '.jpeg');
+    // Make http post request over api
+    // with formData as req
+    // return this.http.post('http://127.0.0.1/gold_project/new_gold_api/public/api/uploadPicture', formData);
+    return this.http.post(this.commonService.getAPI() + '/uploadPicture', formData);
+  }
 }
