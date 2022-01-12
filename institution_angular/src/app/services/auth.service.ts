@@ -35,6 +35,9 @@ export class AuthService {
   constructor(private commonService: CommonService , private  http: HttpClient, private router: Router, private errorService: ErrorService) { }
 
 
+  getUserBehaviorSubjectListener(){
+    return this.userBehaviorSubject;
+  }
   isAuthenticated(){
     if (this.userBehaviorSubject.value){
       return true;
@@ -94,6 +97,13 @@ export class AuthService {
     }else{
       return false;
     }
+  }
+
+  getUserName(): string{
+    if (this.userBehaviorSubject.value){
+      return this.userBehaviorSubject.value.userName;
+    }
+    return "";
   }
 
 
@@ -160,8 +170,6 @@ export class AuthService {
   }
 
   logout(){
-    // this.userBehaviorSubject.next(null);
-    // localStorage.removeItem('user');
     this.http.get<any>(this.commonService.getAPI() + '/logout').subscribe( response => {
       // this.userBehaviorSubject.next(null);
       localStorage.removeItem('user');
@@ -182,6 +190,7 @@ export class AuthService {
     });
 
   }
+
 
     logoutAll() {
       // this.userBehaviorSubject.next(null);

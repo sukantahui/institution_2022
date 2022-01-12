@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AuthService} from "../services/auth.service";
 import {CommonService} from "../services/common.service";
-import { faCoffee,faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCoffee,faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -9,20 +9,33 @@ import { faCoffee,faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 })
 export class HeaderComponent implements OnInit {
   faSignInAlt = faSignInAlt;
+  faSignOutAlt=faSignOutAlt;
   @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter<any>();
-  defaultPicture: string;
+  defaultPicture: string = "";
   imageSrc: string | ArrayBuffer | null ="";
   file: File | undefined;
-  constructor(private authService: AuthService, private commonService: CommonService) {
+  constructor(public authService: AuthService, private commonService: CommonService) {
+
+  }
+
+  ngOnInit(): void {
+
     this.defaultPicture = this.commonService.getPublic() + '/profile_pic/no_dp.png';
     const user = localStorage.getItem('user');
     if (user){
       const localUserID = JSON.parse(<string>user).uniqueId;
       this.imageSrc = this.commonService.getPublic() + '/profile_pic/profile_pic_' + localUserID + '.jpeg';
     }
-  }
 
-  ngOnInit(): void {
+    //this will work at the time of user change
+    this.authService.getUserBehaviorSubjectListener().subscribe(response => {
+      const user = response;
+      if (user){
+        const localUserID = user.uniqueId;
+        this.imageSrc = this.commonService.getPublic() + '/profile_pic/profile_pic_' + localUserID + '.jpeg';
+      }
+    });
+
   }
   toggleSlidebar(choice=true){
     this.toggleSidebarForMe.emit({choice: choice});
@@ -30,6 +43,9 @@ export class HeaderComponent implements OnInit {
 
   logOutCurrentUser() {
     this.authService.logout();
+  }
+  logOutFromAll() {
+    this.authService.logoutAll();
   }
 
   onChange(event: any){
@@ -46,4 +62,6 @@ export class HeaderComponent implements OnInit {
     );
     event.srcElement.value = null;
   }
+
+
 }

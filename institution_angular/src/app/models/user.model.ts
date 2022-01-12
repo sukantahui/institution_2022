@@ -59,4 +59,5 @@ export class User{
     return this.userTypeId == 10;
   }
 
+
 }

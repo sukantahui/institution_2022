@@ -56,7 +56,7 @@
     <mat-menu #test1="matMenu">
       <input type="file" (change)="onChange($event)" name="filename">
     </mat-menu>
-
+    <div>{{authService.getUserName()}}</div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -84,7 +84,8 @@
         </li>
       </ul>
     </div>
-    <div>
+    <!--    for login-->
+    <div *ngIf="authService.isNotAuthenticated()">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -94,15 +95,34 @@
             <li><a class="dropdown-item" [routerLink]="['/login']">
               <mat-icon aria-hidden="false">login</mat-icon> Login
             </a></li>
-            <li><a class="dropdown-item" href="#">
-              <fa-icon [icon]="faSignInAlt"></fa-icon>
-            </a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          
           </ul>
         </li>
       </ul>
     </div>
+
+    <!--    for logout-->
+    <div *ngIf="authService.isAuthenticated()">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <mat-icon>power_settings_new</mat-icon>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
+            <li>
+              <a class="dropdown-item" [routerLink]="" (click)="logOutCurrentUser()">
+                <fa-icon [icon]="faSignOutAlt"></fa-icon> Logout
+              </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" [routerLink]="" (click)="logOutFromAll()">
+              Logout All
+            </a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
     <div>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
