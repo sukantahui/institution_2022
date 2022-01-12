@@ -9,6 +9,7 @@ import {MatListModule} from "@angular/material/list";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatToolbarModule} from "@angular/material/toolbar";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     MatListModule,
     MatFormFieldModule,
     MatMenuModule,
-    MatToolbarModule
+    MatToolbarModule,
+    FontAwesomeModule
   ]
 })
 export class HeaderModule { }

@@ -4,6 +4,14 @@ mat-toolbar{
   z-index: 100;
   background: #030303;
 }
+
+.navbar{
+  position: sticky;
+  top:0;
+  z-index: 100;
+  background: #030303;
+}
+
 ul{
   li{
     list-style: none;

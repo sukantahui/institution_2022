@@ -1,13 +1,14 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AuthService} from "../services/auth.service";
 import {CommonService} from "../services/common.service";
-
+import { faCoffee,faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  faSignInAlt = faSignInAlt;
   @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter<any>();
   defaultPicture: string;
   imageSrc: string | ArrayBuffer | null ="";
