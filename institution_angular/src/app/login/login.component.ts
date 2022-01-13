@@ -12,7 +12,7 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
-  hide: boolean = false;
+  hide: boolean = true;
   ngOnInit(): void {
     this.loginForm=new FormGroup({
       loginId : new FormControl('',[Validators.required,Validators.email]),
@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
     const passwordMd5 = md5.appendStr(this.loginForm.value.loginPassword).end();
     // const formPassword = form.value.password;
     this.authService.login({loginId: this.loginForm.value.loginId, loginPassword: passwordMd5}).subscribe(response => {
-      console.log(response);
       if (response.status === true){
         if (this.authService.isOwner()){
           this.router.navigate(['/owner']).then(r => {});
