@@ -28,6 +28,8 @@ const routes: Routes = [
 
   { path: 'SidenavDeveloper', loadChildren: () => import('./sidenavs/sidenav-developer/sidenav-developer.module').then(m => m.SidenavDeveloperModule) },
 
+  { path: 'student', loadChildren: () => import('./pages/student/student.module').then(m => m.StudentModule) },
+
 ];
 
 
