@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {AuthGuardOwnerService} from "./services/auth-guard-owner.service";
+import {AuthGuardService} from "./services/auth-guard.service";
 
 
 
@@ -10,7 +11,7 @@ const routes: Routes = [
   { path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
   {
     path: 'student',
-    canActivate : [AuthGuardOwnerService],
+    canActivate : [AuthGuardService,AuthGuardOwnerService],
     loadChildren: () => import('./pages/student/student.module')
       .then(mod => mod.StudentModule),
     data: {loginType: 'owner'},
