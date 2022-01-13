@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Data} from "@angular/router";
 
 @Component({
   selector: 'app-student',
@@ -6,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./student.component.scss']
 })
 export class StudentComponent implements OnInit {
+  loginType: any;
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute) {
+    const data: Data = this.activatedRoute.snapshot.data;
+    this.loginType = data['loginType'];
+    console.log('Login Type: ', this.loginType);
+  }
 
   ngOnInit(): void {
   }

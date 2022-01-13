@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {AuthGuardOwnerService} from "./services/auth-guard-owner.service";
 
 
 
@@ -7,6 +8,14 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
 
   { path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
+  {
+    path: 'student',
+    canActivate : [AuthGuardOwnerService],
+    loadChildren: () => import('./pages/student/student.module')
+      .then(mod => mod.StudentModule),
+    data: {loginType: 'owner'},
+
+  },
   { path: 'owner', loadChildren: () => import('./pages/owner/owner.module').then(m => m.OwnerModule) },
   { path: 'developer', loadChildren: () => import('./pages/developer/developer.module').then(m => m.DeveloperModule) },
 
@@ -35,7 +44,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
