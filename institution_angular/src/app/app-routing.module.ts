@@ -15,7 +15,7 @@ const routes: Routes = [
     canActivate : [AuthGuard,AuthOwnerGuard],
     loadChildren: () => import('./pages/student/student.module')
       .then(mod => mod.StudentModule),
-    // resolve: {studentResolverData: StudentResolver},
+    resolve: {studentResolverData: StudentResolver},
     data: {loginType: 'owner'},
 
   },
