@@ -10,6 +10,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSortModule} from "@angular/material/sort";
 import {MatProgressSpinnerModule, MatSpinner} from "@angular/material/progress-spinner";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import {MatProgressSpinnerModule, MatSpinner} from "@angular/material/progress-s
     MatPaginatorModule,
     MatButtonModule,
     MatSortModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ConfirmDialogModule,
   ]
 })
 export class StudentModule { }
