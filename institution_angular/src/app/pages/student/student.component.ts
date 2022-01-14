@@ -20,6 +20,7 @@ export class StudentComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   // @ts-ignore
   @ViewChild(MatSort) sort: MatSort;
+
   constructor(private activatedRoute: ActivatedRoute, private studentService: StudentService) {
     const data: Data = this.activatedRoute.snapshot.data;
     this.loginType = data['loginType'];
