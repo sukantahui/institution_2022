@@ -7,6 +7,7 @@ import {MatInputModule} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     FormsModule,
     MatTableModule,
     MatPaginatorModule,
+    MatButtonModule
   ]
 })
 export class StudentModule { }

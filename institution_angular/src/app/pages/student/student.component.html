@@ -28,9 +28,13 @@
           <mat-table [dataSource]="dataSource" matSort>
 
             <!-- ID Column -->
-            <ng-container matColumnDef="studentId">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-              <mat-cell *matCellDef="let row"> {{row.studentId}} </mat-cell>
+            <ng-container matColumnDef="index">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Index </mat-header-cell>
+              <mat-cell *matCellDef="let row; let i = index;">
+                <button mat-button [routerLink]="[i + (myPaginator.pageIndex * myPaginator.pageSize)]" routerLinkActive="active">
+                  {{i + (myPaginator.pageIndex * myPaginator.pageSize)+1}}
+                </button>
+              </mat-cell>
             </ng-container>
 
             <!-- Progress Column -->
@@ -56,7 +60,7 @@
             </mat-row>
           </mat-table>
 
-          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+          <mat-paginator #myPaginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
         </div>
 
       </div>

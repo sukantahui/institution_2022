@@ -14,7 +14,7 @@ import {MatPaginator} from "@angular/material/paginator";
 export class StudentComponent implements OnInit, AfterViewInit {
   loginType: any;
   students: Student[] = [];
-  displayedColumns=['studentId','episodeId','studentName','district'];
+  displayedColumns=['index','episodeId','studentName','district'];
   dataSource=new MatTableDataSource(this.students) ;
  // @ts-ignore
   @ViewChild(MatPaginator) paginator: MatPaginator;
