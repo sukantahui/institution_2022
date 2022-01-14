@@ -44,10 +44,8 @@ export class StudentComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  applyFilter(event: any) {
-      let filterValue=event.key;
-     filterValue = filterValue.trim(); // Remove whitespace
-     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-     this.dataSource.filter = filterValue;
+  applyFilter(event: Event) {
+    let value1 = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = value1.trim().toLowerCase();
   }
 }

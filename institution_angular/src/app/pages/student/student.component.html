@@ -18,9 +18,7 @@
       <div class="card-body">
 
         <div class="example-header">
-          <mat-form-field>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
-          </mat-form-field>
+          <input type="text"  (keyup)="applyFilter($event)" placeholder="search for" class="form-control-sm top-margin">
         </div>
 
         <div class="example-container mat-elevation-z8">
