@@ -7,6 +7,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatListModule} from "@angular/material/list";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
         MatIconModule,
         MatDividerModule,
         MatListModule,
-        MatFormFieldModule
+        MatFormFieldModule,
+        FontAwesomeModule
     ]
 })
 export class SidenavOwnerModule { }
