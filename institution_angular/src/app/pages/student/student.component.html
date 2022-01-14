@@ -18,11 +18,10 @@
       <div class="card-body">
 
         <div class="example-header">
-          <input type="text"  (keyup)="applyFilter($event)" placeholder="search for" class="form-control-sm top-margin">
+          <input type="text" style="margin-bottom: 2px;" (keyup)="applyFilter($event)" placeholder="search for" class="form-control-sm top-margin">
         </div>
 
         <div class="example-container mat-elevation-z8">
-
           <mat-table [dataSource]="dataSource" matSort>
 
             <!-- ID Column -->
@@ -37,7 +36,7 @@
 
             <!-- Progress Column -->
             <ng-container matColumnDef="episodeId">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> Progress </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Student ID </mat-header-cell>
               <mat-cell *matCellDef="let row">{{row.episodeId}}  </mat-cell>
             </ng-container>
 
@@ -49,7 +48,7 @@
 
             <!-- Color Column -->
             <ng-container matColumnDef="district">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> Color </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header> District </mat-header-cell>
               <mat-cell *matCellDef="let row"> {{row.district}} </mat-cell>
             </ng-container>
 

@@ -26,6 +26,7 @@ import {AuthInterceptor} from "./services/auth.interceptor";
 import {SidenavOwnerModule} from "./sidenavs/sidenav-owner/sidenav-owner.module";
 import {SidenavDeveloperModule} from "./sidenavs/sidenav-developer/sidenav-developer.module";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SidenavOwnerModule,
     SidenavDeveloperModule,
     FontAwesomeModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

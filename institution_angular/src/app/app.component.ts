@@ -5,6 +5,7 @@ import {AuthService} from "./services/auth.service";
 import {Subscription} from "rxjs/dist/types";
 import {MediaChange, MediaObserver} from "@angular/flex-layout";
 import {CommonService} from "./services/common.service";
+import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from "@angular/router";
 
 
 
@@ -16,8 +17,18 @@ import {CommonService} from "./services/common.service";
 export class AppComponent implements OnInit {
   mediaSub: Subscription;
   private isDeviceXs: boolean | undefined;
-  constructor(public authService: AuthService, public mediaObserver: MediaObserver,private commonService: CommonService ) {
+  isNavigating: boolean=false;
+  constructor(public router: Router, public authService: AuthService, public mediaObserver: MediaObserver,private commonService: CommonService ) {
     AOS.init();
+    this.router.events.subscribe(ev=>{
+        if(ev instanceof NavigationStart){
+          this.isNavigating=true;
+        }
+        if(ev instanceof NavigationEnd || ev instanceof NavigationCancel || ev instanceof NavigationError){
+          this.isNavigating=false;
+        }
+      }
+    );
   }
 
   ngOnInit(): void {
