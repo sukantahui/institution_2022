@@ -24,6 +24,7 @@ export class StudentComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   // @ts-ignore
   @ViewChild(MatSort) sort: MatSort;
+  msgs: { severity: string; summary: string; detail: string }[] = [];
 
   constructor(private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService, private primengConfig: PrimeNGConfig) {
     const data: Data = this.activatedRoute.snapshot.data;
@@ -35,13 +36,17 @@ export class StudentComponent implements OnInit, AfterViewInit {
 
 
   confirm() {
-      this.confirmationService.confirm({
-        message: 'Are you sure that you want to perform this action?',
-        accept: () => {
-          //Actual logic to perform a confirmation
-          console.log('Accepted');
-        }
-      });
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this record?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
+      },
+      reject: () => {
+        this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+      }
+    });
     }
 
 
