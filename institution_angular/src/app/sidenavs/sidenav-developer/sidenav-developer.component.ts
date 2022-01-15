@@ -6,12 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidenav-developer.component.scss']
 })
 export class SidenavDeveloperComponent implements OnInit {
-  display: boolean = false;
+  displayMaster: boolean = false;
+  displayChart: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
   }
-  toggle(){
-    this.display=!this.display;
+  toggleMaster(){
+    this.displayMaster=!this.displayMaster;
+  }
+
+  toggleChart() {
+    this.displayChart=!this.displayChart;
   }
 }

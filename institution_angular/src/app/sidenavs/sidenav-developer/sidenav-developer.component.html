@@ -11,16 +11,29 @@
     <mat-icon>dashboard</mat-icon> Dashboard
   </a>
 
-  <a mat-list-item (click)="toggle()">
+  <a mat-list-item (click)="toggleMaster()">
     <mat-icon>spa</mat-icon> Master
     <mat-icon class="user-image-icon ml-1">keyboard_arrow_down</mat-icon>
   </a>
-  <div *ngIf="display">
+  <div *ngIf="displayMaster">
     <a mat-list-item routerLink="/login" routerLinkActive="list-item-active">
       <mat-icon>child_care</mat-icon> Login
     </a>
     <a mat-list-item>
       <mat-icon>child_care</mat-icon> Child 2
+    </a>
+  </div>
+
+  <a mat-list-item (click)="toggleChart()">
+    <mat-icon>spa</mat-icon> Charts
+    <mat-icon class="user-image-icon ml-1">keyboard_arrow_down</mat-icon>
+  </a>
+  <div *ngIf="displayChart">
+    <a mat-list-item [routerLink]="['/LineChart']" routerLinkActive="list-item-active">
+      <i class="bi bi-person-check-fill"></i> &nbsp; Line Chart
+    </a>
+    <a mat-list-item [routerLink]="['/BarChart']" routerLinkActive="list-item-active">
+      <i class="bi bi-person-check-fill"></i> &nbsp; Bar Chart
     </a>
   </div>
 
