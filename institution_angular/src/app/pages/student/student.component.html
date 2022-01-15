@@ -36,63 +36,59 @@
 
       </div>
     </div>
-    <div class="card" width="500px" >
-      <p-toast></p-toast>
-      <p-steps [model]="items" [(activeIndex)]="activeIndex" [readonly]="false"></p-steps>
-      <div [hidden]="activeIndex!=0">
-        <form [formGroup] = studentForm>
-          <!--          Student Name-->
-          <div class="d-flex flex-row bd-highlight mb-1">
-            <div class="input-group col-7">
-              <div class="input-group-prepend">
-                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-              </div>
-              <input pInputText class="form-control" formControlName="studentName" placeholder="Student Name" aria-label="Username" aria-describedby="basic-addon1">
+    <!--    Form Entry-->
+    <div>
+      <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+        {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+      </button>
+      <mat-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstStudentFormGroup">
+          <form [formGroup]="firstStudentFormGroup">
+            <ng-template matStepLabel>Name</ng-template>
+            <mat-form-field appearance="fill">
+              <mat-label>Name</mat-label>
+              <input matInput placeholder="Last name, First name" formControlName="studentName" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
             </div>
-          </div>
-          <!--          Billing Name-->
-          <div class="d-flex flex-row bd-highlight mb-1">
-            <div class="input-group col-7">
-              <div class="input-group-prepend">
-                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-              </div>
-              <input type="text" class="form-control" formControlName="billingName" placeholder="Billing Name" aria-label="Username" aria-describedby="basic-addon1">
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondStudentFormGroup" label="Fill out your address">
+          <form [formGroup]="secondStudentFormGroup">
+            <mat-form-field appearance="fill">
+              <mat-label>Address</mat-label>
+              <input matInput formControlName="dob" placeholder="Ex. 1 Main St, New York, NY"
+                     required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
             </div>
-          </div>
-
-          <!--          Father Name-->
-          <div class="d-flex flex-row bd-highlight mb-1">
-            <div class="input-group col-7">
-              <div class="input-group-prepend">
-                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-              </div>
-              <input type="text" class="form-control" formControlName="fatherName" placeholder="Father's Name" aria-label="Username" aria-describedby="basic-addon1">
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="thirdStudentFormGroup" label="Fill out your address">
+          <form [formGroup]="thirdStudentFormGroup">
+            <mat-form-field appearance="fill">
+              <mat-label>Address</mat-label>
+              <input matInput formControlName="address" placeholder="Ex. 1 Main St, New York, NY"
+                     required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
             </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <p>You are now done.</p>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
           </div>
-
-        </form>
-      </div>
-
-      <div [hidden]="activeIndex!=1" class="card">
-        <div class="p-grid">
-          <div class="p-col">1</div>
-          <div class="p-col">2</div>
-          <div class="p-col">3</div>
-        </div>
-      </div>
-      <div [hidden]="activeIndex!=2" class="card">
-        <div class="d-flex flex-row bd-highlight mb-3">
-          <div class="p-2 bd-highlight">Flex item 1</div>
-          <div class="p-2 bd-highlight">Flex item 2</div>
-          <div class="p-2 bd-highlight">Flex item 3</div>
-        </div>
-      </div>
-      <div [hidden]="activeIndex!=3" class="card">
-        Fourth Div
-      </div>
-      <div>
-        <p-button label="Click" icon="pi pi-chevron-right" iconPos="left"></p-button>
-      </div>
+        </mat-step>
+      </mat-stepper>
     </div>
   </div>
   <!--  Right-->
@@ -117,7 +113,6 @@
                  [globalFilterFields]="['studentId','episodeId','studentName','motherName']">
           <ng-template pTemplate="caption">
             <div class="p-d-flex">
-<!--              <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>-->
               <span class="p-input-icon-left p-ml-auto">
                     <i class="pi pi-search"></i>
                     <input pInputText type="text" (input)="dt1.filterGlobal(getEventValue($event), 'contains')" placeholder="Search keyword" />

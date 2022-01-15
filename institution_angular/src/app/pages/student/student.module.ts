@@ -21,6 +21,7 @@ import {StepsModule} from "primeng/steps";
 import {MenuItem} from "primeng/api/menuitem";
 import {ToastModule} from "primeng/toast";
 import {PanelModule} from "primeng/panel";
+import {MatStepperModule} from "@angular/material/stepper";
 
 
 
@@ -44,7 +45,8 @@ import {PanelModule} from "primeng/panel";
     StepsModule,
     ToastModule,
     ReactiveFormsModule,
-    PanelModule
+    PanelModule,
+    MatStepperModule
 
   ]
 })

@@ -3,7 +3,7 @@ import {ActivatedRoute, Data} from "@angular/router";
 import {Student} from "../../models/student.model";
 import {StudentService} from "../../services/student.service";
 import {ConfirmationService, MenuItem, MessageService, PrimeNGConfig} from "primeng/api";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Table} from "primeng/table";
 
 
@@ -27,31 +27,44 @@ export class StudentComponent implements OnInit{
   items: MenuItem[]=[];
   activeIndex: number = 0;
 
-  studentForm: FormGroup;
 
-  constructor(private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig) {
+  firstStudentFormGroup: FormGroup;
+  secondStudentFormGroup: FormGroup;
+  thirdStudentFormGroup: FormGroup;
+  fourthStudentFormGroup: FormGroup;
+  isLinear: boolean = false;
+
+  constructor(private _formBuilder: FormBuilder, private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig) {
     const data: Data = this.activatedRoute.snapshot.data;
     this.loginType = data['loginType'];
-    this.studentForm = new FormGroup({
+    this.firstStudentFormGroup = this._formBuilder.group({
       studentId : new FormControl(null),
       studentName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
       billingName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
       fatherName : new FormControl(null),
       motherName : new FormControl(null),
       guardianName : new FormControl(null),
-      relationToGuardian : new FormControl(null),
+      relationToGuardian : new FormControl(null)
+    });
+    this.secondStudentFormGroup = this._formBuilder.group({
       dob : new FormControl(null),
       sex : new FormControl(null),
+    });
+    this.thirdStudentFormGroup = this._formBuilder.group({
       address : new FormControl(null,[Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
       city : new FormControl(null,[Validators.required, Validators.maxLength(20), Validators.minLength(4)]),
       district : new FormControl(null,[Validators.required, Validators.maxLength(20), Validators.minLength(4)]),
       stateId : new FormControl(null),
-      pin : new FormControl(null),
+      pin : new FormControl(null)
+    });
+
+    this.fourthStudentFormGroup = this._formBuilder.group({
       guardianContactNumber : new FormControl(null),
       whatsappNumber : new FormControl(null),
       email : new FormControl(null),
       qualification : new FormControl(null)
     });
+
   }
 
   showDialog() {
@@ -112,9 +125,7 @@ export class StudentComponent implements OnInit{
     ];
   }
 
-  clear(table: Table) {
-    table.clear();
-  }
+
 
   getEventValue($event:any) :string {
     return $event.target.value;
