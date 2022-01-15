@@ -3,6 +3,7 @@ import {ActivatedRoute, Data} from "@angular/router";
 import {Student} from "../../models/student.model";
 import {StudentService} from "../../services/student.service";
 import {ConfirmationService, MenuItem, MessageService, PrimeNGConfig} from "primeng/api";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 
 @Component({
@@ -23,12 +24,33 @@ export class StudentComponent implements OnInit{
 
 
   items: MenuItem[]=[];
-
   activeIndex: number = 0;
+
+  studentForm: FormGroup;
 
   constructor(private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig) {
     const data: Data = this.activatedRoute.snapshot.data;
     this.loginType = data['loginType'];
+    this.studentForm = new FormGroup({
+      studentId : new FormControl(null),
+      studentName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
+      billingName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
+      fatherName : new FormControl(null),
+      motherName : new FormControl(null),
+      guardianName : new FormControl(null),
+      relationToGuardian : new FormControl(null),
+      dob : new FormControl(null),
+      sex : new FormControl(null),
+      address : new FormControl(null,[Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
+      city : new FormControl(null,[Validators.required, Validators.maxLength(20), Validators.minLength(4)]),
+      district : new FormControl(null,[Validators.required, Validators.maxLength(20), Validators.minLength(4)]),
+      stateId : new FormControl(null),
+      pin : new FormControl(null),
+      guardianContactNumber : new FormControl(null),
+      whatsappNumber : new FormControl(null),
+      email : new FormControl(null),
+      qualification : new FormControl(null)
+    });
   }
 
   showDialog() {
