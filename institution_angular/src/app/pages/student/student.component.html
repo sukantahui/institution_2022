@@ -5,8 +5,17 @@
         <h3 style="color: #1e293b;">Student Entry Form</h3>
       </div>
       <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <div class="p-grid p-fluid">
+          <div class="p-col-12 p-md-4">
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+              <input type="text" pInputText placeholder="Student Name" pKeyFilter="alpha">
+            </div>
+          </div>
+          <p-password [(ngModel)]="value3" [toggleMask]="true"></p-password>
+        </div>
+
+        <p-chart type="line" [data]="data"></p-chart>
 
 <!--        <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>-->
 <!--        <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">-->

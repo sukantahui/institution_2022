@@ -12,6 +12,9 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatProgressSpinnerModule, MatSpinner} from "@angular/material/progress-spinner";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {PasswordModule} from "primeng/password";
+import {KeyFilterModule} from "primeng/keyfilter";
+import {ChartModule} from "primeng/chart";
 
 
 @NgModule({
@@ -29,6 +32,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MatSortModule,
     MatProgressSpinnerModule,
     ConfirmDialogModule,
+    PasswordModule,
+    KeyFilterModule,
+    ChartModule
+
   ]
 })
 export class StudentModule { }

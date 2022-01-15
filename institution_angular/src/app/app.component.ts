@@ -6,6 +6,7 @@ import {Subscription} from "rxjs/dist/types";
 import {MediaChange, MediaObserver} from "@angular/flex-layout";
 import {CommonService} from "./services/common.service";
 import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from "@angular/router";
+import {PrimeNGConfig} from "primeng/api";
 
 
 
@@ -18,7 +19,8 @@ export class AppComponent implements OnInit {
   mediaSub: Subscription;
   private isDeviceXs: boolean | undefined;
   isNavigating: boolean=false;
-  constructor(public router: Router, public authService: AuthService, public mediaObserver: MediaObserver,private commonService: CommonService ) {
+  constructor(public router: Router, public authService: AuthService, public mediaObserver: MediaObserver,private commonService: CommonService, private primengConfig: PrimeNGConfig ) {
+    this.primengConfig.ripple = true;
     AOS.init();
     this.router.events.subscribe(ev=>{
         if(ev instanceof NavigationStart){

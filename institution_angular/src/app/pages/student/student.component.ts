@@ -25,6 +25,8 @@ export class StudentComponent implements OnInit, AfterViewInit {
   // @ts-ignore
   @ViewChild(MatSort) sort: MatSort;
   msgs: { severity: string; summary: string; detail: string }[] = [];
+  value3: any;
+  data: any;
 
   constructor(private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService, private primengConfig: PrimeNGConfig) {
     const data: Data = this.activatedRoute.snapshot.data;
@@ -32,6 +34,20 @@ export class StudentComponent implements OnInit, AfterViewInit {
     this.dataSource = new MatTableDataSource(this.students);
     // @ts-ignore
     this.dataSource.paginator = this.paginator;
+    this.data = {
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      datasets: [
+        {
+          label: 'First Dataset',
+          data: [65, 59, 80, 81, 56, 55, 40]
+        },
+        {
+          label: 'Second Dataset',
+          data: [28, 48, 40, 19, 86, 27, 90]
+        }
+      ]
+    }
+
   }
 
 
