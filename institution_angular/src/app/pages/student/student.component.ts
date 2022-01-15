@@ -4,6 +4,7 @@ import {Student} from "../../models/student.model";
 import {StudentService} from "../../services/student.service";
 import {ConfirmationService, MenuItem, MessageService, PrimeNGConfig} from "primeng/api";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Table} from "primeng/table";
 
 
 @Component({
@@ -109,6 +110,14 @@ export class StudentComponent implements OnInit{
         }
       }
     ];
+  }
+
+  clear(table: Table) {
+    table.clear();
+  }
+
+  getEventValue($event:any) :string {
+    return $event.target.value;
   }
 
 }
