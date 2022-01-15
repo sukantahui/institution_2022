@@ -5,22 +5,99 @@
         <h3 style="color: #1e293b;">Student Entry Form</h3>
       </div>
       <div class="card-body">
-        <div class="p-grid p-fluid">
-          <div class="p-col-12 p-md-4">
-            <div class="p-inputgroup">
-              <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-              <input type="text" pInputText placeholder="Student Name" pKeyFilter="alpha">
-            </div>
-          </div>
-          <p-password [(ngModel)]="value3" [toggleMask]="true"></p-password>
+
+        <!--    Form Entry-->
+        <div>
+          <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+            {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+          </button>
+          <mat-stepper [linear]="isLinear" #stepper style="background-color: #94a3b8;">
+            <mat-step [stepControl]="studentNameFormGroup" label="Name">
+              <form [formGroup]="studentNameFormGroup">
+
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Student Name</label>
+                  <input pInputText pKeyFilter="alpha" class="form-control" id="exampleInputEmail1" formControlName="studentName" aria-describedby="emailHelp" placeholder="Student Name">
+                  <small id="emailHelp" class="form-text text-muted">Name should be Unique</small>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Billing Name</label>
+                  <input pInputText class="form-control" id="exampleInputPassword1" formControlName="billingName" placeholder="Password">
+                  <small id="billingNameHelp" class="form-text text-muted">It is not Unique</small>
+                </div>
+                <div>
+                  <button mat-button matStepperNext>
+                    <i class="pi pi-chevron-right" style="font-size: 2rem"></i>
+                  </button>
+                </div>
+              </form>
+            </mat-step>
+
+            <mat-step [stepControl]="studentGuardianFormGroup" label="Guardian">
+              <form [formGroup]="studentGuardianFormGroup">
+
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Father Name</label>
+                  <input pInputText pKeyFilter="alpha" class="form-control" id="father-name" formControlName="fatherName" aria-describedby="emailHelp" placeholder="Student Name">
+                  <small  class="form-text text-muted">Name should be Unique</small>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Mother Name</label>
+                  <input pInputText class="form-control" id="mother-name" formControlName="motherName" placeholder="Mother's Name">
+                  <small  class="form-text text-muted">It is not Unique</small>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Guardian</label>
+                  <input pInputText class="form-control" id="guardian-name" formControlName="guardianName" placeholder="Guardian Name">
+                  <small  class="form-text text-muted">It is not Unique</small>
+                </div>
+                <div>
+                  <button mat-button matStepperPrevious>
+                    <i class="pi pi-chevron-left" style="font-size: 2rem"></i>
+                  </button>
+                  <button mat-button matStepperNext>
+                    <i class="pi pi-chevron-right" style="font-size: 2rem"></i>
+                  </button>
+                </div>
+              </form>
+            </mat-step>
+
+            <mat-step [stepControl]="secondStudentFormGroup" label="Fill out your address">
+              <form [formGroup]="secondStudentFormGroup">
+                <mat-form-field appearance="fill">
+                  <mat-label>Address</mat-label>
+                  <input matInput formControlName="dob" placeholder="Ex. 1 Main St, New York, NY"
+                         required>
+                </mat-form-field>
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="thirdStudentFormGroup" label="Fill out your address">
+              <form [formGroup]="thirdStudentFormGroup">
+                <mat-form-field appearance="fill">
+                  <mat-label>Address</mat-label>
+                  <input matInput formControlName="address" placeholder="Ex. 1 Main St, New York, NY"
+                         required>
+                </mat-form-field>
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step>
+              <ng-template matStepLabel>Done</ng-template>
+              <p>You are now done.</p>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+              </div>
+            </mat-step>
+          </mat-stepper>
         </div>
-
-        <p-chart type="line" [data]="data"></p-chart>
-
-<!--        <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>-->
-<!--        <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">-->
-<!--          Content-->
-<!--        </p-confirmDialog>-->
 
         <p-confirmDialog #cd [style]="{width: '30vw'}" header="Confirmation" icon="pi pi-exclamation-triangle" [transitionOptions]="'0.8ms'">
           <ng-template pTemplate="header">
@@ -36,61 +113,10 @@
 
       </div>
     </div>
-    <!--    Form Entry-->
-    <div>
-      <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-        {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-      </button>
-      <mat-stepper [linear]="isLinear" #stepper>
-        <mat-step [stepControl]="firstStudentFormGroup">
-          <form [formGroup]="firstStudentFormGroup">
-            <ng-template matStepLabel>Name</ng-template>
-            <mat-form-field appearance="fill">
-              <mat-label>Name</mat-label>
-              <input matInput placeholder="Last name, First name" formControlName="studentName" required>
-            </mat-form-field>
-            <div>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-        <mat-step [stepControl]="secondStudentFormGroup" label="Fill out your address">
-          <form [formGroup]="secondStudentFormGroup">
-            <mat-form-field appearance="fill">
-              <mat-label>Address</mat-label>
-              <input matInput formControlName="dob" placeholder="Ex. 1 Main St, New York, NY"
-                     required>
-            </mat-form-field>
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-        <mat-step [stepControl]="thirdStudentFormGroup" label="Fill out your address">
-          <form [formGroup]="thirdStudentFormGroup">
-            <mat-form-field appearance="fill">
-              <mat-label>Address</mat-label>
-              <input matInput formControlName="address" placeholder="Ex. 1 Main St, New York, NY"
-                     required>
-            </mat-form-field>
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-        <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
-          <p>You are now done.</p>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
-          </div>
-        </mat-step>
-      </mat-stepper>
-    </div>
+
+
   </div>
+
   <!--  Right-->
   <div class="p-2 bd-highlight col-5">
     <div class="card">

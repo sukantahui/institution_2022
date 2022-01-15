@@ -28,7 +28,8 @@ export class StudentComponent implements OnInit{
   activeIndex: number = 0;
 
 
-  firstStudentFormGroup: FormGroup;
+  studentNameFormGroup: FormGroup;
+  studentGuardianFormGroup: FormGroup;
   secondStudentFormGroup: FormGroup;
   thirdStudentFormGroup: FormGroup;
   fourthStudentFormGroup: FormGroup;
@@ -37,7 +38,7 @@ export class StudentComponent implements OnInit{
   constructor(private _formBuilder: FormBuilder, private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig) {
     const data: Data = this.activatedRoute.snapshot.data;
     this.loginType = data['loginType'];
-    this.firstStudentFormGroup = this._formBuilder.group({
+    this.studentNameFormGroup = this._formBuilder.group({
       studentId : new FormControl(null),
       studentName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
       billingName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
@@ -46,6 +47,13 @@ export class StudentComponent implements OnInit{
       guardianName : new FormControl(null),
       relationToGuardian : new FormControl(null)
     });
+    this.studentGuardianFormGroup = this._formBuilder.group({
+      fatherName : new FormControl(null),
+      motherName : new FormControl(null),
+      guardianName : new FormControl(null),
+      relationToGuardian : new FormControl(null)
+    });
+
     this.secondStudentFormGroup = this._formBuilder.group({
       dob : new FormControl(null),
       sex : new FormControl(null),
