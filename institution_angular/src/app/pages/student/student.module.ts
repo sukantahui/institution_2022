@@ -15,6 +15,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {PasswordModule} from "primeng/password";
 import {KeyFilterModule} from "primeng/keyfilter";
 import {ChartModule} from "primeng/chart";
+import {TableModule} from "primeng/table";
 
 
 @NgModule({
@@ -26,16 +27,12 @@ import {ChartModule} from "primeng/chart";
     StudentRoutingModule,
     MatInputModule,
     FormsModule,
-    MatTableModule,
-    MatPaginatorModule,
     MatButtonModule,
-    MatSortModule,
-    MatProgressSpinnerModule,
     ConfirmDialogModule,
     PasswordModule,
     KeyFilterModule,
-    ChartModule
-
+    ChartModule,
+    TableModule
   ]
 })
 export class StudentModule { }

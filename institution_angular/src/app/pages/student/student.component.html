@@ -42,51 +42,31 @@
       <div class="card-header">
         <h3 style="color: #1e293b;">Student Details</h3>
       </div>
-      <div class="card-body">
 
-        <div class="example-header">
-          <input type="text" style="margin-bottom: 2px;" (keyup)="applyFilter($event)" placeholder="search for" class="form-control-sm top-margin">
-        </div>
-
-        <div class="example-container mat-elevation-z8">
-          <mat-table [dataSource]="dataSource" matSort>
-
-            <!-- ID Column -->
-            <ng-container matColumnDef="index">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> Index </mat-header-cell>
-              <mat-cell *matCellDef="let row; let i = index;">
-                <button mat-button [routerLink]="[i + (myPaginator.pageIndex * myPaginator.pageSize)]" routerLinkActive="active">
-                  {{i + (myPaginator.pageIndex * myPaginator.pageSize)+1}}
-                </button>
-              </mat-cell>
-            </ng-container>
-
-            <!-- Progress Column -->
-            <ng-container matColumnDef="episodeId">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> Student ID </mat-header-cell>
-              <mat-cell *matCellDef="let row">{{row.episodeId}}  </mat-cell>
-            </ng-container>
-
-            <!-- Name Column -->
-            <ng-container matColumnDef="studentName">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-              <mat-cell *matCellDef="let row"> {{row.studentName}} </mat-cell>
-            </ng-container>
-
-            <!-- Color Column -->
-            <ng-container matColumnDef="district">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> District </mat-header-cell>
-              <mat-cell *matCellDef="let row"> {{row.district}} </mat-cell>
-            </ng-container>
-
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;">
-            </mat-row>
-          </mat-table>
-
-          <mat-paginator #myPaginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
-        </div>
-
+      <div class="card">
+        <h5>Implicit Pagination</h5>
+        <p-table [value]="students" [paginator]="true" [rows]="5" [showCurrentPageReport]="true" responsiveLayout="scroll"
+                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,25,50]">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>ID</th>
+              <th pSortableColumn="episodeId">Ep. ID <p-sortIcon field="episodeId"></p-sortIcon></th>
+              <th pSortableColumn="studentName">Name <p-sortIcon field="studentName"></p-sortIcon></th>
+              <th pSortableColumn="motherName">Mother <p-sortIcon field="motherName"></p-sortIcon></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-customer>
+            <tr>
+              <td>{{customer.studentId}}</td>
+              <td>{{customer.episodeId}}</td>
+              <td>{{customer.studentName}}</td>
+              <td>{{customer.motherName}}</td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+          </ng-template>
+        </p-table>
       </div>
     </div>
   </div>
