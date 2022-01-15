@@ -1,5 +1,5 @@
 <div class="d-flex flex-row bd-highlight mb-3">
-  <div class="p-2 bd-highlight col-5">
+  <div class="p-2 bd-highlight col-7">
     <div class="card">
       <div class="card-header">
         <h3 style="color: #1e293b;">Student Entry Form</h3>
@@ -36,17 +36,45 @@
 
       </div>
     </div>
-    <div class="card">
+    <div class="card" width="500px" >
       <p-toast></p-toast>
       <p-steps [model]="items" [(activeIndex)]="activeIndex" [readonly]="false"></p-steps>
-      <div [hidden]="activeIndex!=0" class="card">
-        First Div
+      <div [hidden]="activeIndex!=0">
+        <form [formGroup] = studentForm>
+
+          <div class="d-flex flex-row bd-highlight mb-1">
+            <div class="input-group col-7">
+              <div class="input-group-prepend">
+                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+              </div>
+              <input pInputText class="form-control" formControlName="studentName" placeholder="Student Name" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+          </div>
+
+          <div class="d-flex flex-row bd-highlight mb-1">
+            <div class="input-group col-7">
+              <div class="input-group-prepend">
+                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+              </div>
+              <input type="text" class="form-control" formControlName="billingName" placeholder="Student Name" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+          </div>
+        </form>
       </div>
+
       <div [hidden]="activeIndex!=1" class="card">
-        Second Div
+        <div class="p-grid">
+          <div class="p-col">1</div>
+          <div class="p-col">2</div>
+          <div class="p-col">3</div>
+        </div>
       </div>
       <div [hidden]="activeIndex!=2" class="card">
-        Third Div
+        <div class="d-flex flex-row bd-highlight mb-3">
+          <div class="p-2 bd-highlight">Flex item 1</div>
+          <div class="p-2 bd-highlight">Flex item 2</div>
+          <div class="p-2 bd-highlight">Flex item 3</div>
+        </div>
       </div>
       <div [hidden]="activeIndex!=3" class="card">
         Fourth Div
@@ -54,7 +82,7 @@
     </div>
   </div>
   <!--  Right-->
-  <div class="p-2 bd-highlight col-7">
+  <div class="p-2 bd-highlight col-5">
     <div class="card">
       <div class="card-header">
         <h3 style="color: #1e293b;">Student Details</h3>

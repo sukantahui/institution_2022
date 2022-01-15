@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { StudentRoutingModule } from './student-routing.module';
 import { StudentComponent } from './student.component';
 import {MatInputModule} from "@angular/material/input";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatButtonModule} from "@angular/material/button";
@@ -20,6 +20,8 @@ import {DialogModule} from "primeng/dialog";
 import {StepsModule} from "primeng/steps";
 import {MenuItem} from "primeng/api/menuitem";
 import {ToastModule} from "primeng/toast";
+import {PanelModule} from "primeng/panel";
+
 
 
 
@@ -40,7 +42,10 @@ import {ToastModule} from "primeng/toast";
     TableModule,
     DialogModule,
     StepsModule,
-    ToastModule
+    ToastModule,
+    ReactiveFormsModule,
+    PanelModule
+
   ]
 })
 export class StudentModule { }
