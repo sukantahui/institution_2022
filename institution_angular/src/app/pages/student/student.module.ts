@@ -16,6 +16,11 @@ import {PasswordModule} from "primeng/password";
 import {KeyFilterModule} from "primeng/keyfilter";
 import {ChartModule} from "primeng/chart";
 import {TableModule} from "primeng/table";
+import {DialogModule} from "primeng/dialog";
+import {StepsModule} from "primeng/steps";
+import {MenuItem} from "primeng/api/menuitem";
+import {ToastModule} from "primeng/toast";
+
 
 
 @NgModule({
@@ -32,7 +37,10 @@ import {TableModule} from "primeng/table";
     PasswordModule,
     KeyFilterModule,
     ChartModule,
-    TableModule
+    TableModule,
+    DialogModule,
+    StepsModule,
+    ToastModule
   ]
 })
 export class StudentModule { }
