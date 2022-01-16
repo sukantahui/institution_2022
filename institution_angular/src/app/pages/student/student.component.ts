@@ -37,10 +37,18 @@ export class StudentComponent implements OnInit{
   isLinear: boolean = false;
   relations: any[];
   sex: any[];
+  genders: any[];
 
   constructor(private _formBuilder: FormBuilder, private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig) {
     const data: Data = this.activatedRoute.snapshot.data;
     this.loginType = data['loginType'];
+
+    this.genders = [
+      {name: 'M', value: 'M', icon: 'bi bi-gender-male'},
+      {name: 'F', value: 'F', icon: 'bi bi-gender-female'},
+      {name: 'T', value: 'T', icon: 'bi bi-gender-trans'}
+    ];
+
     this.relations = [
       {name: 'Father'},
       {name: 'Mother'},
@@ -52,7 +60,7 @@ export class StudentComponent implements OnInit{
       {name: 'Male'},
       {name: 'Female'},
       {name: 'Others'},
-      
+
     ];
     this.studentNameFormGroup = this._formBuilder.group({
       studentId : new FormControl(null),

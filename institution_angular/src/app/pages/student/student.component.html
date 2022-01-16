@@ -99,20 +99,29 @@
 
                   <div class="d-flex flex-row bd-highlight mb-3">
                     <div class="p-2 col-4 bd-highlight">
-                     
+
                         <mat-form-field appearance="fill">
                           <mat-label>Date Of Birth</mat-label>
                           <input matInput [matDatepicker]="dob" formControlName="dob">
                           <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
                           <mat-datepicker #dob></mat-datepicker>
                         </mat-form-field>
-                        
-                     
+
+
                     </div>
-                    <div class="p-2 col-4 bd-highlight">
-                      <ng-select [items]="sex" fxFlex="100"  bindLabel="name" class="custom" bindValue="name" formControlName="sex" placeholder="Sex">
-                      </ng-select>
+<!--                    <div class="p-2 col-4 bd-highlight">-->
+<!--                      <ng-select [items]="sex" fxFlex="100"  bindLabel="name" class="custom" bindValue="name" formControlName="sex" placeholder="Sex">-->
+<!--                      </ng-select>-->
+<!--                    </div>-->
+
+                    <div class="p-2 col-6 bd-highlight">
+                      <p-selectButton [options]="genders" formControlName="sex"  optionLabel="name" optionValue="value">
+                        <ng-template let-item>
+                          {{item.name}}<i [class]="item.icon"></i>
+                        </ng-template>
+                      </p-selectButton>
                     </div>
+
                   </div>
 
 
@@ -180,8 +189,12 @@
               <ng-template matStepLabel>Done</ng-template>
               <p>You are now done.</p>
               <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="stepper.reset()">Reset</button>
+                <button mat-button matStepperPrevious>
+                  <i class="pi pi-chevron-left" style="font-size: 2rem"></i>
+                </button>
+                <button mat-button (click)="stepper.reset()">
+                  <i class="bi bi-arrow-clockwise" style="font-size: 2rem"></i>
+                </button>
               </div>
             </mat-step>
           </mat-stepper>
