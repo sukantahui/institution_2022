@@ -24,8 +24,8 @@ import {PanelModule} from "primeng/panel";
 import {MatStepperModule} from "@angular/material/stepper";
 import {DropdownModule} from "primeng/dropdown";
 import {NgSelectModule} from "@ng-select/ng-select";
-
-
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -50,7 +50,9 @@ import {NgSelectModule} from "@ng-select/ng-select";
     PanelModule,
     MatStepperModule,
     DropdownModule,
-    NgSelectModule
+    NgSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 
   ]
 })

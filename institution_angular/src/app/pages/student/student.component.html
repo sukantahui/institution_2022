@@ -94,24 +94,78 @@
 
             <mat-step [stepControl]="secondStudentFormGroup" label="Fill out your address">
               <form [formGroup]="secondStudentFormGroup">
-                <mat-form-field appearance="fill">
-                  <mat-label>Address</mat-label>
-                  <input matInput formControlName="dob" placeholder="Ex. 1 Main St, New York, NY"
-                         required>
-                </mat-form-field>
+                <div class="form-group">
+
+
+                  <div class="d-flex flex-row bd-highlight mb-3">
+                    <div class="p-2 col-4 bd-highlight">
+                     
+                        <mat-form-field appearance="fill">
+                          <mat-label>Date Of Birth</mat-label>
+                          <input matInput [matDatepicker]="dob" formControlName="dob">
+                          <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+                          <mat-datepicker #dob></mat-datepicker>
+                        </mat-form-field>
+                        
+                     
+                    </div>
+                    <div class="p-2 col-4 bd-highlight">
+                      <ng-select [items]="sex" fxFlex="100"  bindLabel="name" class="custom" bindValue="name" formControlName="sex" placeholder="Sex">
+                      </ng-select>
+                    </div>
+                  </div>
+
+
+                </div>
                 <div>
-                  <button mat-button matStepperPrevious>Back</button>
-                  <button mat-button matStepperNext>Next</button>
+                  <button mat-button matStepperPrevious>
+                    <i class="pi pi-chevron-left" style="font-size: 2rem"></i>
+                  </button>
+                  <button mat-button matStepperNext>
+                    <i class="pi pi-chevron-right" style="font-size: 2rem"></i>
+                  </button>
                 </div>
               </form>
             </mat-step>
             <mat-step [stepControl]="thirdStudentFormGroup" label="Fill out your address">
               <form [formGroup]="thirdStudentFormGroup">
-                <mat-form-field appearance="fill">
-                  <mat-label>Address</mat-label>
-                  <input matInput formControlName="address" placeholder="Ex. 1 Main St, New York, NY"
-                         required>
-                </mat-form-field>
+                <div class="form-group">
+                  <div class="d-flex flex-row bd-highlight mb-3">
+                    <div class="p-2 col-8 bd-highlight">
+                        <mat-form-field appearance="fill" style = "width:100%">
+                          <mat-label>Address</mat-label>
+                          <input matInput formControlName="address" placeholder="Ex. 1 Main St, New York, NY" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="p-2 col-4 bd-highlight">
+                      <mat-form-field appearance="fill" style = "width:100%">
+                        <mat-label>City</mat-label>
+                        <input matInput formControlName="city" placeholder="Ex. 1 Main St, New York, NY" required>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row bd-highlight mb-3">
+                    <div class="p-2 col-4 bd-highlight">
+                        <mat-form-field appearance="fill" style = "width:100%">
+                          <mat-label>State</mat-label>
+                          <input matInput formControlName="stateId" placeholder="Ex. 1 Main St, New York, NY" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="p-2 col-4 bd-highlight">
+                      <mat-form-field appearance="fill" style = "width:100%">
+                        <mat-label>Distict</mat-label>
+                        <input matInput formControlName="district" placeholder="Ex. 1 Main St, New York, NY" required>
+                      </mat-form-field>
+                  </div>
+                    <div class="p-2 col-4 bd-highlight">
+                      <mat-form-field appearance="fill" style = "width:100%">
+                        <mat-label>Pin</mat-label>
+                        <input matInput formControlName="pin" placeholder="700120" required>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
                 <div>
                   <button mat-button matStepperPrevious>
                     <i class="pi pi-chevron-left" style="font-size: 2rem"></i>
