@@ -16,14 +16,15 @@
               <form [formGroup]="studentNameFormGroup">
 
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Student Name</label>
-                  <input pInputText pKeyFilter="alpha" class="form-control" id="exampleInputEmail1" formControlName="studentName" aria-describedby="emailHelp" placeholder="Student Name">
-                  <small id="emailHelp" class="form-text text-muted">Name should be Unique</small>
+                  <mat-form-field class="col-12">
+                    <input matInput placeholder="Student Name" formControlName="studentName">
+                  </mat-form-field>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Billing Name</label>
-                  <input pInputText class="form-control" id="exampleInputPassword1" formControlName="billingName" placeholder="Password">
-                  <small id="billingNameHelp" class="form-text text-muted">It is not Unique</small>
+                  <mat-form-field class="col-12">
+                    <input matInput placeholder="Billing Name" formControlName="billingName">
+                  </mat-form-field>
+
                 </div>
                 <div>
                   <button mat-button matStepperNext>
@@ -37,19 +38,48 @@
               <form [formGroup]="studentGuardianFormGroup">
 
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Father Name</label>
-                  <input pInputText pKeyFilter="alpha" class="form-control" id="father-name" formControlName="fatherName" aria-describedby="emailHelp" placeholder="Student Name">
-                  <small  class="form-text text-muted">Name should be Unique</small>
+
+
+                  <div class="d-flex flex-row bd-highlight mb-3">
+                    <div class="p-2 col-11 bd-highlight">
+                      <mat-form-field class="col-12">
+                        <input matInput placeholder="Father Name" formControlName="fatherName">
+                      </mat-form-field>
+                    </div>
+                    <div class="p-2 bd-highlight">
+                      <button pButton pRipple type="button" icon="pi pi-user" class="p-button-rounded p-button-info"></button>
+                    </div>
+                  </div>
+
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Mother Name</label>
-                  <input pInputText class="form-control" id="mother-name" formControlName="motherName" placeholder="Mother's Name">
-                  <small  class="form-text text-muted">It is not Unique</small>
+                  <div class="d-flex flex-row bd-highlight mb-3">
+                    <div class="p-2 col-11 bd-highlight">
+                      <mat-form-field class="col-12">
+                        <input matInput placeholder="Mother Name" formControlName="motherName">
+                      </mat-form-field>
+                    </div>
+                    <div class="p-2 bd-highlight">
+                      <button pButton pRipple type="button" icon="pi pi-user" class="p-button-rounded p-button-info"></button>
+                    </div>
+                  </div>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Guardian</label>
-                  <input pInputText class="form-control" id="guardian-name" formControlName="guardianName" placeholder="Guardian Name">
-                  <small  class="form-text text-muted">It is not Unique</small>
+
+
+                  <div class="d-flex flex-row bd-highlight mb-3">
+                    <div class="p-2 col-8 bd-highlight">
+                      <mat-form-field class="col-12">
+                        <input matInput placeholder="Guardian" formControlName="guardianName">
+                      </mat-form-field>
+                    </div>
+                    <div class="p-2 col-4 bd-highlight">
+                      <ng-select [items]="relations" fxFlex="100"  bindLabel="name" class="custom" bindValue="name" formControlName="relationToGuardian" placeholder="Relation">
+                      </ng-select>
+                    </div>
+                  </div>
+
+
                 </div>
                 <div>
                   <button mat-button matStepperPrevious>

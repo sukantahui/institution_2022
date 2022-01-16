@@ -25,6 +25,7 @@ export class StudentComponent implements OnInit{
 
 
   items: MenuItem[]=[];
+
   activeIndex: number = 0;
 
 
@@ -34,10 +35,17 @@ export class StudentComponent implements OnInit{
   thirdStudentFormGroup: FormGroup;
   fourthStudentFormGroup: FormGroup;
   isLinear: boolean = false;
+  relations: any[];
 
   constructor(private _formBuilder: FormBuilder, private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig) {
     const data: Data = this.activatedRoute.snapshot.data;
     this.loginType = data['loginType'];
+    this.relations = [
+      {name: 'Father'},
+      {name: 'Mother'},
+      {name: 'Dadu'},
+      {name: 'Dida'}
+    ];
     this.studentNameFormGroup = this._formBuilder.group({
       studentId : new FormControl(null),
       studentName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(4)]),

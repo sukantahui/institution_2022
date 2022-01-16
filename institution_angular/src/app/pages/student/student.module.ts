@@ -22,6 +22,8 @@ import {MenuItem} from "primeng/api/menuitem";
 import {ToastModule} from "primeng/toast";
 import {PanelModule} from "primeng/panel";
 import {MatStepperModule} from "@angular/material/stepper";
+import {DropdownModule} from "primeng/dropdown";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 
 
@@ -46,7 +48,9 @@ import {MatStepperModule} from "@angular/material/stepper";
     ToastModule,
     ReactiveFormsModule,
     PanelModule,
-    MatStepperModule
+    MatStepperModule,
+    DropdownModule,
+    NgSelectModule
 
   ]
 })
