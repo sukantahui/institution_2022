@@ -45,6 +45,8 @@ export class StudentComponent implements OnInit{
   relations: any[];
   sex: any[];
   genders: any[];
+  billingName:string='';
+  guradainName:string='';
   isProduction = environment.production;
   showDeveloperDiv = true;
   isCaptured: boolean =true;
@@ -113,7 +115,19 @@ export class StudentComponent implements OnInit{
   showDialog() {
     this.displayDialog = true;
   }
+  sameAsBillName(name:any){
 
+    console.log(name);
+    this.billingName=name;
+  }
+  guardianAsFather(father:any){
+    this.guradainName=father;
+    console.log(this.guradainName);
+  }
+  guardianAsMother(mother:any){
+    this.guradainName=mother;
+    console.log(this.guradainName);
+  }
   saveStudent() {
     this.confirmationService.confirm({
       message: 'Do you want to delete this record?',
