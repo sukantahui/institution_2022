@@ -6,6 +6,7 @@ import {ConfirmationService, MenuItem, MessageService, PrimeNGConfig} from "prim
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Table} from "primeng/table";
 import {environment} from "../../../environments/environment";
+import {WebcamInitError} from "ngx-webcam";
 
 
 @Component({
@@ -16,6 +17,11 @@ import {environment} from "../../../environments/environment";
 
 })
 export class StudentComponent implements OnInit{
+
+  error: any;
+
+
+
   loginType: any;
   students: Student[] = [];
 
@@ -41,6 +47,9 @@ export class StudentComponent implements OnInit{
   genders: any[];
   isProduction = environment.production;
   showDeveloperDiv = true;
+  isCaptured: boolean =true;
+  WIDTH=200;
+  HEIGHT=200;
 
   constructor(public _formBuilder: FormBuilder, private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig) {
     const data: Data = this.activatedRoute.snapshot.data;
@@ -171,5 +180,11 @@ export class StudentComponent implements OnInit{
     const dateArray = value.split("/");
     const sqlDate = dateArray[2]+'-'+dateArray[1]+'-'+dateArray[0];
     this.studentBasicFormGroup.patchValue({dobSQL: sqlDate});
+  }
+
+  public handleInitError(error: WebcamInitError): void {
+    if (error.mediaStreamError && error.mediaStreamError.name === "NotAllowedError") {
+      console.warn("Camera access was not allowed by user!");
+    }
   }
 }

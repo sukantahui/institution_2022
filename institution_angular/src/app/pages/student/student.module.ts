@@ -29,6 +29,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {SelectButtonModule} from "primeng/selectbutton";
 import {ToggleButtonModule} from "primeng/togglebutton";
 import {EditorModule} from "primeng/editor";
+import {TabViewModule} from "primeng/tabview";
+import {WebcamModule} from "ngx-webcam";
+
 
 
 
@@ -59,7 +62,8 @@ import {EditorModule} from "primeng/editor";
     MatNativeDateModule,
     SelectButtonModule,
     ToggleButtonModule,
-    EditorModule
+    EditorModule,
+    WebcamModule
 
   ]
 })

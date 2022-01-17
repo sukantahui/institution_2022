@@ -225,6 +225,11 @@
 
                 <div class="form-group">
 
+                  <webcam (initError)="handleInitError($event)"></webcam>
+
+
+
+
                   <h5>Description</h5>
                   <p-editor formControlName="description" [style]="{'height':'120px'}">
                     <ng-template pTemplate="header">
@@ -232,7 +237,10 @@
                         <button type="button" class="ql-bold" aria-label="Bold"></button>
                         <button type="button" class="ql-italic" aria-label="Italic"></button>
                         <button type="button" class="ql-underline" aria-label="Underline"></button>
+
                     </span>
+
+
                     </ng-template>
                   </p-editor>
 
