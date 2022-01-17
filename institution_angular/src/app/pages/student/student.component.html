@@ -11,6 +11,7 @@
           <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
             {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
           </button>
+          <!--          Start of stepper-->
           <mat-stepper [linear]="isLinear" #stepper style="background-color: #94a3b8;">
             <mat-step [stepControl]="studentNameFormGroup" label="Name">
               <form [formGroup]="studentNameFormGroup">
@@ -38,8 +39,6 @@
               <form [formGroup]="studentGuardianFormGroup">
 
                 <div class="form-group">
-
-
                   <div class="d-flex flex-row bd-highlight mb-3">
                     <div class="p-2 col-11 bd-highlight">
                       <mat-form-field class="col-12">
@@ -92,8 +91,8 @@
               </form>
             </mat-step>
 
-            <mat-step [stepControl]="secondStudentFormGroup" label="Fill out your address">
-              <form [formGroup]="secondStudentFormGroup">
+            <mat-step [stepControl]="studentBasicFormGroup" label="Basic">
+              <form [formGroup]="studentBasicFormGroup">
                 <div class="form-group">
 
 
@@ -136,8 +135,9 @@
                 </div>
               </form>
             </mat-step>
-            <mat-step [stepControl]="thirdStudentFormGroup" label="Fill out your address">
-              <form [formGroup]="thirdStudentFormGroup">
+
+            <mat-step [stepControl]="studentAddressFormGroup" label="Address">
+              <form [formGroup]="studentAddressFormGroup">
                 <div class="form-group">
                   <div class="d-flex flex-row bd-highlight mb-3">
                     <div class="p-2 col-8 bd-highlight">
@@ -185,6 +185,49 @@
                 </div>
               </form>
             </mat-step>
+
+            <mat-step [stepControl]="studentContactFormGroup" label="Contact">
+              <form [formGroup]="studentContactFormGroup">
+                <div class="form-group">
+                  <div class="d-flex flex-row bd-highlight mb-3">
+                    <div class="p-2 col-8 bd-highlight">
+                      <mat-form-field appearance="fill" style = "width:100%">
+                        <mat-label>Guardian Contact</mat-label>
+                        <input matInput formControlName="guardianContactNumber" placeholder="Guardian Contact" required>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row bd-highlight mb-3">
+                    <div class="p-2 col-4 bd-highlight">
+                      <mat-form-field appearance="fill" style = "width:100%">
+                        <mat-label>WhatsApp Number</mat-label>
+                        <input matInput formControlName="whatsappNumber" placeholder="WhatsApp Number" required>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row bd-highlight mb-3">
+                    <div class="p-2 col-4 bd-highlight">
+                      <mat-form-field appearance="fill" style = "width:100%">
+                        <mat-label>WhatsApp Number</mat-label>
+                        <input matInput formControlName="whatsappNumber" placeholder="WhatsApp Number" required>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <button mat-button matStepperPrevious>
+                    <i class="pi pi-chevron-left" style="font-size: 2rem"></i>
+                  </button>
+                  <button mat-button matStepperNext>
+                    <i class="pi pi-chevron-right" style="font-size: 2rem"></i>
+                  </button>
+                </div>
+              </form>
+            </mat-step>
+
             <mat-step>
               <ng-template matStepLabel>Done</ng-template>
               <p>You are now done.</p>
@@ -195,9 +238,15 @@
                 <button mat-button (click)="stepper.reset()">
                   <i class="bi bi-arrow-clockwise" style="font-size: 2rem"></i>
                 </button>
+                <button pButton  (click)="saveStudent()">
+                  <i class="bi bi-save-fill" style="font-size: 1rem">Save</i>
+                </button>
               </div>
             </mat-step>
+
           </mat-stepper>
+          <!--          End of Stepper-->
+
         </div>
 
         <p-confirmDialog #cd [style]="{width: '30vw'}" header="Confirmation" icon="pi pi-exclamation-triangle" [transitionOptions]="'0.8ms'">
@@ -210,7 +259,7 @@
           </ng-template>
         </p-confirmDialog>
 
-        <button (click)="confirm()" pButton icon="pi pi-check" label="Confirm"></button>
+<!--        <button (click)="confirm()" pButton icon="pi pi-check" label="Confirm"></button>-->
 
       </div>
     </div>
@@ -270,3 +319,32 @@
     </div>
   </div>
 </div>
+
+<!--To enable developer div in development-->
+<div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="space-between stretch"  *ngIf="!isProduction">
+  <p-toggleButton [(ngModel)]="showDeveloperDiv" onLabel="Dont Show Developer Area" offLabel="Show Developer Area" onIcon="pi pi-times" offIcon="pi pi-check" [style]="{'width': '30em'}"></p-toggleButton>
+</div>
+
+<!--This is developer div-->
+<div class="d-flex flex-row bd-highlight mb-3" *ngIf="showDeveloperDiv && !isProduction">
+  <div class="p-2 bd-highlight col-3" style="background-color: #555555;">
+    <pre>
+      studentNameFormGroup = {{this.studentNameFormGroup.value | json}}
+    </pre>
+  </div>
+  <div class="p-2 bd-highlight col-3" style="background-color: #6d6c6c;">
+    <pre>
+      studentGuardianFormGroup = {{studentGuardianFormGroup.value | json}};
+    </pre>
+  </div>
+  <div class="p-2 bd-highlight col-3" style="background-color: #848383;">
+    <pre>
+      studentBasicFormGroup = {{studentBasicFormGroup.value | json}}
+    </pre>
+  </div>
+  <div class="p-2 bd-highlight col-3" style="background-color: #a3a0a0;">
+    studentBasicFormGroup = {{studentBasicFormGroup.value | json}}
+  </div>
+</div>
+
+

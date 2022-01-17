@@ -5,6 +5,7 @@ import {StudentService} from "../../services/student.service";
 import {ConfirmationService, MenuItem, MessageService, PrimeNGConfig} from "primeng/api";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Table} from "primeng/table";
+import {environment} from "../../../environments/environment";
 
 
 @Component({
@@ -31,15 +32,17 @@ export class StudentComponent implements OnInit{
 
   studentNameFormGroup: FormGroup;
   studentGuardianFormGroup: FormGroup;
-  secondStudentFormGroup: FormGroup;
-  thirdStudentFormGroup: FormGroup;
-  fourthStudentFormGroup: FormGroup;
+  studentBasicFormGroup: FormGroup;
+  studentAddressFormGroup: FormGroup;
+  studentContactFormGroup: FormGroup;
   isLinear: boolean = false;
   relations: any[];
   sex: any[];
   genders: any[];
+  isProduction = environment.production;
+  showDeveloperDiv = true;
 
-  constructor(private _formBuilder: FormBuilder, private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig) {
+  constructor(public _formBuilder: FormBuilder, private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig) {
     const data: Data = this.activatedRoute.snapshot.data;
     this.loginType = data['loginType'];
 
@@ -65,11 +68,7 @@ export class StudentComponent implements OnInit{
     this.studentNameFormGroup = this._formBuilder.group({
       studentId : new FormControl(null),
       studentName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
-      billingName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
-      fatherName : new FormControl(null),
-      motherName : new FormControl(null),
-      guardianName : new FormControl(null),
-      relationToGuardian : new FormControl(null)
+      billingName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(4)])
     });
     this.studentGuardianFormGroup = this._formBuilder.group({
       fatherName : new FormControl(null),
@@ -78,11 +77,11 @@ export class StudentComponent implements OnInit{
       relationToGuardian : new FormControl(null)
     });
 
-    this.secondStudentFormGroup = this._formBuilder.group({
+    this.studentBasicFormGroup = this._formBuilder.group({
       dob : new FormControl(null),
       sex : new FormControl(null),
     });
-    this.thirdStudentFormGroup = this._formBuilder.group({
+    this.studentAddressFormGroup = this._formBuilder.group({
       address : new FormControl(null,[Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
       city : new FormControl(null,[Validators.required, Validators.maxLength(20), Validators.minLength(4)]),
       district : new FormControl(null,[Validators.required, Validators.maxLength(20), Validators.minLength(4)]),
@@ -90,7 +89,7 @@ export class StudentComponent implements OnInit{
       pin : new FormControl(null)
     });
 
-    this.fourthStudentFormGroup = this._formBuilder.group({
+    this.studentContactFormGroup = this._formBuilder.group({
       guardianContactNumber : new FormControl(null),
       whatsappNumber : new FormControl(null),
       email : new FormControl(null),
@@ -103,7 +102,7 @@ export class StudentComponent implements OnInit{
     this.displayDialog = true;
   }
 
-  confirm() {
+  saveStudent() {
     this.confirmationService.confirm({
       message: 'Do you want to delete this record?',
       header: 'Delete Confirmation',
