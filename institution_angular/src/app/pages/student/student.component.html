@@ -8,11 +8,11 @@
 
         <!--    Form Entry-->
         <div>
-          <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-            {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-          </button>
+<!--          <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">-->
+<!--            {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}-->
+<!--          </button>-->
           <!--          Start of stepper-->
-          <mat-stepper [linear]="isLinear" #stepper style="background-color: #94a3b8;">
+          <mat-stepper [linear]="isLinear" #stepper style="min-height: 50vh; background-color: #94a3b8; border: 2px solid rgba(95,94,94,0.2); border-radius: 25px 25px;">
             <mat-step [stepControl]="studentNameFormGroup" label="Name">
               <form [formGroup]="studentNameFormGroup">
 
@@ -27,7 +27,7 @@
                   </mat-form-field>
 
                 </div>
-                <div>
+                <div style="vertical-align:bottom;">
                   <button mat-button matStepperNext>
                     <i class="pi pi-chevron-right" style="font-size: 2rem"></i>
                   </button>
@@ -80,7 +80,7 @@
 
 
                 </div>
-                <div>
+                <div style="vertical-align:bottom;">
                   <button mat-button matStepperPrevious>
                     <i class="pi pi-chevron-left" style="font-size: 2rem"></i>
                   </button>
@@ -217,7 +217,7 @@
                   </div>
                 </div>
 
-                <div>
+                <div style="vertical-align:bottom;">
                   <button mat-button matStepperPrevious>
                     <i class="pi pi-chevron-left" style="font-size: 2rem"></i>
                   </button>
@@ -343,7 +343,9 @@
     </pre>
   </div>
   <div class="p-2 bd-highlight col-3" style="background-color: #a3a0a0;">
-    studentBasicFormGroup = {{studentBasicFormGroup.value | json}}
+    <pre>
+      studentContactFormGroup = {{studentContactFormGroup.value | json}}
+    </pre>
   </div>
 </div>
 
