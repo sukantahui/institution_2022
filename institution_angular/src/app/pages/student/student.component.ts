@@ -6,7 +6,8 @@ import {ConfirmationService, MenuItem, MessageService, PrimeNGConfig} from "prim
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Table} from "primeng/table";
 import {environment} from "../../../environments/environment";
-import {WebcamInitError} from "ngx-webcam";
+import {WebcamImage, WebcamInitError} from "ngx-webcam";
+import {AuthService} from "../../services/auth.service";
 
 
 @Component({
@@ -52,8 +53,9 @@ export class StudentComponent implements OnInit{
   isCaptured: boolean =true;
   WIDTH=200;
   HEIGHT=200;
+  public webcamImage: WebcamImage | undefined ;
 
-  constructor(public _formBuilder: FormBuilder, private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig) {
+  constructor(public authService: AuthService ,public _formBuilder: FormBuilder, private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig) {
     const data: Data = this.activatedRoute.snapshot.data;
     this.loginType = data['loginType'];
 
@@ -200,5 +202,38 @@ export class StudentComponent implements OnInit{
     if (error.mediaStreamError && error.mediaStreamError.name === "NotAllowedError") {
       console.warn("Camera access was not allowed by user!");
     }
+  }
+
+  handleImage(webcamImage: WebcamImage) {
+    this.webcamImage = webcamImage;
+
+    const arr = this.webcamImage.imageAsDataUrl.split(",");
+    // @ts-ignore
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    const file: File = new File([u8arr], "test", { type: "jpeg" })
+    console.log(file);  
+
+
+
+
+
+
+
+
+
+
+
+    this.authService.upload(file).subscribe((response) => {
+        console.log(response);
+        if (response.success === 100){
+        }
+      }
+    );
   }
 }

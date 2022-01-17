@@ -6,6 +6,14 @@
       </div>
       <div class="card-body">
 
+        <app-camera (pictureTaken)="handleImage($event)"></app-camera>
+
+
+
+        <div class="snapshot" *ngIf="webcamImage">
+          <img [src]="webcamImage.imageAsDataUrl" />
+        </div>
+
         <!--    Form Entry-->
         <div>
 <!--          <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">-->

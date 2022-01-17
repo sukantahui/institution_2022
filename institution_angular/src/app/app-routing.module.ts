@@ -46,6 +46,8 @@ const routes: Routes = [
 
   { path: 'BarChart', loadChildren: () => import('./pages/developer/charts/bar-chart/bar-chart.module').then(m => m.BarChartModule) },
 
+  { path: 'camera', loadChildren: () => import('./pages/camera/camera.module').then(m => m.CameraModule) },
+
 ];
 
 

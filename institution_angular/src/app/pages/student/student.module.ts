@@ -31,13 +31,15 @@ import {ToggleButtonModule} from "primeng/togglebutton";
 import {EditorModule} from "primeng/editor";
 import {TabViewModule} from "primeng/tabview";
 import {WebcamModule} from "ngx-webcam";
+import {CameraComponent} from "../camera/camera.component";
+import {CameraModule} from "../camera/camera.module";
 
 
 
 
 @NgModule({
   declarations: [
-    StudentComponent
+    StudentComponent,
   ],
   imports: [
     CommonModule,
@@ -63,7 +65,8 @@ import {WebcamModule} from "ngx-webcam";
     SelectButtonModule,
     ToggleButtonModule,
     EditorModule,
-    WebcamModule
+    WebcamModule,
+    CameraModule
 
   ]
 })
