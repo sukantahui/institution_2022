@@ -28,6 +28,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {SelectButtonModule} from "primeng/selectbutton";
 import {ToggleButtonModule} from "primeng/togglebutton";
+import {EditorModule} from "primeng/editor";
+
 
 
 @NgModule({
@@ -56,7 +58,8 @@ import {ToggleButtonModule} from "primeng/togglebutton";
     MatDatepickerModule,
     MatNativeDateModule,
     SelectButtonModule,
-    ToggleButtonModule
+    ToggleButtonModule,
+    EditorModule
 
   ]
 })

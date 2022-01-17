@@ -89,12 +89,14 @@ export class StudentComponent implements OnInit{
       district : new FormControl(null,[Validators.required, Validators.maxLength(20), Validators.minLength(4)]),
       stateId : new FormControl(null),
       pin : new FormControl(null)
+
     });
 
     this.studentContactFormGroup = this._formBuilder.group({
       guardianContactNumber : new FormControl(null),
       whatsappNumber : new FormControl(null),
-      email : new FormControl(null)
+      email : new FormControl(null),
+      description : new FormControl(null)
     });
 
   }
