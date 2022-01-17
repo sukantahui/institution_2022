@@ -81,6 +81,7 @@ export class StudentComponent implements OnInit{
       dob : new FormControl(null),
       dobSQL: new FormControl(null),
       sex : new FormControl(null),
+      qualification : new FormControl(null)
     });
     this.studentAddressFormGroup = this._formBuilder.group({
       address : new FormControl(null,[Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
@@ -93,8 +94,7 @@ export class StudentComponent implements OnInit{
     this.studentContactFormGroup = this._formBuilder.group({
       guardianContactNumber : new FormControl(null),
       whatsappNumber : new FormControl(null),
-      email : new FormControl(null),
-      qualification : new FormControl(null)
+      email : new FormControl(null)
     });
 
   }
