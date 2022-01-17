@@ -42,11 +42,11 @@
                   <div class="d-flex flex-row bd-highlight mb-3">
                     <div class="p-2 col-11 bd-highlight">
                       <mat-form-field class="col-12">
-                        <input matInput placeholder="Father Name" formControlName="fatherName">
+                        <input matInput placeholder="Father Name" formControlName="fatherName" #fatherName>
                       </mat-form-field>
                     </div>
                     <div class="p-2 bd-highlight">
-                      <button pButton pRipple type="button" icon="pi pi-user" class="p-button-rounded p-button-info"></button>
+                      <button pButton pRipple type="button" icon="pi pi-user" class="p-button-rounded p-button-info" (click)=guardianAsFather(fatherName.value)></button>
                     </div>
                   </div>
 
@@ -55,11 +55,11 @@
                   <div class="d-flex flex-row bd-highlight mb-3">
                     <div class="p-2 col-11 bd-highlight">
                       <mat-form-field class="col-12">
-                        <input matInput placeholder="Mother Name" formControlName="motherName">
+                        <input matInput placeholder="Mother Name" formControlName="motherName" #mother>
                       </mat-form-field>
                     </div>
                     <div class="p-2 bd-highlight">
-                      <button pButton pRipple type="button" icon="pi pi-user" class="p-button-rounded p-button-info"></button>
+                      <button pButton pRipple type="button" icon="pi pi-user" class="p-button-rounded p-button-info" (click)=guardianAsMother(mother.value)></button>
                     </div>
                   </div>
                 </div>
@@ -69,7 +69,7 @@
                   <div class="d-flex flex-row bd-highlight mb-3">
                     <div class="p-2 col-8 bd-highlight">
                       <mat-form-field class="col-12">
-                        <input matInput placeholder="Guardian" formControlName="guardianName">
+                        <input matInput placeholder="Guardian" formControlName="guardianName" value={{guradainName}} >
                       </mat-form-field>
                     </div>
                     <div class="p-2 col-4 bd-highlight">

@@ -40,6 +40,7 @@ export class StudentComponent implements OnInit{
   sex: any[];
   genders: any[];
   billingName:string='';
+  guradainName:string='';
   isProduction = environment.production;
   showDeveloperDiv = true;
 
@@ -109,6 +110,14 @@ export class StudentComponent implements OnInit{
 
     console.log(name);
     this.billingName=name;
+  }
+  guardianAsFather(father:any){
+    this.guradainName=father;
+    console.log(this.guradainName);
+  }
+  guardianAsMother(mother:any){
+    this.guradainName=mother;
+    console.log(this.guradainName);
   }
   saveStudent() {
     this.confirmationService.confirm({
