@@ -18,12 +18,12 @@
 
                 <div class="form-group">
                   <mat-form-field class="col-12">
-                    <input matInput placeholder="Student Name" formControlName="studentName">
+                    <input matInput placeholder="Student Name"  (ngModelChange)="sameAsBillName($event)" formControlName="studentName">
                   </mat-form-field>
                 </div>
                 <div class="form-group">
                   <mat-form-field class="col-12">
-                    <input matInput placeholder="Billing Name" formControlName="billingName">
+                    <input matInput placeholder="Billing Name" formControlName="billingName" value={{billingName}}>
                   </mat-form-field>
 
                 </div>

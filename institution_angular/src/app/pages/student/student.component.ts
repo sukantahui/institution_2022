@@ -39,6 +39,7 @@ export class StudentComponent implements OnInit{
   relations: any[];
   sex: any[];
   genders: any[];
+  billingName:string='';
   isProduction = environment.production;
   showDeveloperDiv = true;
 
@@ -102,7 +103,11 @@ export class StudentComponent implements OnInit{
   showDialog() {
     this.displayDialog = true;
   }
+  sameAsBillName(name:any){
 
+    console.log(name);
+    this.billingName=name;
+  }
   saveStudent() {
     this.confirmationService.confirm({
       message: 'Do you want to delete this record?',
