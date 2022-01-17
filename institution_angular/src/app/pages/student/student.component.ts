@@ -79,6 +79,7 @@ export class StudentComponent implements OnInit{
 
     this.studentBasicFormGroup = this._formBuilder.group({
       dob : new FormControl(null),
+      dobSQL: new FormControl(null),
       sex : new FormControl(null),
     });
     this.studentAddressFormGroup = this._formBuilder.group({
@@ -162,4 +163,11 @@ export class StudentComponent implements OnInit{
     return $event.target.value;
   }
 
+
+
+  setDobSQL(value: string) {
+    const dateArray = value.split("/");
+    const sqlDate = dateArray[2]+'-'+dateArray[1]+'-'+dateArray[0];
+    this.studentBasicFormGroup.patchValue({dobSQL: sqlDate});
+  }
 }

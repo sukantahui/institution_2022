@@ -27,6 +27,8 @@ import {SidenavOwnerModule} from "./sidenavs/sidenav-owner/sidenav-owner.module"
 import {SidenavDeveloperModule} from "./sidenavs/sidenav-developer/sidenav-developer.module";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { MAT_DATE_LOCALE} from "@angular/material/core";
+
 
 @NgModule({
   declarations: [
@@ -40,17 +42,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     BrowserAnimationsModule,
     MatSidenavModule,
     HttpClientModule,
-    // MatToolbarModule,
-    // MatMenuModule,
-    // MatIconModule,
-    // MatDividerModule,
-    // MatListModule,
-    // MatCardModule,
-    // MatTabsModule,
-    // NgChartsModule,
-    // MatInputModule,
-    // MatButtonModule,
-    // ReactiveFormsModule,
+
     SidenavModule,
     HeaderModule,
     SidenavOwnerModule,
@@ -60,7 +52,10 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    { provide: MAT_DATE_LOCALE, useValue: 'en-in' }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}

@@ -101,7 +101,7 @@
 
                         <mat-form-field appearance="fill">
                           <mat-label>Date Of Birth</mat-label>
-                          <input matInput [matDatepicker]="dob" formControlName="dob">
+                          <input matInput #ref [matDatepicker]="dob" formControlName="dob"(dateInput)="setDobSQL(ref.value)">
                           <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
                           <mat-datepicker #dob></mat-datepicker>
                         </mat-form-field>
