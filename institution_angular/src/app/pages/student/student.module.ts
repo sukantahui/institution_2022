@@ -33,6 +33,8 @@ import {TabViewModule} from "primeng/tabview";
 import {WebcamModule} from "ngx-webcam";
 import {CameraComponent} from "../camera/camera.component";
 import {CameraModule} from "../camera/camera.module";
+import {TooltipModule} from "primeng/tooltip";
+import {SidebarModule} from "primeng/sidebar";
 
 
 
@@ -66,7 +68,9 @@ import {CameraModule} from "../camera/camera.module";
     ToggleButtonModule,
     EditorModule,
     WebcamModule,
-    CameraModule
+    CameraModule,
+    TooltipModule,
+    SidebarModule
 
   ]
 })

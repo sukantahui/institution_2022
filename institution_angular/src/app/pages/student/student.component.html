@@ -1,3 +1,6 @@
+<p-dialog header="Title" position="top" [transitionOptions]="'600ms'" [(visible)]="displayDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
+  {{dialogContent}}
+</p-dialog>
 <div class="d-flex flex-row bd-highlight mb-3">
   <div class="p-2 bd-highlight col-7">
     <div class="card">
@@ -5,12 +8,7 @@
         <h3 style="color: #1e293b;">Student Entry Form</h3>
       </div>
       <div class="card-body">
-
-        <!--    Form Entry-->
         <div>
-<!--          <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">-->
-<!--            {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}-->
-<!--          </button>-->
           <!--          Start of stepper-->
           <mat-stepper [linear]="isLinear" #stepper style="min-height: 50vh; background-color: #94a3b8; border: 2px solid rgba(95,94,94,0.2); border-radius: 25px 25px;">
             <mat-step [stepControl]="studentNameFormGroup" label="Name">
@@ -99,20 +97,20 @@
 
                         <mat-form-field appearance="fill">
                           <mat-label>Date Of Birth</mat-label>
-                          <input matInput #ref [matDatepicker]="dob" formControlName="dob"(dateInput)="setDobSQL(ref.value)">
+                          <input class="col-9" matInput #ref [matDatepicker]="dob" formControlName="dob"(dateInput)="setDobSQL(ref.value)">
                           <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
                           <mat-datepicker #dob></mat-datepicker>
                         </mat-form-field>
 
                       <div class="form-group">
-                        <mat-form-field class="col-12">
+                        <mat-form-field>
                           <input matInput placeholder="Qualification" formControlName="qualification">
                         </mat-form-field>
                       </div>
 
                       <p-selectButton [options]="genders" formControlName="sex"  optionLabel="name" optionValue="value">
                         <ng-template let-item>
-                          {{item.name}}<i [class]="item.icon"></i>
+                            <span  [pTooltip]="item.tooltip">{{item.name}} <i [class]="item.icon"></i> </span>
                         </ng-template>
                       </p-selectButton>
                       <hr>
@@ -137,10 +135,10 @@
                 </div>
                 <div>
                   <button mat-button matStepperPrevious>
-                    <i class="pi pi-chevron-left" style="font-size: 2rem"></i>
+                    <i class="pi pi-chevron-left" style="font-size: 1rem"></i>
                   </button>
                   <button mat-button matStepperNext>
-                    <i class="pi pi-chevron-right" style="font-size: 2rem"></i>
+                    <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
                   </button>
                 </div>
               </form>
@@ -293,17 +291,21 @@
 
   <!--  Right-->
   <div class="p-2 bd-highlight col-5">
+
     <div class="card">
       <div class="card-header">
-        <h3 style="color: #1e293b;">Student Details</h3>
+
+
+        <div class="d-flex bd-highlight mb-3">
+          <div class="p-2 bd-highlight">
+            <p-button type="button" (click)="visibleSidebar2 = true" icon="pi pi-arrow-left"></p-button>
+          </div>
+          <div class="p-2 bd-highlight">
+            <h3 style="color: #1e293b;">Student Details</h3>
+          </div>
+        </div>
       </div>
       <div class="card">
-        <p-dialog header="Title" position="top" [transitionOptions]="'600ms'" [(visible)]="displayDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
-          {{dialogContent}}
-        </p-dialog>
-
-
-        <button type="button" (click)="showDialog()" icon="pi pi-info-circle" label="Show">Show Message</button>
 
 
         <h5>Student List</h5>
@@ -313,10 +315,10 @@
                  [globalFilterFields]="['studentId','episodeId','studentName','motherName']">
           <ng-template pTemplate="caption">
             <div class="p-d-flex">
-              <span class="p-input-icon-left p-ml-auto">
-                    <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="dt1.filterGlobal(getEventValue($event), 'contains')" placeholder="Search keyword" />
-                </span>
+                    <span class="p-input-icon-left p-ml-auto">
+                          <i class="pi pi-search"></i>
+                          <input pInputText type="text" (input)="dt1.filterGlobal(getEventValue($event), 'contains')" placeholder="Search keyword" />
+                      </span>
             </div>
           </ng-template>
           <ng-template pTemplate="header">
@@ -341,6 +343,16 @@
         </p-table>
       </div>
     </div>
+
+    <p-sidebar [(visible)]="visibleSidebar2" position="right" [baseZIndex]="20000">
+      <h1 style="font-weight:normal">Right Sidebar</h1>
+      <p-button type="button" (click)="visibleSidebar2 = false" label="Save" styleClass="p-button-success"></p-button>
+      <p-button type="button" (click)="visibleSidebar2 = false" label="Cancel" styleClass="p-button-secondary"></p-button>
+
+
+
+    </p-sidebar>
+
   </div>
 </div>
 
@@ -366,7 +378,7 @@
       studentBasicFormGroup = {{studentBasicFormGroup.value | json}}
     </pre>
   </div>
- 
+
   <div class="p-2 bd-highlight col-3" style="background-color: #a3a0a0;">
     <pre>
       studentAddressFormGroup = {{studentAddressFormGroup.value | json}}

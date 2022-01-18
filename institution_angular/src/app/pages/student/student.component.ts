@@ -57,14 +57,15 @@ export class StudentComponent implements OnInit{
   dialogContent: string = "";
   optionSelected:any='';
   guardianName:any='';
+  visibleSidebar2: boolean = false;
   constructor(public authService: AuthService ,public _formBuilder: FormBuilder, private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig) {
     const data: Data = this.activatedRoute.snapshot.data;
     this.loginType = data['loginType'];
 
     this.genders = [
-      {name: 'M', value: 'M', icon: 'bi bi-gender-male'},
-      {name: 'F', value: 'F', icon: 'bi bi-gender-female'},
-      {name: 'T', value: 'T', icon: 'bi bi-gender-trans'}
+      {name: 'M', value: 'M', icon: 'bi bi-gender-male',tooltip: 'Male'},
+      {name: 'F', value: 'F', icon: 'bi bi-gender-female',tooltip: 'Female'},
+      {name: 'T', value: 'T', icon: 'bi bi-gender-trans',tooltip: 'Others'}
     ];
 
     this.relations = [
@@ -122,7 +123,7 @@ export class StudentComponent implements OnInit{
   }
   sameAsBillName(){
     this.studentNameFormGroup.patchValue({billingName: this.studentNameFormGroup.value.studentName});
-   
+
   }
   guardianAsFather(father:any){
     this.guardianName=father;
