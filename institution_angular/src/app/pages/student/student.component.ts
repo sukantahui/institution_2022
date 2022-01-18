@@ -223,7 +223,7 @@ export class StudentComponent implements OnInit{
       }
       const file: File = new File([u8arr], "test", { type: "jpeg" })
       console.log(file);
-      this.authService.upload(file).subscribe((response) => {
+      this.authService.uploadStudentImage(file).subscribe((response) => {
           console.log(response);
           if (response.status === true){
             this.showDialog();

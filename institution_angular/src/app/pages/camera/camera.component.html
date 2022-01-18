@@ -1,7 +1,7 @@
 <div style="text-align:center">
   <div>
 
-    <div id="camera-capture" class="p-2 bd-highlight">
+    <div id="camera-capture" class="p-2 bd-highlight" style="border: 1px solid black; border-radius: 25px;">
             <webcam [height]="300" [width]="300"
                     [trigger]="triggerObservable"
                     (imageCapture)="handleImage($event)" *ngIf="showWebcam"
@@ -9,18 +9,19 @@
                     [switchCamera]="nextWebcamObservable"
                     [videoOptions]="videoOptions"
                     (cameraSwitched)="cameraWasSwitched($event)"
-                    (initError)="handleInitError($event)"
-                    style="border: 4px solid midnightblue;">
+                    (initError)="handleInitError($event)">
             </webcam>
             <h5>Webcam</h5>
-            <div class="d-flex flex-row bd-highlight mb-3">
-              <div class="p-2 bd-highlight">
-                <div class="actionBtn" (click)="triggerSnapshot();" title="Take Picture">
-                  <i class="bi bi-camera-fill"></i>
-                </div>
+            <div class="d-flex flex-row bd-highlight mb-3" style="align-self: center;">
+              <div class="p-2 bd-highlight col-6">
+                <button type="button" pButton (click)="triggerSnapshot();" >
+                  <i class="bi bi-camera-fill"></i>&nbsp;Take
+                </button>
               </div>
-              <div class="p-2 bd-highlight">
-                <div class="actionBtn" (click)="showNextWebcam(true);" title="Switch Camera">🔁</div>
+              <div class="p-2 bd-highlight ">
+                <button type="button" pButton  (click)="showNextWebcam(true);" >
+                  <i class="bi bi-arrow-clockwise"></i>
+                </button>
               </div>
             </div>
     </div>

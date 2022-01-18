@@ -88,7 +88,7 @@ class UserController extends ApiController
         return response()->json(['success'=>$result,'data'=>null, 'message'=>'Token revoked'], 200,[],JSON_NUMERIC_CHECK);
     }
 
-    function uploadPicture(Request $request){
+    function uploadUserPicture(Request $request){
 //        $input = json_decode($request->getContent(), true);
 
 
@@ -99,6 +99,22 @@ class UserController extends ApiController
 
         //return $fileName;
         $path = $request->file('file')->move(public_path("/profile_pic"), $fileName);
+//        $photoUrl = url('/entrant_pictures/' . $fileName);
+        return $this->successResponse($request->file('file'));
+//        return response()->json(['success'=>100,'data'=> $path], 200,[],JSON_NUMERIC_CHECK);
+
+    }
+    function uploadStudentPicture(Request $request){
+//        $input = json_decode($request->getContent(), true);
+
+
+        $fileName = $request['filename'];
+//        $fileName = 'test1.jpeg';
+//        return $fileName;
+        //first saving picture
+
+        //return $fileName;
+        $path = $request->file('file')->move(public_path("/student_pictures"), $fileName);
 //        $photoUrl = url('/entrant_pictures/' . $fileName);
         return $this->successResponse($request->file('file'));
 //        return response()->json(['success'=>100,'data'=> $path], 200,[],JSON_NUMERIC_CHECK);

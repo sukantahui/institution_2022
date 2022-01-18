@@ -48,7 +48,8 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 
     //get all users
     Route::get("users",[UserController::class,'getAllUsers']);
-    Route::post('uploadPicture',[UserController::class,'uploadPicture']);
+    Route::post('uploadPicture',[UserController::class,'uploadUserPicture']);
+    Route::post('uploadStudentPicture',[UserController::class,'uploadStudentPicture']);
 
     // student related API address placed in a group for better readability
     Route::group(array('prefix' => 'students'), function() {

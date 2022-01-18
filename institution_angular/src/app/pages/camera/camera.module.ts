@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { CameraRoutingModule } from './camera-routing.module';
 import { CameraComponent } from './camera.component';
 import {WebcamModule} from "ngx-webcam";
+import {MatButtonModule} from "@angular/material/button";
+import {ButtonModule} from "primeng/button";
 
 
 @NgModule({
@@ -13,7 +15,9 @@ import {WebcamModule} from "ngx-webcam";
   imports: [
     CommonModule,
     CameraRoutingModule,
-    WebcamModule
+    WebcamModule,
+    MatButtonModule,
+    ButtonModule
   ],
   exports: [CameraComponent]
 })

@@ -229,4 +229,18 @@ export class AuthService {
     // return this.http.post('http://127.0.0.1/gold_project/new_gold_api/public/api/uploadPicture', formData);
     return this.http.post(this.commonService.getAPI() + '/uploadPicture', formData);
   }
+  uploadStudentImage(file: string | Blob | undefined): Observable<any> {
+
+    // Create form data
+    const formData = new FormData();
+
+    // Store form name as "file" with file data
+    // @ts-ignore
+    formData.append('file', file);
+    formData.append('filename', 'student_pic_' + 'current' + '.jpeg');
+    // Make http post request over api
+    // with formData as req
+    // return this.http.post('http://127.0.0.1/gold_project/new_gold_api/public/api/uploadPicture', formData);
+    return this.http.post(this.commonService.getAPI() + '/uploadStudentPicture', formData);
+  }
 }

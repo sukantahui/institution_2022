@@ -6,12 +6,6 @@
       </div>
       <div class="card-body">
 
-
-
-
-
-
-
         <!--    Form Entry-->
         <div>
 <!--          <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">-->
@@ -100,8 +94,6 @@
             <mat-step [stepControl]="studentBasicFormGroup" label="Basic">
               <form [formGroup]="studentBasicFormGroup">
                 <div class="form-group">
-
-
                   <div class="d-flex flex-row bd-highlight mb-3">
                     <div class="p-2 col-4 bd-highlight">
 
@@ -127,17 +119,12 @@
                       <div class="snapshot bd-highlight mb-3" *ngIf="webcamImage" style="height: 200px; width: 200px;">
                         <img [src]="webcamImage.imageAsDataUrl" class="img-fluid"/>
                       </div>
-                      <button mat-button *ngIf="webcamImage" (click)="saveUserImage()">
-                        <i class="bi bi-person-bounding-box">Save</i>
+                      <button mat-button pButton  *ngIf="webcamImage" (click)="saveUserImage()">
+                        <i class="bi bi-person-bounding-box">&nbsp;Save</i>
                       </button>
 
                     </div>
 
-
-<!--                    <div class="p-2 col-4 bd-highlight">-->
-<!--                      <ng-select [items]="sex" fxFlex="100"  bindLabel="name" class="custom" bindValue="name" formControlName="sex" placeholder="Sex">-->
-<!--                      </ng-select>-->
-<!--                    </div>-->
 
                     <div class="p-2 col-6 bd-highlight">
                       <app-camera (pictureTaken)="handleImage($event)"></app-camera>
@@ -241,12 +228,6 @@
                 </div>
 
                 <div class="form-group">
-
-                  <webcam (initError)="handleInitError($event)"></webcam>
-
-
-
-
                   <h5>Description</h5>
                   <p-editor formControlName="description" [style]="{'height':'120px'}">
                     <ng-template pTemplate="header">
@@ -254,10 +235,7 @@
                         <button type="button" class="ql-bold" aria-label="Bold"></button>
                         <button type="button" class="ql-italic" aria-label="Italic"></button>
                         <button type="button" class="ql-underline" aria-label="Underline"></button>
-
                     </span>
-
-
                     </ng-template>
                   </p-editor>
 
