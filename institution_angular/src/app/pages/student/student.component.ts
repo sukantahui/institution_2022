@@ -229,11 +229,15 @@ export class StudentComponent implements OnInit{
       this.authService.uploadStudentImage(file).subscribe((response) => {
           console.log(response);
           if (response.status === true){
-            this.showDialog();
+            this.showSuccess();
           }
         }
       );
     }
 
+  }
+
+  showSuccess() {
+    this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
   }
 }
