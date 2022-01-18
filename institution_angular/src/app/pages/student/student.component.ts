@@ -54,6 +54,7 @@ export class StudentComponent implements OnInit{
   WIDTH=200;
   HEIGHT=200;
   public webcamImage: WebcamImage | undefined ;
+  dialogContent: string = "";
 
   constructor(public authService: AuthService ,public _formBuilder: FormBuilder, private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig) {
     const data: Data = this.activatedRoute.snapshot.data;
@@ -115,6 +116,7 @@ export class StudentComponent implements OnInit{
   }
 
   showDialog() {
+    this.dialogContent = "Student Picture Saved";
     this.displayDialog = true;
   }
   sameAsBillName(name:any){
@@ -206,34 +208,29 @@ export class StudentComponent implements OnInit{
 
   handleImage(webcamImage: WebcamImage) {
     this.webcamImage = webcamImage;
+  }
 
-    const arr = this.webcamImage.imageAsDataUrl.split(",");
-    // @ts-ignore
-    const mime = arr[0].match(/:(.*?);/)[1];
-    const bstr = atob(arr[1]);
-    let n = bstr.length;
-    const u8arr = new Uint8Array(n);
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
-    }
-    const file: File = new File([u8arr], "test", { type: "jpeg" })
-    console.log(file);  
-
-
-
-
-
-
-
-
-
-
-
-    this.authService.upload(file).subscribe((response) => {
-        console.log(response);
-        if (response.success === 100){
-        }
+  saveUserImage() {
+    if(this.webcamImage){
+      const arr = this.webcamImage.imageAsDataUrl.split(",");
+      // @ts-ignore
+      const mime = arr[0].match(/:(.*?);/)[1];
+      const bstr = atob(arr[1]);
+      let n = bstr.length;
+      const u8arr = new Uint8Array(n);
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
       }
-    );
+      const file: File = new File([u8arr], "test", { type: "jpeg" })
+      console.log(file);
+      this.authService.upload(file).subscribe((response) => {
+          console.log(response);
+          if (response.status === true){
+            this.showDialog();
+          }
+        }
+      );
+    }
+
   }
 }

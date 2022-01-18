@@ -1,11 +1,29 @@
 <div style="text-align:center">
   <div>
-    <webcam [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
-            [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" (cameraSwitched)="cameraWasSwitched($event)"
-            (initError)="handleInitError($event)"></webcam>
-    <br/>
-    <div class="actionBtn" (click)="triggerSnapshot();" title="Take Picture">📸</div>
-    <div class="actionBtn" (click)="showNextWebcam(true);" title="Switch Camera">🔁</div>
+
+    <div id="camera-capture" class="p-2 bd-highlight">
+            <webcam [height]="300" [width]="300"
+                    [trigger]="triggerObservable"
+                    (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+                    [allowCameraSwitch]="allowCameraSwitch"
+                    [switchCamera]="nextWebcamObservable"
+                    [videoOptions]="videoOptions"
+                    (cameraSwitched)="cameraWasSwitched($event)"
+                    (initError)="handleInitError($event)"
+                    style="border: 4px solid midnightblue;">
+            </webcam>
+            <h5>Webcam</h5>
+            <div class="d-flex flex-row bd-highlight mb-3">
+              <div class="p-2 bd-highlight">
+                <div class="actionBtn" (click)="triggerSnapshot();" title="Take Picture">
+                  <i class="bi bi-camera-fill"></i>
+                </div>
+              </div>
+              <div class="p-2 bd-highlight">
+                <div class="actionBtn" (click)="showNextWebcam(true);" title="Switch Camera">🔁</div>
+              </div>
+            </div>
+    </div>
   </div>
 </div>
 

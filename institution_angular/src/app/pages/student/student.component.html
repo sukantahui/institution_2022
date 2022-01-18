@@ -6,13 +6,11 @@
       </div>
       <div class="card-body">
 
-        <app-camera (pictureTaken)="handleImage($event)"></app-camera>
 
 
 
-        <div class="snapshot" *ngIf="webcamImage">
-          <img [src]="webcamImage.imageAsDataUrl" />
-        </div>
+
+
 
         <!--    Form Entry-->
         <div>
@@ -114,25 +112,36 @@
                           <mat-datepicker #dob></mat-datepicker>
                         </mat-form-field>
 
+                      <div class="form-group">
+                        <mat-form-field class="col-12">
+                          <input matInput placeholder="Qualification" formControlName="qualification">
+                        </mat-form-field>
+                      </div>
+
+                      <p-selectButton [options]="genders" formControlName="sex"  optionLabel="name" optionValue="value">
+                        <ng-template let-item>
+                          {{item.name}}<i [class]="item.icon"></i>
+                        </ng-template>
+                      </p-selectButton>
+                      <hr>
+                      <div class="snapshot bd-highlight mb-3" *ngIf="webcamImage" style="height: 200px; width: 200px;">
+                        <img [src]="webcamImage.imageAsDataUrl" class="img-fluid"/>
+                      </div>
+                      <button mat-button *ngIf="webcamImage" (click)="saveUserImage()">
+                        <i class="bi bi-person-bounding-box">Save</i>
+                      </button>
 
                     </div>
 
-                    <div class="form-group">
-                      <mat-form-field class="col-12">
-                        <input matInput placeholder="Qualification" formControlName="qualification">
-                      </mat-form-field>
-                    </div>
+
 <!--                    <div class="p-2 col-4 bd-highlight">-->
 <!--                      <ng-select [items]="sex" fxFlex="100"  bindLabel="name" class="custom" bindValue="name" formControlName="sex" placeholder="Sex">-->
 <!--                      </ng-select>-->
 <!--                    </div>-->
 
                     <div class="p-2 col-6 bd-highlight">
-                      <p-selectButton [options]="genders" formControlName="sex"  optionLabel="name" optionValue="value">
-                        <ng-template let-item>
-                          {{item.name}}<i [class]="item.icon"></i>
-                        </ng-template>
-                      </p-selectButton>
+                      <app-camera (pictureTaken)="handleImage($event)"></app-camera>
+
                     </div>
 
                   </div>
@@ -312,7 +321,7 @@
       </div>
       <div class="card">
         <p-dialog header="Title" position="top" [transitionOptions]="'600ms'" [(visible)]="displayDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
-          Content
+          {{dialogContent}}
         </p-dialog>
 
 
