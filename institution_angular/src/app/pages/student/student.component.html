@@ -18,7 +18,7 @@
 
                 <div class="form-group">
                   <mat-form-field class="col-12">
-                    <input matInput placeholder="Student Name"  (ngModelChange)="sameAsBillName($event)" formControlName="studentName">
+                    <input matInput placeholder="Student Name"  (blur)="sameAsBillName()" formControlName="studentName">
                   </mat-form-field>
                 </div>
                 <div class="form-group">
@@ -69,11 +69,11 @@
                   <div class="d-flex flex-row bd-highlight mb-3">
                     <div class="p-2 col-8 bd-highlight">
                       <mat-form-field class="col-12">
-                        <input matInput placeholder="Guardian" formControlName="guardianName" value={{guradainName}} >
+                        <input matInput placeholder="Guardian" formControlName="guardianName" [(ngModel)]="guardianName" value={{guradainName}} >
                       </mat-form-field>
                     </div>
                     <div class="p-2 col-4 bd-highlight">
-                      <ng-select [items]="relations" fxFlex="100"  bindLabel="name" class="custom" bindValue="name" formControlName="relationToGuardian" placeholder="Relation">
+                      <ng-select [(ngModel)]="optionSelected" [items]="relations" fxFlex="100"  bindLabel="name" class="custom" bindValue="name" formControlName="relationToGuardian" placeholder="Relation">
                       </ng-select>
                     </div>
                   </div>
@@ -220,8 +220,8 @@
                   <div class="d-flex flex-row bd-highlight mb-3">
                     <div class="p-2 col-4 bd-highlight">
                       <mat-form-field appearance="fill" style = "width:100%">
-                        <mat-label>WhatsApp Number</mat-label>
-                        <input matInput formControlName="whatsappNumber" placeholder="WhatsApp Number" required>
+                        <mat-label>E-Mail</mat-label>
+                        <input matInput="email" formControlName="email" placeholder="Enter Your E-Mail" required>
                       </mat-form-field>
                     </div>
                   </div>
@@ -364,6 +364,12 @@
   <div class="p-2 bd-highlight col-3" style="background-color: #848383;">
     <pre>
       studentBasicFormGroup = {{studentBasicFormGroup.value | json}}
+    </pre>
+  </div>
+ 
+  <div class="p-2 bd-highlight col-3" style="background-color: #a3a0a0;">
+    <pre>
+      studentAddressFormGroup = {{studentAddressFormGroup.value | json}}
     </pre>
   </div>
   <div class="p-2 bd-highlight col-3" style="background-color: #a3a0a0;">

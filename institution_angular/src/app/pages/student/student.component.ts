@@ -55,7 +55,8 @@ export class StudentComponent implements OnInit{
   HEIGHT=200;
   public webcamImage: WebcamImage | undefined ;
   dialogContent: string = "";
-
+  optionSelected:any='';
+  guardianName:any='';
   constructor(public authService: AuthService ,public _formBuilder: FormBuilder, private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig) {
     const data: Data = this.activatedRoute.snapshot.data;
     this.loginType = data['loginType'];
@@ -92,10 +93,10 @@ export class StudentComponent implements OnInit{
     });
 
     this.studentBasicFormGroup = this._formBuilder.group({
-      dob : new FormControl(null),
+      dob : new FormControl(null,Validators.required),
       dobSQL: new FormControl(null),
-      sex : new FormControl(null),
-      qualification : new FormControl(null)
+      sex : new FormControl(null,Validators.required),
+      qualification : new FormControl(null,Validators.required)
     });
     this.studentAddressFormGroup = this._formBuilder.group({
       address : new FormControl(null,[Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
@@ -107,9 +108,9 @@ export class StudentComponent implements OnInit{
     });
 
     this.studentContactFormGroup = this._formBuilder.group({
-      guardianContactNumber : new FormControl(null),
-      whatsappNumber : new FormControl(null),
-      email : new FormControl(null),
+      guardianContactNumber : new FormControl(null,[Validators.required, Validators.maxLength(10), Validators.minLength(10)]),
+      whatsappNumber : new FormControl(null,[Validators.required, Validators.maxLength(10), Validators.minLength(10)]),
+      email : new FormControl(null,[Validators.required, Validators.email]),
       description : new FormControl(null)
     });
 
@@ -119,18 +120,19 @@ export class StudentComponent implements OnInit{
     this.dialogContent = "Student Picture Saved";
     this.displayDialog = true;
   }
-  sameAsBillName(name:any){
-
-    console.log(name);
-    this.billingName=name;
+  sameAsBillName(){
+    this.studentNameFormGroup.patchValue({billingName: this.studentNameFormGroup.value.studentName});
+   
   }
   guardianAsFather(father:any){
-    this.guradainName=father;
+    this.guardianName=father;
     console.log(this.guradainName);
+    this.optionSelected='Father';
   }
   guardianAsMother(mother:any){
-    this.guradainName=mother;
+    this.guardianName=mother;
     console.log(this.guradainName);
+    this.optionSelected='Mother';
   }
   saveStudent() {
     this.confirmationService.confirm({
@@ -153,7 +155,7 @@ export class StudentComponent implements OnInit{
       this.students = response;
     });
     this.primengConfig.ripple = true;
-
+   this.optionSelected='Father';
 
     this.items = [{
       label: 'Personal',
