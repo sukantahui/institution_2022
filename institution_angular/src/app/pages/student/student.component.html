@@ -12,7 +12,6 @@
   <div class="p-2 bd-highlight col-7">
     <div class="card">
       <div class="card-header">
-        <button type="button" pButton pRipple (click)="showSuccess()" label="Success" class="p-button-success"></button>
         <h3 style="color: #1e293b;">Student Entry Form</h3>
       </div>
       <div class="card-body">
@@ -33,11 +32,9 @@
                   </mat-form-field>
 
                 </div>
-                <div style="vertical-align:bottom;">
-                  <button mat-button matStepperNext>
-                    <i class="pi pi-chevron-right" style="font-size: 2rem"></i>
-                  </button>
-                </div>
+                <button pButton matStepperNext class="p-button-warning">
+                  Next <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
+                </button>
               </form>
             </mat-step>
 
@@ -52,7 +49,7 @@
                       </mat-form-field>
                     </div>
                     <div class="p-2 bd-highlight">
-                      <button pButton pRipple type="button" icon="pi pi-user" class="p-button-rounded p-button-info" (click)=guardianAsFather(fatherName.value)></button>
+                      <button pButton pRipple type="button" icon="pi pi-user" class="p-button-info p-button-rounded p-button-info" (click)=guardianAsFather(fatherName.value)></button>
                     </div>
                   </div>
 
@@ -65,7 +62,7 @@
                       </mat-form-field>
                     </div>
                     <div class="p-2 bd-highlight">
-                      <button pButton pRipple type="button" icon="pi pi-user" class="p-button-rounded p-button-info" (click)=guardianAsMother(mother.value)></button>
+                      <button pButton pRipple type="button" icon="pi pi-user" class="p-button-rounded p-button-warning" (click)=guardianAsMother(mother.value)></button>
                     </div>
                   </div>
                 </div>
@@ -87,11 +84,11 @@
 
                 </div>
                 <div style="vertical-align:bottom;">
-                  <button mat-button matStepperPrevious>
-                    <i class="pi pi-chevron-left" style="font-size: 2rem"></i>
+                  <button pButton matStepperPrevious class="p-button-success">
+                    <i class="pi pi-chevron-left" style="font-size: 1rem"></i> Prev
                   </button>
-                  <button mat-button matStepperNext>
-                    <i class="pi pi-chevron-right" style="font-size: 2rem"></i>
+                  <button pButton matStepperNext class="p-button-warning">
+                   Next <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
                   </button>
                 </div>
               </form>
@@ -141,12 +138,12 @@
 
 
                 </div>
-                <div>
-                  <button mat-button matStepperPrevious>
-                    <i class="pi pi-chevron-left" style="font-size: 1rem"></i>
+                <<div style="vertical-align:bottom;">
+                  <button pButton matStepperPrevious class="p-button-success">
+                    <i class="pi pi-chevron-left" style="font-size: 1rem"></i> Prev
                   </button>
-                  <button mat-button matStepperNext>
-                    <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
+                  <button pButton matStepperNext class="p-button-warning">
+                    Next <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
                   </button>
                 </div>
               </form>
@@ -158,7 +155,7 @@
                   <div class="d-flex flex-row bd-highlight mb-3">
                     <div class="p-2 col-8 bd-highlight">
                         <mat-form-field appearance="fill" style = "width:100%">
-                          <mat-label>Address</mat-label>
+                          <mat-label>Address:</mat-label>
                           <input matInput formControlName="address" placeholder="Ex. 1 Main St, New York, NY" required>
                         </mat-form-field>
                     </div>
@@ -191,12 +188,12 @@
                     </div>
                   </div>
                 </div>
-                <div>
-                  <button mat-button matStepperPrevious>
-                    <i class="pi pi-chevron-left" style="font-size: 2rem"></i>
+                <div style="vertical-align:bottom;">
+                  <button pButton matStepperPrevious class="p-button-success">
+                    <i class="pi pi-chevron-left" style="font-size: 1rem"></i> Prev
                   </button>
-                  <button mat-button matStepperNext>
-                    <i class="pi pi-chevron-right" style="font-size: 2rem"></i>
+                  <button pButton matStepperNext class="p-button-warning">
+                    Next <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
                   </button>
                 </div>
               </form>
@@ -248,11 +245,11 @@
                 </div>
 
                 <div style="vertical-align:bottom;">
-                  <button mat-button matStepperPrevious>
-                    <i class="pi pi-chevron-left" style="font-size: 2rem"></i>
+                  <button pButton matStepperPrevious class="p-button-success">
+                    <i class="pi pi-chevron-left" style="font-size: 1rem"></i> Prev
                   </button>
-                  <button mat-button matStepperNext>
-                    <i class="pi pi-chevron-right" style="font-size: 2rem"></i>
+                  <button pButton matStepperNext class="p-button-warning">
+                    Next <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
                   </button>
                 </div>
               </form>
@@ -263,10 +260,10 @@
               <p>You are now done.</p>
               <div>
                 <button mat-button matStepperPrevious>
-                  <i class="pi pi-chevron-left" style="font-size: 2rem"></i>
+                  <i class="pi pi-chevron-left" style="font-size: 1rem"></i>
                 </button>
                 <button mat-button (click)="stepper.reset()">
-                  <i class="bi bi-arrow-clockwise" style="font-size: 2rem"></i>
+                  <i class="bi bi-arrow-clockwise" style="font-size: 1rem"></i>
                 </button>
                 <button pButton  (click)="saveStudent()">
                   <i class="bi bi-save-fill" style="font-size: 1rem">Save</i>
