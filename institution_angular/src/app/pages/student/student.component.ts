@@ -57,6 +57,10 @@ export class StudentComponent implements OnInit{
   dialogContent: string = "";
   optionSelected:any='';
   guardianName:any='';
+  studentData: {
+    studentName?: string;
+
+  }={};
   visibleSidebar2: boolean = false;
   constructor(public authService: AuthService ,public _formBuilder: FormBuilder, private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig) {
     const data: Data = this.activatedRoute.snapshot.data;
@@ -136,11 +140,14 @@ export class StudentComponent implements OnInit{
     this.optionSelected='Mother';
   }
   saveStudent() {
+
     this.confirmationService.confirm({
       message: 'Do you want to delete this record?',
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       accept: () => {
+        this.studentData.studentName=this.studentNameFormGroup.value.studentName;
+        console.log(this.studentData);
         this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
       },
       reject: () => {
@@ -238,6 +245,7 @@ export class StudentComponent implements OnInit{
   }
 
   showSuccess() {
+
     this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
   }
 }
