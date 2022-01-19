@@ -9,6 +9,28 @@ import {Subject} from "rxjs";
 class CommerService {
 }
 
+export interface StudentResponseData {
+  status: boolean;
+  message: string;
+  data: {
+    studentId: number;
+		episodeId: string;
+		studentName:string;
+		billingName: string;
+		fatherName: string;
+		motherName: string;
+		guardianName: string;
+		relationToGuardian: string;
+		dob: string;
+		sex: string;
+		address: string;
+		city: string;
+		district: string;
+		stateId: number;
+		pin: number,
+  }
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -29,5 +51,16 @@ export class StudentService {
   }
   getStudentUpdateListener(){
     return this.studentSubject.asObservable();
+  }
+
+  saveStudent(studentData:any){
+    return this.http.post<StudentResponseData>(this.commonService.getAPI() + '/students', studentData)
+    .pipe(catchError(this.errorService.serverError), tap(resData => {
+      if (resData.status === true){
+        
+        
+      }
+    }))
+    
   }
 }
