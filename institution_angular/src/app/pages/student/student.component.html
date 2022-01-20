@@ -32,7 +32,7 @@
                   </mat-form-field>
 
                 </div>
-                <button pButton matStepperNext class="p-button-warning">
+                <button pButton matStepperNext [disabled]="!studentNameFormGroup.valid" class="p-button-warning">
                   Next <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
                 </button>
               </form>
@@ -87,7 +87,7 @@
                   <button pButton matStepperPrevious class="p-button-success">
                     <i class="pi pi-chevron-left" style="font-size: 1rem"></i> Prev
                   </button>
-                  <button pButton matStepperNext class="p-button-warning">
+                  <button pButton matStepperNext  class="p-button-warning">
                    Next <i class="pi pi-chevron-right" style="font-size: 1rem"></i>
                   </button>
                 </div>

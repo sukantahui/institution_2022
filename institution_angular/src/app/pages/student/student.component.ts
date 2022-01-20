@@ -94,7 +94,7 @@ export class StudentComponent implements OnInit{
       fatherName : new FormControl(null),
       motherName : new FormControl(null),
       guardianName : new FormControl(null),
-      relationToGuardian : new FormControl(null)
+      relationToGuardian : new FormControl(null,[Validators.required])
     });
 
     this.studentBasicFormGroup = this._formBuilder.group({
@@ -247,5 +247,9 @@ export class StudentComponent implements OnInit{
   showSuccess() {
 
     this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
+  }
+  isStudentGuardianFormGroupValid(){
+    // @ts-ignore
+    return this.studentGuardianFormGroup.get('fatherName').valid || this.studentGuardianFormGroup.get('motherName').valid;
   }
 }
