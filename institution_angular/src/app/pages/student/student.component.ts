@@ -3,7 +3,7 @@ import {ActivatedRoute, Data} from "@angular/router";
 import {Student} from "../../models/student.model";
 import {StudentService} from "../../services/student.service";
 import {ConfirmationService, MenuItem, MessageService, PrimeNGConfig} from "primeng/api";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Table} from "primeng/table";
 import {environment} from "../../../environments/environment";
 import {WebcamImage, WebcamInitError} from "ngx-webcam";
@@ -62,7 +62,7 @@ export class StudentComponent implements OnInit{
 
   }={};
   visibleSidebar2: boolean = false;
-  constructor(public authService: AuthService ,public _formBuilder: FormBuilder, private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig) {
+  constructor(public authService: AuthService, private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig) {
     const data: Data = this.activatedRoute.snapshot.data;
     this.loginType = data['loginType'];
 
@@ -85,25 +85,25 @@ export class StudentComponent implements OnInit{
       {name: 'Others'},
 
     ];
-    this.studentNameFormGroup = this._formBuilder.group({
+    this.studentNameFormGroup = new FormGroup({
       studentId : new FormControl(null),
       studentName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
       billingName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(4)])
     });
-    this.studentGuardianFormGroup = this._formBuilder.group({
+    this.studentGuardianFormGroup = new FormGroup({
       fatherName : new FormControl(null),
       motherName : new FormControl(null),
       guardianName : new FormControl(null),
       relationToGuardian : new FormControl(null,[Validators.required])
     });
 
-    this.studentBasicFormGroup = this._formBuilder.group({
+    this.studentBasicFormGroup = new FormGroup({
       dob : new FormControl(null,Validators.required),
       dobSQL: new FormControl(null),
       sex : new FormControl(null,Validators.required),
       qualification : new FormControl(null,Validators.required)
     });
-    this.studentAddressFormGroup = this._formBuilder.group({
+    this.studentAddressFormGroup = new FormGroup({
       address : new FormControl(null,[Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
       city : new FormControl(null,[Validators.required, Validators.maxLength(20), Validators.minLength(4)]),
       district : new FormControl(null,[Validators.required, Validators.maxLength(20), Validators.minLength(4)]),
@@ -112,7 +112,7 @@ export class StudentComponent implements OnInit{
 
     });
 
-    this.studentContactFormGroup = this._formBuilder.group({
+    this.studentContactFormGroup = new FormGroup({
       guardianContactNumber : new FormControl(null,[Validators.required, Validators.maxLength(10), Validators.minLength(10)]),
       whatsappNumber : new FormControl(null,[Validators.required, Validators.maxLength(10), Validators.minLength(10)]),
       email : new FormControl(null,[Validators.required, Validators.email]),
@@ -241,15 +241,12 @@ export class StudentComponent implements OnInit{
         }
       );
     }
-
   }
+
+
 
   showSuccess() {
 
     this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
-  }
-  isStudentGuardianFormGroupValid(){
-    // @ts-ignore
-    return this.studentGuardianFormGroup.get('fatherName').valid || this.studentGuardianFormGroup.get('motherName').valid;
   }
 }
