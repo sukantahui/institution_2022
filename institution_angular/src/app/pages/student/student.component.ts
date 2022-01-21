@@ -59,6 +59,22 @@ export class StudentComponent implements OnInit{
   guardianName:any='';
   studentData: {
     studentName?: string;
+    billingName?: string;
+    fatherName?: string;
+    motherName?: string;
+    guardianName?: string;
+    relationToGuardian?: string;
+    dob?: string;
+    sex?: string;
+    address?: string;
+    city?: string;
+    district?: string;
+    stateId?: string;
+    pin?: string;
+    guardianContactNumber?: string;
+    whatsappNumber?: string;
+    email?: string;
+    qualification?: string;
 
   }={};
   visibleSidebar2: boolean = false;
@@ -147,8 +163,39 @@ export class StudentComponent implements OnInit{
       icon: 'pi pi-info-circle',
       accept: () => {
         this.studentData.studentName=this.studentNameFormGroup.value.studentName;
+        this.studentData.billingName=this.studentNameFormGroup.value.billingName;
+        this.studentData.fatherName=this.studentGuardianFormGroup.value.fatherName;
+        this.studentData.motherName=this.studentGuardianFormGroup.value.motherName;
+        this.studentData.guardianName=this.studentGuardianFormGroup.value.guardianName;
+        this.studentData.relationToGuardian=this.studentGuardianFormGroup.value.relationToGuardian;
+
+        this.studentData.dob=this.studentBasicFormGroup.value.dobSQL;
+        this.studentData.sex=this.studentBasicFormGroup.value.sex;
+        this.studentData.qualification=this.studentBasicFormGroup.value.qualification;
+
+        this.studentData.address=this.studentAddressFormGroup.value.address;
+        this.studentData.city=this.studentAddressFormGroup.value.city;
+
+        this.studentData.district=this.studentAddressFormGroup.value.district;
+        //this.studentData.stateId=this.studentAddressFormGroup.value.stateId;
+        this.studentData.stateId='10';
+        this.studentData.pin=this.studentAddressFormGroup.value.pin;
+
+        this.studentData.guardianContactNumber=this.studentContactFormGroup.value.guardianContactNumber;
+
+        this.studentData.whatsappNumber=this.studentContactFormGroup.value.whatsappNumber;
+        this.studentData.email=this.studentContactFormGroup.value.email;
+        
+
         console.log(this.studentData);
-        this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
+        this.studentService.saveStudent(this.studentData).subscribe(response => {
+          if (response.status === true){
+            console.log(response);
+            this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
+          }
+        
+        })
+        
       },
       reject: () => {
         this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
