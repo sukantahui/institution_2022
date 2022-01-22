@@ -28,7 +28,8 @@ export interface StudentResponseData {
 		district: string;
 		stateId: number;
 		pin: number,
-  }
+  };
+  error?: any;
 }
 
 @Injectable({
@@ -57,10 +58,10 @@ export class StudentService {
     return this.http.post<StudentResponseData>(this.commonService.getAPI() + '/students', studentData)
     .pipe(catchError(this.errorService.serverError), tap(resData => {
       if (resData.status === true){
-        
-        
+
+
       }
     }))
-    
+
   }
 }

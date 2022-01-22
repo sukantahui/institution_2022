@@ -12,7 +12,7 @@ use App\Http\Resources\StudentResource;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-class StudentController extends Controller
+class StudentController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -115,7 +115,7 @@ class StudentController extends Controller
         $validator = Validator::make($request->all(),$rules,$messsages );
 
         if ($validator->fails()) {
-            return response()->json(['success'=>0,'data'=>null,'error'=>$validator->messages()], 406,[],JSON_NUMERIC_CHECK);
+            return $this->errorResponse($validator->messages(),406);
         }
         if($request->has('entryDate')) {
             $entryDate = $request->input('entryDate');
@@ -178,10 +178,11 @@ class StudentController extends Controller
 
         }catch(\Exception $e){
             DB::rollBack();
-            return response()->json(['success'=>0,'exception'=>$e->getMessage()], 500);
+//            return response()->json(['success'=>0,'exception'=>$e->getMessage()], 500);
+            return $this->errorResponse($e->getMessage());
         }
+        return $this->successResponse(new StudentResource($student));
 
-        return response()->json(['success'=>1,'data'=>new StudentResource($student)], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function store_multiple(Request $request){
@@ -198,7 +199,7 @@ class StudentController extends Controller
                     $entryDate=Carbon::now()->format('Y-m-d');
                     $return_array[]=$entryDate;
                 }
-                
+
 
             }
             DB::commit();

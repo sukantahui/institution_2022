@@ -79,6 +79,14 @@ export class CommonService {
     return currentDate;
   }
 
+  getSQLDate(datePickerDate: any){
+    const dateArray = datePickerDate.split("/");
+    const month= ("00" + dateArray[1]).slice(-2);
+    const day= ("00" + dateArray[0]).slice(-2);
+    const sqlDate = dateArray[2]+'-'+month+'-'+day;
+    return sqlDate;
+  }
+
   getCurrentTime(){
     console.log('time in func', this.currentTime);
     const now = new Date();

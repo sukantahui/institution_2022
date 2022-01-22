@@ -8,6 +8,7 @@ import {Table} from "primeng/table";
 import {environment} from "../../../environments/environment";
 import {WebcamImage, WebcamInitError} from "ngx-webcam";
 import {AuthService} from "../../services/auth.service";
+import {CommonService} from "../../services/common.service";
 
 
 @Component({
@@ -78,7 +79,7 @@ export class StudentComponent implements OnInit{
 
   }={};
   visibleSidebar2: boolean = false;
-  constructor(public authService: AuthService, private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig) {
+  constructor(public authService: AuthService, private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig, private commonService: CommonService) {
     const data: Data = this.activatedRoute.snapshot.data;
     this.loginType = data['loginType'];
 
@@ -185,7 +186,7 @@ export class StudentComponent implements OnInit{
 
         this.studentData.whatsappNumber=this.studentContactFormGroup.value.whatsappNumber;
         this.studentData.email=this.studentContactFormGroup.value.email;
-        
+
 
         console.log(this.studentData);
         this.studentService.saveStudent(this.studentData).subscribe(response => {
@@ -193,9 +194,9 @@ export class StudentComponent implements OnInit{
             console.log(response);
             this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
           }
-        
+
         })
-        
+
       },
       reject: () => {
         this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
@@ -252,9 +253,7 @@ export class StudentComponent implements OnInit{
 
 
   setDobSQL(value: string) {
-    const dateArray = value.split("/");
-    const sqlDate = dateArray[2]+'-'+dateArray[1]+'-'+dateArray[0];
-    this.studentBasicFormGroup.patchValue({dobSQL: sqlDate});
+    this.studentBasicFormGroup.patchValue({dobSQL: this.commonService.getSQLDate(value)});
   }
 
   public handleInitError(error: WebcamInitError): void {
