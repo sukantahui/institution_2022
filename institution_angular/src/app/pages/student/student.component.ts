@@ -3,12 +3,13 @@ import {ActivatedRoute, Data} from "@angular/router";
 import {Student} from "../../models/student.model";
 import {StudentService} from "../../services/student.service";
 import {ConfirmationService, MenuItem, MessageService, PrimeNGConfig} from "primeng/api";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Table} from "primeng/table";
 import {environment} from "../../../environments/environment";
 import {WebcamImage, WebcamInitError} from "ngx-webcam";
 import {AuthService} from "../../services/auth.service";
 import {CommonService} from "../../services/common.service";
+import {AgeValidator} from "../../custom-validator/age.validator";
 
 interface Alert {
   type: string;
@@ -127,7 +128,7 @@ export class StudentComponent implements OnInit{
     });
 
     this.studentBasicFormGroup = new FormGroup({
-      dob : new FormControl(null,Validators.required),
+      dob : new FormControl(null,[Validators.required, AgeValidator]),
       dobSQL: new FormControl(null),
       sex : new FormControl(null,Validators.required),
       qualification : new FormControl(null,Validators.required)
@@ -168,6 +169,52 @@ export class StudentComponent implements OnInit{
     console.log(this.guradainName);
     this.optionSelected='Mother';
   }
+
+  ngOnInit(): void {
+    this.students = this.studentService.getStudents();
+    this.studentService.getStudentUpdateListener().subscribe((response: Student[]) =>{
+      this.students = response;
+    });
+
+    // this.studentService.fetchAllStates().subscribe((response:any)=>{
+    //   this.stateList=response.data;
+    //   console.log(this.stateList);
+    // })
+    this.primengConfig.ripple = true;
+    this.optionSelected='Father';
+    this.stateSelected=20;
+
+    this.items = [{
+      label: 'Personal',
+      command: (event: any) => {
+        this.activeIndex = 0;
+        this.messageService.add({severity:'info', summary:'First Step', detail: event.item.label});
+      }
+    },
+      {
+        label: 'Seat',
+        command: (event: any) => {
+          this.activeIndex = 1;
+          this.messageService.add({severity:'info', summary:'Seat Selection', detail: event.item.label});
+        }
+      },
+      {
+        label: 'Payment',
+        command: (event: any) => {
+          this.activeIndex = 2;
+          this.messageService.add({severity:'info', summary:'Pay with CC', detail: event.item.label});
+        }
+      },
+      {
+        label: 'Confirmation',
+        command: (event: any) => {
+          this.activeIndex = 3;
+          this.messageService.add({severity:'info', summary:'Last Step', detail: event.item.label});
+        }
+      }
+    ];
+  }
+
   saveStudent() {
 
     this.confirmationService.confirm({
@@ -216,7 +263,7 @@ export class StudentComponent implements OnInit{
           }]
           setTimeout(()=>{
             this.showErrorMessage = false;
-          }, 4000);
+          }, 20000);
           this.showError(error.statusText);
         })
 
@@ -228,50 +275,7 @@ export class StudentComponent implements OnInit{
     }
 
 
-  ngOnInit(): void {
-    this.students = this.studentService.getStudents();
-    this.studentService.getStudentUpdateListener().subscribe((response: Student[]) =>{
-      this.students = response;
-    });
 
-    // this.studentService.fetchAllStates().subscribe((response:any)=>{
-    //   this.stateList=response.data;
-    //   console.log(this.stateList);
-    // })
-    this.primengConfig.ripple = true;
-   this.optionSelected='Father';
-   this.stateSelected=20;
-
-    this.items = [{
-      label: 'Personal',
-      command: (event: any) => {
-        this.activeIndex = 0;
-        this.messageService.add({severity:'info', summary:'First Step', detail: event.item.label});
-      }
-    },
-      {
-        label: 'Seat',
-        command: (event: any) => {
-          this.activeIndex = 1;
-          this.messageService.add({severity:'info', summary:'Seat Selection', detail: event.item.label});
-        }
-      },
-      {
-        label: 'Payment',
-        command: (event: any) => {
-          this.activeIndex = 2;
-          this.messageService.add({severity:'info', summary:'Pay with CC', detail: event.item.label});
-        }
-      },
-      {
-        label: 'Confirmation',
-        command: (event: any) => {
-          this.activeIndex = 3;
-          this.messageService.add({severity:'info', summary:'Last Step', detail: event.item.label});
-        }
-      }
-    ];
-  }
 
 
 
@@ -327,3 +331,5 @@ export class StudentComponent implements OnInit{
   }
 
 }
+
+
