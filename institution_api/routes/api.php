@@ -78,6 +78,11 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
         Route::delete("/{id}",[StudentController::class, 'delete']);
     });
 
+
+
+    Route::get("states",[StateController::class, 'index']);
+    Route::get("states/{id}",[StateController::class, 'index_by_id']);
+
 });
 
 
@@ -117,8 +122,7 @@ Route::group(array('prefix' => 'dev'), function() {
     Route::get("courses/{id}",[CourseController::class, 'index_by_id']);
     Route::post("courses",[CourseController::class, 'store']);
 
-    Route::get("states",[StateController::class, 'index']);
-    Route::get("states/{id}",[StateController::class, 'index_by_id']);
+
 
     //Fees Modes
     Route::get("feesModeTypes",[FeesModeTypeController::class, 'index']);
