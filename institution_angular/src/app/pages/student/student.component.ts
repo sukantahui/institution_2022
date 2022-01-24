@@ -10,7 +10,10 @@ import {WebcamImage, WebcamInitError} from "ngx-webcam";
 import {AuthService} from "../../services/auth.service";
 import {CommonService} from "../../services/common.service";
 
-
+interface Alert {
+  type: string;
+  message: string;
+}
 @Component({
   selector: 'app-student',
   templateUrl: './student.component.html',
@@ -18,6 +21,8 @@ import {CommonService} from "../../services/common.service";
   providers: [ConfirmationService, MessageService]
 
 })
+
+
 export class StudentComponent implements OnInit{
 
   error: any;
@@ -44,6 +49,7 @@ export class StudentComponent implements OnInit{
   relations: any[];
   sex: any[];
   genders: any[];
+  alerts: Alert[] = [];
   billingName:string='';
   guradainName:string='';
   isProduction = environment.production;
@@ -204,6 +210,10 @@ export class StudentComponent implements OnInit{
         },error=>{
           this.showErrorMessage = true;
           this.errorMessage = error.message;
+          const alerts: Alert[] = [{
+            type: 'success',
+            message: this.errorMessage,
+          }]
           setTimeout(()=>{
             this.showErrorMessage = false;
           }, 4000);

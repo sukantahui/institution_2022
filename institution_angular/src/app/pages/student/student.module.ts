@@ -35,7 +35,7 @@ import {CameraComponent} from "../camera/camera.component";
 import {CameraModule} from "../camera/camera.module";
 import {TooltipModule} from "primeng/tooltip";
 import {SidebarModule} from "primeng/sidebar";
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -70,7 +70,8 @@ import {SidebarModule} from "primeng/sidebar";
     WebcamModule,
     CameraModule,
     TooltipModule,
-    SidebarModule
+    SidebarModule,
+    NgbModule
 
   ]
 })
