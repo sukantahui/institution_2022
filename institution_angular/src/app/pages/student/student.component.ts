@@ -193,11 +193,7 @@ export class StudentComponent implements OnInit{
         this.studentService.saveStudent(this.studentData).subscribe(response => {
 
           if (response.status === true){
-            this.errorMessage = response.message;
-            this.showErrorMessage=true;
-            this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
-          }else{
-            console.log(response);
+            this.showSuccess("Record added successfully");
           }
 
         },error=>{
@@ -308,8 +304,8 @@ export class StudentComponent implements OnInit{
 
 
 
-  showSuccess() {
-    this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
+  showSuccess(successMessage: string) {
+    this.messageService.add({severity:'success', summary: 'Success', detail: successMessage});
   }
   showError(message: string) {
     this.messageService.add({severity:'error', summary: 'Success', detail: message});
