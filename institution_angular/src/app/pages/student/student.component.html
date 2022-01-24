@@ -172,11 +172,11 @@
 
                   <div class="d-flex flex-row bd-highlight mb-3">
                     <div class="p-2 col-4 bd-highlight">
-                        
+
                           <mat-label>State</mat-label>
                           <ng-select [(ngModel)]="stateSelected" [items]="stateList" fxFlex="100"  bindLabel="stateName" class="custom" bindValue="stateId" formControlName="stateId" placeholder="State">
                           </ng-select>
-                        
+
                     </div>
                     <div class="p-2 col-4 bd-highlight">
                       <mat-form-field style = "width:100%">
@@ -393,7 +393,12 @@
     <pre>
       studentNameFormGroup = {{this.studentNameFormGroup.value | json}}
       studentData={{studentData | json}}
+
 <!--      test={{studentNameFormGroup.controls['studentName'].errors['required'] | json}}-->
+    </pre>
+    <hr>
+    <pre>
+      stateList={{stateList |json}}
     </pre>
     <div *ngIf="studentNameFormGroup.controls['studentName'].errors && studentNameFormGroup.controls['studentName'].errors['required']">
       <pre >

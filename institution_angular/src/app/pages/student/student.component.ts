@@ -80,9 +80,14 @@ export class StudentComponent implements OnInit{
   visibleSidebar2: boolean = false;
   errorMessage: any;
   showErrorMessage: boolean = false;
-  constructor(public authService: AuthService, private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig, private commonService: CommonService) {
+  constructor(private route: ActivatedRoute,public authService: AuthService, private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig, private commonService: CommonService) {
     const data: Data = this.activatedRoute.snapshot.data;
     this.loginType = data['loginType'];
+
+
+    this.route.data.subscribe((response: any) => {
+      this.stateList = response.studentResolverData.states.data;
+    });
 
     this.genders = [
       {name: 'M', value: 'M', icon: 'bi bi-gender-male',tooltip: 'Male'},
@@ -219,10 +224,10 @@ export class StudentComponent implements OnInit{
       this.students = response;
     });
 
-    this.studentService.fetchAllStates().subscribe((response:any)=>{
-      this.stateList=response.data;
-      console.log(this.stateList);
-    })
+    // this.studentService.fetchAllStates().subscribe((response:any)=>{
+    //   this.stateList=response.data;
+    //   console.log(this.stateList);
+    // })
     this.primengConfig.ripple = true;
    this.optionSelected='Father';
    this.stateSelected=20;

@@ -18,9 +18,11 @@ export class StudentResolver implements Resolve<boolean> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
     // const a = this.jobTaskService.getAll();
     const b = this.studentService.fetchAllStudents();
-    const join = forkJoin(b).pipe(map((allResponses) => {
+    const c = this.studentService.fetchAllStates();
+    const join = forkJoin(b,c).pipe(map((allResponses) => {
       return {
-        students: allResponses[0]
+        students: allResponses[0],
+        states: allResponses[1]
       };
     }));
     return join;

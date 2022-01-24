@@ -7,7 +7,7 @@ use App\Models\State;
 use Illuminate\Http\Request;
 use App\Http\Resources\StateResource;
 
-class StateController extends Controller
+class StateController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,8 @@ class StateController extends Controller
     public function index()
     {
         $states = State::get();
-        return response()->json(['success'=>1,'data'=> StateResource::collection($states)], 200,[],JSON_NUMERIC_CHECK);
+
+        return $this->successResponse(StateResource::collection($states));
     }
     public function index_by_id($id)
     {
