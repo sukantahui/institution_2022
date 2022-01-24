@@ -54,6 +54,7 @@ export class StudentComponent implements OnInit{
   public webcamImage: WebcamImage | undefined ;
   dialogContent: string = "";
   optionSelected:any='';
+  stateSelected:any='';
   guardianName:any='';
   studentData: {
     studentName?: string;
@@ -75,6 +76,7 @@ export class StudentComponent implements OnInit{
     qualification?: string;
 
   }={};
+  stateList: any[] = [];
   visibleSidebar2: boolean = false;
   errorMessage: any;
   showErrorMessage: boolean = false;
@@ -219,8 +221,14 @@ export class StudentComponent implements OnInit{
     this.studentService.getStudentUpdateListener().subscribe((response: Student[]) =>{
       this.students = response;
     });
+
+    this.studentService.fetchAllStates().subscribe((response:any)=>{
+      this.stateList=response.data;
+      console.log(this.stateList);
+    })
     this.primengConfig.ripple = true;
    this.optionSelected='Father';
+   this.stateSelected=20;
 
     this.items = [{
       label: 'Personal',

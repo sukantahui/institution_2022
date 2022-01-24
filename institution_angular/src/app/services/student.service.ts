@@ -37,7 +37,9 @@ export interface StudentResponseData {
 })
 export class StudentService {
   studentList: Student[] =[];
+  stateList: any[] =[];
   studentSubject = new Subject<Student[]>();
+  stateSubject = new Subject<Student[]>();
   constructor(private commonService: CommonService, private errorService: ErrorService, private http: HttpClient) { }
   fetchAllStudents(){
     return this.http.get<any>(this.commonService.getAPI() + '/students')
@@ -45,6 +47,14 @@ export class StudentService {
         this.studentList=response.data;
         this.studentSubject.next([...this.studentList]);
       })));
+  }
+
+  fetchAllStates(){
+    return this.http.get<any>(this.commonService.getAPI() + '/states')
+    .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: any[]}) => {
+      this.stateList=response.data;
+      this.stateSubject.next([...this.stateList]);
+    })));
   }
 
   getStudents(){
