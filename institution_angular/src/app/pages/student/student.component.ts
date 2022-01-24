@@ -202,7 +202,8 @@ export class StudentComponent implements OnInit{
 
         },error=>{
           this.showErrorMessage = true;
-          setTimeout(()=>{                           // <<<---using ()=> syntax
+          this.errorMessage = error.message;
+          setTimeout(()=>{
             this.showErrorMessage = false;
           }, 4000);
           this.showError(error.statusText);
