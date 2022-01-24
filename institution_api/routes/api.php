@@ -83,6 +83,64 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get("states",[StateController::class, 'index']);
     Route::get("states/{id}",[StateController::class, 'index_by_id']);
 
+
+    //course
+    Route::get("courses",[CourseController::class, 'index']);
+    Route::get("courses/{id}",[CourseController::class, 'index_by_id']);
+    Route::post("courses",[CourseController::class, 'store']);
+
+
+
+    //Fees Modes
+    Route::get("feesModeTypes",[FeesModeTypeController::class, 'index']);
+    Route::get("feesModeTypes/{id}",[FeesModeTypeController::class, 'index_by_id']);
+
+    //DurationTypes
+    Route::get("durationTypes",[DurationTypeController::class, 'index']);
+    Route::get("durationTypes/{id}",[DurationTypeController::class, 'indexById']);
+    Route::post("durationTypes",[DurationTypeController::class, 'store']);
+    Route::patch("durationTypes",[DurationTypeController::class, 'update']);
+    Route::delete("durationTypes/{id}",[DurationTypeController::class, 'destroy']);
+
+
+    Route::get("subjects",[SubjectController::class, 'index']);
+
+
+    //CourseRegistration
+    Route::post("studentCourseRegistrations",[StudentCourseRegistrationController::class, 'store']);
+    Route::get("studentCourseRegistrations",[StudentCourseRegistrationController::class, 'index']);
+    Route::delete("studentCourseRegistrations/{id}",[StudentCourseRegistrationController::class, 'destroy']);
+    Route::patch("studentCourseRegistrations",[StudentCourseRegistrationController::class, 'update']);
+
+
+    Route::get("logout",[UserController::class,'logout']);
+
+
+    Route::get("users",[UserController::class,'index']);
+
+
+    //transactions
+    Route::group(array('prefix' => 'transactions'), function() {
+        Route::get("/all",[TransactionController::class, 'get_all_transactions']);
+        Route::get("/feesCharged",[TransactionController::class, 'get_all_fees_charged_transactions']);
+
+        Route::get("/dues/studentId/{id}",[TransactionController::class, 'get_total_dues_by_student_id']);
+
+        Route::get("/dues/SCRId/{id}",[TransactionController::class, 'get_student_due_by_student_course_registration_id']);
+
+
+        //saving fees charged
+        Route::post("/feesCharged",[TransactionController::class, 'save_fees_charge']);
+
+        //saving monthly fees charged
+        Route::post("/monthlyFeesCharged",[TransactionController::class, 'save_monthly_fees_charge']);
+
+        //saving fees received
+        Route::post("/feesReceived",[TransactionController::class, 'save_fees_received']);
+
+        Route::get("/billDetails/id/{id}",[TransactionController::class, 'get_bill_details_by_id']);
+    });
+
 });
 
 
