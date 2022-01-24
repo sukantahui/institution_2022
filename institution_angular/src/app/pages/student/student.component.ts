@@ -295,7 +295,7 @@ export class StudentComponent implements OnInit{
       this.authService.uploadStudentImage(file).subscribe((response) => {
           console.log(response);
           if (response.status === true){
-            this.showSuccess();
+            this.showSuccess("Image saved");
           }
         }
       );
