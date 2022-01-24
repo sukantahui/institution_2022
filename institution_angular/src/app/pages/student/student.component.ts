@@ -21,9 +21,6 @@ import {CommonService} from "../../services/common.service";
 export class StudentComponent implements OnInit{
 
   error: any;
-
-
-
   loginType: any;
   students: Student[] = [];
 
@@ -79,6 +76,8 @@ export class StudentComponent implements OnInit{
 
   }={};
   visibleSidebar2: boolean = false;
+  errorMessage: any;
+  showErrorMessage: boolean = false;
   constructor(public authService: AuthService, private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig, private commonService: CommonService) {
     const data: Data = this.activatedRoute.snapshot.data;
     this.loginType = data['loginType'];
@@ -188,13 +187,23 @@ export class StudentComponent implements OnInit{
         this.studentData.email=this.studentContactFormGroup.value.email;
 
 
-        console.log(this.studentData);
+
         this.studentService.saveStudent(this.studentData).subscribe(response => {
+
           if (response.status === true){
-            console.log(response);
+            this.errorMessage = response.message;
+            this.showErrorMessage=true;
             this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
+          }else{
+            console.log(response);
           }
 
+        },error=>{
+          this.showErrorMessage = true;
+          setTimeout(()=>{                           // <<<---using ()=> syntax
+            this.showErrorMessage = false;
+          }, 4000);
+          this.showError(error.statusText);
         })
 
       },
@@ -278,7 +287,6 @@ export class StudentComponent implements OnInit{
         u8arr[n] = bstr.charCodeAt(n);
       }
       const file: File = new File([u8arr], "test", { type: "jpeg" })
-      console.log(file);
       this.authService.uploadStudentImage(file).subscribe((response) => {
           console.log(response);
           if (response.status === true){
@@ -292,7 +300,10 @@ export class StudentComponent implements OnInit{
 
 
   showSuccess() {
-
     this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
   }
+  showError(message: string) {
+    this.messageService.add({severity:'error', summary: 'Success', detail: message});
+  }
+
 }

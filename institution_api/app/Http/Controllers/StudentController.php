@@ -115,7 +115,7 @@ class StudentController extends ApiController
         $validator = Validator::make($request->all(),$rules,$messsages );
 
         if ($validator->fails()) {
-            return $this->errorResponse($validator->messages(),406);
+            return $this->errorResponse($validator->messages(),422);
         }
         if($request->has('entryDate')) {
             $entryDate = $request->input('entryDate');
