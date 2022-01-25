@@ -202,7 +202,7 @@
 
                   <div class="d-flex flex-row bd-highlight mb-3">
                     <div class="p-2 col-4 bd-highlight">
-                          <ng-select  [items]="stateList"  bindLabel="stateName" class="custom" bindValue="stateId" formControlName="stateId" placeholder="State">
+                          <ng-select  [(ngModel)]="stateSelected" [items]="stateList"  bindLabel="stateName" class="custom" bindValue="stateId" formControlName="stateId" placeholder="State">
                           </ng-select>
                     </div>
                     <div class="p-2 col-4 bd-highlight">
@@ -423,12 +423,12 @@
               <th pSortableColumn="motherName">Mother <p-sortIcon field="motherName"></p-sortIcon></th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-customer>
+          <ng-template pTemplate="body" let-student>
             <tr>
-              <td>{{customer.studentId}}</td>
-              <td>{{customer.episodeId}}</td>
-              <td>{{customer.studentName}}</td>
-              <td>{{customer.motherName}}</td>
+              <td>{{student.studentId}}</td>
+              <td>{{student.episodeId}}</td>
+              <td>{{student.studentName}}</td>
+              <td>{{student.motherName}}</td>
             </tr>
           </ng-template>
           <ng-template pTemplate="paginatorleft">
