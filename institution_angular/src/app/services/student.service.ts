@@ -5,6 +5,7 @@ import {ErrorService} from "./error.service";
 import {catchError, tap} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {Subject} from "rxjs";
+import {of} from "rxjs";
 
 class CommerService {
 }
@@ -41,6 +42,14 @@ export class StudentService {
   studentSubject = new Subject<Student[]>();
   stateSubject = new Subject<Student[]>();
   constructor(private commonService: CommonService, private errorService: ErrorService, private http: HttpClient) { }
+
+  fetchEducations() {
+    return this.http.get<any>('assets/educations.json')
+      .toPromise()
+      .then(res => <any[]>res.data)
+      .then(data => { return data; });
+  }
+
   fetchAllStudents(){
     return this.http.get<any>(this.commonService.getAPI() + '/students')
       .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: Student[]}) => {

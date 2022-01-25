@@ -21,6 +21,8 @@
             <mat-step [stepControl]="studentNameFormGroup" label="Name">
               <form [formGroup]="studentNameFormGroup">
 
+
+
                 <div class="form-group">
                   <mat-form-field class="col-12">
                     <input matInput placeholder="Student Name"  (blur)="sameAsBillName()" formControlName="studentName">
@@ -109,7 +111,10 @@
                           <div *ngIf="studentBasicFormGroup.controls['dob'].errors && studentBasicFormGroup.controls['dob'].touched" >
                             <mat-error class="text-right" *ngIf="studentBasicFormGroup.controls['dob'].errors['required']">DOB is required</mat-error>
                             <mat-error class="text-right" *ngIf="studentBasicFormGroup.controls['dob'].errors['ageGTE']">
-                              Age is {{studentBasicFormGroup.controls['dob'].errors['currentAge']}}, it should be more than {{studentBasicFormGroup.controls['dob'].errors['requiredValue']}}
+                              Age is {{studentBasicFormGroup.controls['dob'].errors['currentAge']}}
+                            </mat-error>
+                            <mat-error class="text-right" *ngIf="studentBasicFormGroup.controls['dob'].errors['ageGTE']">
+                              Age should be more than {{studentBasicFormGroup.controls['dob'].errors['requiredValue']}}
                             </mat-error>
                           </div>
 
@@ -117,11 +122,26 @@
                           <mat-datepicker #dob></mat-datepicker>
                         </mat-form-field>
 
-                      <div class="form-group">
-                        <mat-form-field>
-                          <input matInput placeholder="Qualification" formControlName="qualification">
-                        </mat-form-field>
-                      </div>
+<!--                      <div class="form-group">-->
+<!--                        <mat-form-field>-->
+<!--                          <input matInput placeholder="Qualification" formControlName="qualification">-->
+<!--                        </mat-form-field>-->
+<!--                      </div>-->
+
+                      <mat-form-field class="example-full-width">
+                        <mat-label>Qualification</mat-label>
+                        <input type="text"
+                               placeholder="Select Qualification"
+                               aria-label="Qualification"
+                               matInput
+                               formControlName="qualification"
+                               [matAutocomplete]="auto">
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                          <mat-option *ngFor="let option of filteredQualifications | async" [value]="option">
+                            {{option}}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
 
                       <p-selectButton [options]="genders" formControlName="sex"  optionLabel="name" optionValue="value">
                         <ng-template let-item>

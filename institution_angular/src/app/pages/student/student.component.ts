@@ -10,6 +10,9 @@ import {WebcamImage, WebcamInitError} from "ngx-webcam";
 import {AuthService} from "../../services/auth.service";
 import {CommonService} from "../../services/common.service";
 import {ageGTE} from "../../custom-validator/age.validator";
+import {Observable} from "rxjs";
+import {filter, map, startWith} from 'rxjs/operators';
+
 
 interface Alert {
   type: string;
@@ -25,6 +28,12 @@ interface Alert {
 
 
 export class StudentComponent implements OnInit{
+
+  myControl = new FormControl();
+  qualifications: string[] =['Graduate','Class V', 'Class VI'] ;
+  filteredQualifications: Observable<string[]> | undefined;
+
+
 
   error: any;
   loginType: any;
@@ -87,7 +96,12 @@ export class StudentComponent implements OnInit{
   visibleSidebar2: boolean = false;
   errorMessage: any;
   showErrorMessage: boolean = false;
+
   constructor(private route: ActivatedRoute,public authService: AuthService, private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig, private commonService: CommonService) {
+    this.studentService.fetchEducations().then(educations => {
+      this.qualifications = educations;
+    });
+
     const data: Data = this.activatedRoute.snapshot.data;
     this.loginType = data['loginType'];
 
@@ -151,6 +165,8 @@ export class StudentComponent implements OnInit{
 
   }
 
+
+
   showDialog() {
     this.dialogContent = "Student Picture Saved";
     this.displayDialog = true;
@@ -171,6 +187,15 @@ export class StudentComponent implements OnInit{
   }
 
   ngOnInit(): void {
+
+
+
+    // @ts-ignore
+    this.filteredQualifications = this.studentBasicFormGroup.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value)),
+    );
+
     this.students = this.studentService.getStudents();
     this.studentService.getStudentUpdateListener().subscribe((response: Student[]) =>{
       this.students = response;
@@ -328,6 +353,12 @@ export class StudentComponent implements OnInit{
   }
   showError(message: string) {
     this.messageService.add({severity:'error', summary: 'Success', detail: message});
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.qualifications.filter(option => option.toLowerCase().includes(filterValue));
   }
 
 }

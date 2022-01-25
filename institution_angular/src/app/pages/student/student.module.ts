@@ -36,6 +36,7 @@ import {CameraModule} from "../camera/camera.module";
 import {TooltipModule} from "primeng/tooltip";
 import {SidebarModule} from "primeng/sidebar";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 
 
@@ -71,7 +72,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CameraModule,
     TooltipModule,
     SidebarModule,
-    NgbModule
+    NgbModule,
+    MatAutocompleteModule
 
   ]
 })
