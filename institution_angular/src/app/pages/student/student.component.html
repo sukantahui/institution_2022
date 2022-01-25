@@ -296,7 +296,7 @@
                 <button mat-button (click)="stepper.reset()">
                   <i class="bi bi-arrow-clockwise" style="font-size: 1rem"></i>
                 </button>
-                <button pButton  (click)="saveStudent()">
+                <button pButton [disabled]="!studentContactFormGroup.valid" (click)="saveStudent()">
                   <i class="bi bi-save" style="font-size: 1rem"> Save</i>
                 </button>
               </div>

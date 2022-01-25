@@ -165,7 +165,9 @@ export class StudentComponent implements OnInit{
 
   }
 
-
+  isValidForm(){
+    
+  }
 
   showDialog() {
     this.dialogContent = "Student Picture Saved";
