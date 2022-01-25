@@ -120,7 +120,10 @@
 
                           <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
                           <mat-datepicker #dob></mat-datepicker>
+
                         </mat-form-field>
+
+
 
 <!--                      <div class="form-group">-->
 <!--                        <mat-form-field>-->
@@ -199,11 +202,8 @@
 
                   <div class="d-flex flex-row bd-highlight mb-3">
                     <div class="p-2 col-4 bd-highlight">
-
-<!--                          <mat-label>State</mat-label>-->
-                          <ng-select [(ngModel)]="stateSelected" [items]="stateList"  bindLabel="stateName" class="custom" bindValue="stateId" formControlName="stateId" placeholder="State">
+                          <ng-select  [items]="stateList"  bindLabel="stateName" class="custom" bindValue="stateId" formControlName="stateId" placeholder="State">
                           </ng-select>
-
                     </div>
                     <div class="p-2 col-4 bd-highlight">
                       <mat-form-field style = "width:100%">

@@ -36,3 +36,8 @@ th.mat-sort-header-sorted {
 .ui-steps.steps-custom .ui-steps-item .ui-steps-title {
   color: #555555;
 }
+
+.ng-select.custom ::ng-deep .ng-select-container  {
+  min-height: 50px;
+  border-radius: 0;
+}
