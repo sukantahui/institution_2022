@@ -74,11 +74,12 @@ export class StudentService {
   }
 
   saveStudent(studentData:any){
-    return this.http.post<StudentResponseData>(this.commonService.getAPI() + '/students', studentData)
-    .pipe(catchError(this.errorService.serverError), tap(resData => {
-      if (resData.status === true){
-
-
+    return this.http.post<any>(this.commonService.getAPI() + '/students', studentData)
+    .pipe(catchError(this.errorService.serverError), tap(response => {
+      console.log('at service',response);
+      if (response.status === true){
+        this.studentList.unshift(response.data);
+        this.studentSubject.next([...this.studentList]);
       }
     }))
 
