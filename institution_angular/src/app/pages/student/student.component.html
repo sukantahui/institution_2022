@@ -108,7 +108,9 @@
                           <input class="col-9" matInput #ref [matDatepicker]="dob" formControlName="dob"(dateInput)="setDobSQL(ref.value)">
                           <div *ngIf="studentBasicFormGroup.controls['dob'].errors && studentBasicFormGroup.controls['dob'].touched" >
                             <mat-error class="text-right" *ngIf="studentBasicFormGroup.controls['dob'].errors['required']">DOB is required</mat-error>
-                            <mat-error class="text-right" *ngIf="studentBasicFormGroup.controls['dob'].errors['age']">Age should be more than 3</mat-error>
+                            <mat-error class="text-right" *ngIf="studentBasicFormGroup.controls['dob'].errors['ageGTE']">
+                              Age is {{studentBasicFormGroup.controls['dob'].errors['currentAge']}}, it should be more than {{studentBasicFormGroup.controls['dob'].errors['requiredValue']}}
+                            </mat-error>
                           </div>
 
                           <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>

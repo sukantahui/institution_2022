@@ -9,7 +9,7 @@ import {environment} from "../../../environments/environment";
 import {WebcamImage, WebcamInitError} from "ngx-webcam";
 import {AuthService} from "../../services/auth.service";
 import {CommonService} from "../../services/common.service";
-import {AgeValidator} from "../../custom-validator/age.validator";
+import {ageGTE} from "../../custom-validator/age.validator";
 
 interface Alert {
   type: string;
@@ -128,7 +128,7 @@ export class StudentComponent implements OnInit{
     });
 
     this.studentBasicFormGroup = new FormGroup({
-      dob : new FormControl(null,[Validators.required, AgeValidator]),
+      dob : new FormControl(null,[Validators.required, ageGTE(4)]),
       dobSQL: new FormControl(null),
       sex : new FormControl(null,Validators.required),
       qualification : new FormControl(null,Validators.required)
