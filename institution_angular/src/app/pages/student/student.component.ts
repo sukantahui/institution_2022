@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {ActivatedRoute, Data} from "@angular/router";
 import {Student} from "../../models/student.model";
 import {StudentService} from "../../services/student.service";
@@ -27,7 +27,7 @@ interface Alert {
 })
 
 
-export class StudentComponent implements OnInit{
+export class StudentComponent implements OnInit, OnChanges{
 
   myControl = new FormControl();
   qualifications: string[] =['Graduate','Class V', 'Class VI'] ;
@@ -238,6 +238,8 @@ export class StudentComponent implements OnInit{
         }
       }
     ];
+
+    this.ngOnChanges();
   }
 
   saveStudent() {
@@ -359,6 +361,12 @@ export class StudentComponent implements OnInit{
     const filterValue = value.toLowerCase();
 
     return this.qualifications.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  ngOnChanges(): void {
+    this.studentNameFormGroup.valueChanges.subscribe(val => {
+      // localStorage.setItem('studentNameFormGroup', JSON.stringify(this.studentNameFormGroup.value));
+    });
   }
 
 }

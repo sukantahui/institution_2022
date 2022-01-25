@@ -23,7 +23,6 @@ export function ageGTE(val: number): ValidatorFn {
     let v: any = control.value;
     var age=0;
     if(v){
-      console.log(v.getTime());
       const timeDiff = Math.abs(Date.now() - v.getTime());
       age = Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
       if (age <= val) {
