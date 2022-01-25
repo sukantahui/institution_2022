@@ -185,7 +185,7 @@ export class StudentComponent implements OnInit, OnChanges{
     console.log(this.guradainName);
     this.optionSelected='Mother';
   }
-
+    
   ngOnInit(): void {
 
 
@@ -264,8 +264,8 @@ export class StudentComponent implements OnInit, OnChanges{
         this.studentData.city=this.studentAddressFormGroup.value.city;
 
         this.studentData.district=this.studentAddressFormGroup.value.district;
-        //this.studentData.stateId=this.studentAddressFormGroup.value.stateId;
-        this.studentData.stateId='10';
+        this.studentData.stateId=this.studentAddressFormGroup.value.stateId;
+        //this.studentData.stateId='10';
         this.studentData.pin=this.studentAddressFormGroup.value.pin;
 
         this.studentData.guardianContactNumber=this.studentContactFormGroup.value.guardianContactNumber;
