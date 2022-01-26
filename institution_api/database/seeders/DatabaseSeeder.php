@@ -95,7 +95,8 @@ class DatabaseSeeder extends Seeder
             ['state_code'=>33,'state_name'=>'Tamil Nadu'],
             ['state_code'=>34,'state_name'=>'Pondicherry'],
             ['state_code'=>35,'state_name'=>'Andaman & Nicobar Islands'],
-            ['state_code'=>36,'state_name'=>'Telangana']
+            ['state_code'=>36,'state_name'=>'Telangana'],
+            ['state_code'=>37,'state_name'=>'Ladak']
         ]);
         District::insert([
             ['state_id'=>2,'district_name'=>'Anantnag'],
@@ -846,9 +847,8 @@ class DatabaseSeeder extends Seeder
             ['state_id'=>37,'district_name'=>'Wanaparthy'],
             ['state_id'=>37,'district_name'=>'Warangal'],
             ['state_id'=>37,'district_name'=>'Yadadri Bhuvanagiri'],
-            // ['state_id'=>,'district_name'=>'Kargil'],
-            // ['state_id'=>,'district_name'=>'Leh'],
-
+            ['state_id'=>38,'district_name'=>'Kargil'],
+            ['state_id'=>38,'district_name'=>'Leh'],
         ]);
 
 
