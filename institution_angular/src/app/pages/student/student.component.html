@@ -421,6 +421,7 @@
               <th pSortableColumn="episodeId">Ep. ID <p-sortIcon field="episodeId"></p-sortIcon></th>
               <th pSortableColumn="studentName">Name <p-sortIcon field="studentName"></p-sortIcon></th>
               <th pSortableColumn="motherName">Mother <p-sortIcon field="motherName"></p-sortIcon></th>
+              <th pSortableColumn="action">Action <p-sortIcon field="action"></p-sortIcon></th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-student>
@@ -429,6 +430,9 @@
               <td>{{student.episodeId}}</td>
               <td>{{student.studentName}}</td>
               <td>{{student.motherName}}</td>
+              <td>  
+                <p-button type="button" (click)="editStudent(student)" icon="pi pi-pencil" styleClass="p-button-text"></p-button>
+              </td>
             </tr>
           </ng-template>
           <ng-template pTemplate="paginatorleft">

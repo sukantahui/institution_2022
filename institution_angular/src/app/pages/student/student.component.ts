@@ -222,7 +222,11 @@ export class StudentComponent implements OnInit, OnChanges{
     console.log(this.guradainName);
     this.optionSelected='Mother';
   }
-
+  editStudent(studentData:any){
+    console.log(studentData.billingName);
+    this.studentNameFormGroup.patchValue({studentName: studentData.studentName});
+    this.studentNameFormGroup.patchValue({billingName: studentData.billingName});
+  }
   ngOnInit(): void {
 
 
