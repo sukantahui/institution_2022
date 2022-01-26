@@ -77,11 +77,19 @@
                   <div class="d-flex flex-row bd-highlight mb-3">
                     <div class="p-2 col-8 bd-highlight">
                       <mat-form-field class="col-12">
-                        <input matInput placeholder="Guardian" formControlName="guardianName" [(ngModel)]="guardianName" value={{guradainName}} >
+                        <input matInput placeholder="Guardian" formControlName="guardianName">
                       </mat-form-field>
                     </div>
                     <div class="p-2 col-4 bd-highlight" >
-                      <ng-select [(ngModel)]="optionSelected" [items]="relations" fxFlex="100"  bindLabel="name" class="custom" bindValue="name" formControlName="relationToGuardian" placeholder="Relation" style="height: 200 !important;">
+                      <ng-select [items]="relations"
+                                 fxFlex="100"
+                                 bindLabel="name"
+                                 class="custom"
+                                 bindValue="name"
+                                 appendTo="body"
+                                 formControlName="relationToGuardian"
+                                 placeholder="Relation"
+                                 style="height: 200 !important;">
                       </ng-select>
                     </div>
                   </div>
@@ -202,7 +210,14 @@
 
                   <div class="d-flex flex-row bd-highlight mb-3">
                     <div class="p-2 col-4 bd-highlight" style="height:40%">
-                          <ng-select  [(ngModel)]="stateSelected" [items]="stateList"  bindLabel="stateName" class="custom" bindValue="stateId" formControlName="stateId" placeholder="State">
+                          <ng-select  [items]="stateList"
+                                      bindLabel="stateName"
+                                      class="custom"
+                                      bindValue="stateId"
+                                      formControlName="stateId"
+                                      autofocus
+                                      appendTo="body"
+                                      placeholder="State">
                           </ng-select>
                     </div>
                     <div class="p-2 col-4 bd-highlight">
@@ -430,7 +445,7 @@
               <td>{{student.episodeId}}</td>
               <td>{{student.studentName}}</td>
               <td>{{student.motherName}}</td>
-              <td>  
+              <td>
                 <p-button type="button" (click)="editStudent(student)" icon="pi pi-pencil" styleClass="p-button-text"></p-button>
               </td>
             </tr>
