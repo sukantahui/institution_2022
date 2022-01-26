@@ -111,7 +111,13 @@ export class StudentComponent implements OnInit, OnChanges{
     this.storage.get('studentNameFormGroup').subscribe((studentNameFormGroup: any) => {
       if (studentNameFormGroup){
         this.studentNameFormGroup.setValue(studentNameFormGroup);
-        console.log('fetched from memory', studentNameFormGroup);
+      }
+    }, (error) => {});
+
+    this.storage.get('studentGuardianFormGroup').subscribe((studentGuardianFormGroup: any) => {
+      if (studentGuardianFormGroup){
+        console.log(studentGuardianFormGroup);
+        this.studentGuardianFormGroup.setValue(studentGuardianFormGroup);
       }
     }, (error) => {});
 
@@ -384,10 +390,14 @@ export class StudentComponent implements OnInit, OnChanges{
 
   ngOnChanges(): void {
     this.studentNameFormGroup.valueChanges.subscribe(val => {
-      this.storage.set('studentNameFormGroup', this.studentNameFormGroup.value).subscribe(() => {
-
-      });
+      this.storage.set('studentNameFormGroup', this.studentNameFormGroup.value).subscribe(() => {});
     });
+
+    this.studentGuardianFormGroup.valueChanges.subscribe(val => {
+      this.storage.set('studentGuardianFormGroup', this.studentGuardianFormGroup.value).subscribe(() => {});
+    });
+
+    
   }
 
 }
