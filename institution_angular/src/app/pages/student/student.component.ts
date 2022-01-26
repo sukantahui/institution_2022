@@ -12,6 +12,7 @@ import {CommonService} from "../../services/common.service";
 import {ageGTE} from "../../custom-validator/age.validator";
 import {Observable} from "rxjs";
 import {filter, map, startWith} from 'rxjs/operators';
+import {StorageMap} from "@ngx-pwa/local-storage";
 
 
 interface Alert {
@@ -97,7 +98,15 @@ export class StudentComponent implements OnInit, OnChanges{
   errorMessage: any;
   showErrorMessage: boolean = false;
 
-  constructor(private route: ActivatedRoute,public authService: AuthService, private messageService: MessageService, private activatedRoute: ActivatedRoute, private studentService: StudentService, private confirmationService: ConfirmationService,private primengConfig: PrimeNGConfig, private commonService: CommonService) {
+  constructor(private route: ActivatedRoute
+              ,public authService: AuthService
+              , private messageService: MessageService
+              , private activatedRoute: ActivatedRoute
+              , private studentService: StudentService
+              , private confirmationService: ConfirmationService
+              , private primengConfig: PrimeNGConfig
+              , private storage: StorageMap
+              , private commonService: CommonService) {
     this.studentService.fetchEducations().then(educations => {
       this.qualifications = educations;
     });
@@ -166,7 +175,7 @@ export class StudentComponent implements OnInit, OnChanges{
   }
 
   isValidForm(){
-    
+
   }
 
   showDialog() {
@@ -187,7 +196,7 @@ export class StudentComponent implements OnInit, OnChanges{
     console.log(this.guradainName);
     this.optionSelected='Mother';
   }
-    
+
   ngOnInit(): void {
 
 
@@ -367,7 +376,9 @@ export class StudentComponent implements OnInit, OnChanges{
 
   ngOnChanges(): void {
     this.studentNameFormGroup.valueChanges.subscribe(val => {
-      // localStorage.setItem('studentNameFormGroup', JSON.stringify(this.studentNameFormGroup.value));
+      this.storage.set('studentNameFormGroup', this.studentNameFormGroup.value).subscribe(() => {
+        
+      });
     });
   }
 

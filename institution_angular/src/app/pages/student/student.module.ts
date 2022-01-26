@@ -37,6 +37,7 @@ import {TooltipModule} from "primeng/tooltip";
 import {SidebarModule} from "primeng/sidebar";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {StorageModule} from "@ngx-pwa/local-storage";
 
 
 
@@ -73,7 +74,8 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     TooltipModule,
     SidebarModule,
     NgbModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    StorageModule
 
   ]
 })
