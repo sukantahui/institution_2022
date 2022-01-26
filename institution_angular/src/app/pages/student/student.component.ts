@@ -107,6 +107,14 @@ export class StudentComponent implements OnInit, OnChanges{
               , private primengConfig: PrimeNGConfig
               , private storage: StorageMap
               , private commonService: CommonService) {
+
+    this.storage.get('studentNameFormGroup').subscribe((studentNameFormGroup: any) => {
+      if (studentNameFormGroup){
+        this.studentNameFormGroup.setValue(studentNameFormGroup);
+        console.log('fetched from memory', studentNameFormGroup);
+      }
+    }, (error) => {});
+
     this.studentService.fetchEducations().then(educations => {
       this.qualifications = educations;
     });
@@ -377,7 +385,7 @@ export class StudentComponent implements OnInit, OnChanges{
   ngOnChanges(): void {
     this.studentNameFormGroup.valueChanges.subscribe(val => {
       this.storage.set('studentNameFormGroup', this.studentNameFormGroup.value).subscribe(() => {
-        
+
       });
     });
   }
