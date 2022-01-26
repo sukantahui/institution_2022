@@ -183,12 +183,12 @@ export class StudentComponent implements OnInit, OnChanges{
   }
 
   isValidForm(){
-    if(this.studentNameFormGroup.valid){
+    if(this.studentNameFormGroup.valid && this.studentGuardianFormGroup.valid && this.studentBasicFormGroup.valid && this.studentAddressFormGroup.valid && this.studentContactFormGroup.valid){
       return true;
-      console.log("isValid:",true);
+      
     }else{
       return false;
-      console.log("isValid:",false);
+     
     }
   }
 
