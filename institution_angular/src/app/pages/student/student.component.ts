@@ -111,9 +111,21 @@ export class StudentComponent implements OnInit, OnChanges{
     this.storage.get('studentNameFormGroup').subscribe((studentNameFormGroup: any) => {
       if (studentNameFormGroup){
         this.studentNameFormGroup.setValue(studentNameFormGroup);
-        console.log('fetched from memory', studentNameFormGroup);
       }
     }, (error) => {});
+
+    this.storage.get('studentGuardianFormGroup').subscribe((studentGuardianFormGroup: any) => {
+      if (studentGuardianFormGroup){
+        this.studentGuardianFormGroup.setValue(studentGuardianFormGroup);
+      }
+    }, (error) => {});
+
+    this.storage.get('studentBasicFormGroup').subscribe((studentBasicFormGroup: any) => {
+      if (studentBasicFormGroup){
+        this.studentBasicFormGroup.setValue(studentBasicFormGroup);
+      }
+    }, (error) => {});
+
 
     this.studentService.fetchEducations().then(educations => {
       this.qualifications = educations;
@@ -390,10 +402,18 @@ export class StudentComponent implements OnInit, OnChanges{
 
   ngOnChanges(): void {
     this.studentNameFormGroup.valueChanges.subscribe(val => {
-      this.storage.set('studentNameFormGroup', this.studentNameFormGroup.value).subscribe(() => {
-
-      });
+      this.storage.set('studentNameFormGroup', this.studentNameFormGroup.value).subscribe(() => {});
     });
+
+    this.studentGuardianFormGroup.valueChanges.subscribe(val => {
+      this.storage.set('studentGuardianFormGroup', this.studentGuardianFormGroup.value).subscribe(() => {});
+    });
+
+    this.studentBasicFormGroup.valueChanges.subscribe(val => {
+      this.storage.set('studentBasicFormGroup', this.studentBasicFormGroup.value).subscribe(() => {});
+    });
+
+
   }
 
 }
