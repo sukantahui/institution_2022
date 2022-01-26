@@ -116,10 +116,16 @@ export class StudentComponent implements OnInit, OnChanges{
 
     this.storage.get('studentGuardianFormGroup').subscribe((studentGuardianFormGroup: any) => {
       if (studentGuardianFormGroup){
-        console.log(studentGuardianFormGroup);
         this.studentGuardianFormGroup.setValue(studentGuardianFormGroup);
       }
     }, (error) => {});
+
+    this.storage.get('studentBasicFormGroup').subscribe((studentBasicFormGroup: any) => {
+      if (studentBasicFormGroup){
+        this.studentBasicFormGroup.setValue(studentBasicFormGroup);
+      }
+    }, (error) => {});
+
 
     this.studentService.fetchEducations().then(educations => {
       this.qualifications = educations;
@@ -403,7 +409,11 @@ export class StudentComponent implements OnInit, OnChanges{
       this.storage.set('studentGuardianFormGroup', this.studentGuardianFormGroup.value).subscribe(() => {});
     });
 
-    
+    this.studentBasicFormGroup.valueChanges.subscribe(val => {
+      this.storage.set('studentBasicFormGroup', this.studentBasicFormGroup.value).subscribe(() => {});
+    });
+
+
   }
 
 }
