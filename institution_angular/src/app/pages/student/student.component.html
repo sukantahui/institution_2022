@@ -80,8 +80,8 @@
                         <input matInput placeholder="Guardian" formControlName="guardianName" [(ngModel)]="guardianName" value={{guradainName}} >
                       </mat-form-field>
                     </div>
-                    <div class="p-2 col-4 bd-highlight">
-                      <ng-select [(ngModel)]="optionSelected" [items]="relations" fxFlex="100"  bindLabel="name" class="custom" bindValue="name" formControlName="relationToGuardian" placeholder="Relation">
+                    <div class="p-2 col-4 bd-highlight" >
+                      <ng-select [(ngModel)]="optionSelected" [items]="relations" fxFlex="100"  bindLabel="name" class="custom" bindValue="name" formControlName="relationToGuardian" placeholder="Relation" style="height: 200 !important;">
                       </ng-select>
                     </div>
                   </div>
@@ -201,7 +201,7 @@
                   </div>
 
                   <div class="d-flex flex-row bd-highlight mb-3">
-                    <div class="p-2 col-4 bd-highlight">
+                    <div class="p-2 col-4 bd-highlight" style="height:40%">
                           <ng-select  [(ngModel)]="stateSelected" [items]="stateList"  bindLabel="stateName" class="custom" bindValue="stateId" formControlName="stateId" placeholder="State">
                           </ng-select>
                     </div>
