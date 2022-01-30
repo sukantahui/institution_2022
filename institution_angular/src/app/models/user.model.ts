@@ -58,6 +58,10 @@ export class User{
     // tslint:disable-next-line:triple-equals
     return this.userTypeId == 10;
   }
+  get isTutorial(){
+    // tslint:disable-next-line:triple-equals
+    return this.userTypeId == 100;
+  }
 
 
 }

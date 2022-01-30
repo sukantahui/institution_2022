@@ -28,6 +28,7 @@ import {SidenavDeveloperModule} from "./sidenavs/sidenav-developer/sidenav-devel
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { MAT_DATE_LOCALE} from "@angular/material/core";
+import {SidenavTutorialModule} from "./sidenavs/sidenav-tutorial/sidenav-tutorial.module";
 
 
 @NgModule({
@@ -35,21 +36,22 @@ import { MAT_DATE_LOCALE} from "@angular/material/core";
     AppComponent,
     // SidenavComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule,
-    BrowserAnimationsModule,
-    MatSidenavModule,
-    HttpClientModule,
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NgbModule,
+        BrowserAnimationsModule,
+        MatSidenavModule,
+        HttpClientModule,
 
-    SidenavModule,
-    HeaderModule,
-    SidenavOwnerModule,
-    SidenavDeveloperModule,
-    FontAwesomeModule,
-    MatProgressSpinnerModule
-  ],
+        SidenavModule,
+        HeaderModule,
+        SidenavOwnerModule,
+        SidenavDeveloperModule,
+        FontAwesomeModule,
+        MatProgressSpinnerModule,
+        SidenavTutorialModule
+    ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     { provide: MAT_DATE_LOCALE, useValue: 'en-in' }

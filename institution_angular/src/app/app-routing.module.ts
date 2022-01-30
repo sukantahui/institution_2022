@@ -48,6 +48,12 @@ const routes: Routes = [
 
   { path: 'camera', loadChildren: () => import('./pages/camera/camera.module').then(m => m.CameraModule) },
 
+  { path: 'tutorial', loadChildren: () => import('./pages/tutorial/tutorial.module').then(m => m.TutorialModule) },
+
+  { path: 'SidenavTutorial', loadChildren: () => import('./sidenavs/sidenav-tutorial/sidenav-tutorial.module').then(m => m.SidenavTutorialModule) },
+
+  { path: 'FlipFlop', loadChildren: () => import('./tutorials/flip-flop/flip-flop.module').then(m => m.FlipFlopModule) },
+
 ];
 
 

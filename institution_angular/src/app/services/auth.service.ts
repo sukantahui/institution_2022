@@ -33,7 +33,12 @@ export class AuthService {
   // @ts-ignore
   userBehaviorSubject = new BehaviorSubject<User>(null);
   constructor(private commonService: CommonService , private  http: HttpClient, private router: Router, private errorService: ErrorService) { }
-
+  fetchStudents() {
+    return this.http.get<any>('assets/students.json')
+      .toPromise()
+      .then(res => <any[]>res.data)
+      .then(data => { return data; });
+  }
 
   getUserBehaviorSubjectListener(){
     return this.userBehaviorSubject;
@@ -99,6 +104,14 @@ export class AuthService {
     }
   }
 
+  isTutorial(): boolean{
+    if (this.userBehaviorSubject.value && this.userBehaviorSubject.value.isTutorial){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
   getUserName(): string{
     if (this.userBehaviorSubject.value){
       return this.userBehaviorSubject.value.userName;
@@ -118,6 +131,16 @@ export class AuthService {
     }
   }
 
+
+  loginTutorial(loginData: any){
+    const user = new User(0,
+      loginData.userName,
+      'not required',
+      100,
+      'tutorial');
+    this.userBehaviorSubject.next(user);
+    localStorage.setItem('user', JSON.stringify(user));
+  }
 
   login(loginData: any){
     return this.http.post<AuthResponseData>(this.commonService.getAPI() + '/login', loginData)

@@ -50,6 +50,8 @@ export class StudentService {
       .then(data => { return data; });
   }
 
+
+
   fetchAllStudents(){
     return this.http.get<any>(this.commonService.getAPI() + '/students')
       .pipe(catchError(this.errorService.serverError), tap(((response: {success: number, data: Student[]}) => {

@@ -180,7 +180,7 @@ export class StudentComponent implements OnInit, OnChanges{
       address : new FormControl(null,[Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
       city : new FormControl(null,[Validators.required, Validators.maxLength(20), Validators.minLength(4)]),
       district : new FormControl(null,[Validators.required, Validators.maxLength(20), Validators.minLength(4)]),
-      stateId : new FormControl(null),
+      stateId : new FormControl(20),
       pin : new FormControl(null)
 
     });
@@ -197,10 +197,10 @@ export class StudentComponent implements OnInit, OnChanges{
   isValidForm(){
     if(this.studentNameFormGroup.valid && this.studentGuardianFormGroup.valid && this.studentBasicFormGroup.valid && this.studentAddressFormGroup.valid && this.studentContactFormGroup.valid){
       return true;
-      
+
     }else{
       return false;
-     
+
     }
   }
 

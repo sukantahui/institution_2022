@@ -11,9 +11,14 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  private loginableStudents: any[] = [];
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
   hide: boolean = true;
   ngOnInit(): void {
+    this.authService.fetchStudents().then(students => {
+      this.loginableStudents = students;
+    });
+
     this.loginForm=new FormGroup({
       loginId : new FormControl('',[Validators.required,Validators.email]),
       loginPassword : new FormControl('',[Validators.required,Validators.minLength(6)])
@@ -23,6 +28,18 @@ export class LoginComponent implements OnInit {
     if (!this.loginForm.valid) {
       // return;
     }
+
+    var result = this.loginableStudents.find(obj => {
+      return (obj.userName === this.loginForm.value.loginId && obj.password === this.loginForm.value.loginPassword);
+    })
+    if(result){
+      this.authService.loginTutorial(result);
+      this.router.navigate(['/tutorial']).then(r => {});
+    }
+
+    //  ********* Local Login *****************************
+
+    // ****************************************************
     // console.log(this.loginForm.value);
     // converting password to MD5
     const md5 = new Md5();
