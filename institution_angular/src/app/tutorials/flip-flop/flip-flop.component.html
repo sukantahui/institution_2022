@@ -48,20 +48,23 @@
           <div class="card-body  text-black">
             <div class="d-flex flex-row bd-highlight mb-3 justify-content-left">
               <div>
+                <div>
                 <h2>Types of Sequential Circuits</h2>
-                <ul>
-                  Following are the two types of sequential circuits −
-                  <li>
-                    <a [routerLink]="[{ outlets: { flop: ['AsynchronousSequentialCircuits'] } }]" routerLinkActive="active" >Asynchronous sequential circuits</a>
-                  </li>
-                  <li>
-                    <a [routerLink]="[{ outlets: { flop: ['SynchronousSequentialCircuits'] } }]" routerLinkActive="active">Synchronous sequential circuits</a>
-                  </li>
 
-                </ul>
+                  <div class="p-field-radiobutton">
+                    <p-radioButton name="city" value="asc" [(ngModel)]="circuitType" inputId="city1"></p-radioButton>
+                    <label for="city1">Asynchronous sequential circuits</label>
+                  </div>
+                  <div class="p-field-radiobutton">
+                    <p-radioButton name="city" value="sc" [(ngModel)]="circuitType" inputId="city2"></p-radioButton>
+                    <label for="city2">Synchronous sequential circuits</label>
+                  </div>
+                </div>
               </div>
-              <div>
-                <router-outlet name="flop"></router-outlet>
+              <div class="d-flex flex-row bd-highlight mb-3 justify-content-center">
+                <app-asynchronous-sequential-circuits *ngIf="circuitType==='asc'"></app-asynchronous-sequential-circuits>
+                <app-synchronous-sequential-circuits *ngIf="circuitType==='sc'"></app-synchronous-sequential-circuits>
+                {{circuitType}}
               </div>
             </div>
 
@@ -132,4 +135,5 @@
     Content 3
   </mat-tab>
 </mat-tab-group>
+
 

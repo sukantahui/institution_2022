@@ -8,6 +8,9 @@ import {ToggleButtonModule} from "primeng/togglebutton";
 import {FormsModule} from "@angular/forms";
 import {SliderModule} from "primeng/slider";
 import {MatBadgeModule} from "@angular/material/badge";
+import {RadioButtonModule} from "primeng/radiobutton";
+import {AsynchronousSequentialCircuitsModule} from "./asynchronous-sequential-circuits/asynchronous-sequential-circuits.module";
+import {SynchronousSequentialCircuitsModule} from "./synchronous-sequential-circuits/synchronous-sequential-circuits.module";
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import {MatBadgeModule} from "@angular/material/badge";
     ToggleButtonModule,
     FormsModule,
     SliderModule,
-    MatBadgeModule
+    MatBadgeModule,
+    RadioButtonModule,
+    AsynchronousSequentialCircuitsModule,
+    SynchronousSequentialCircuitsModule
   ]
 })
 export class FlipFlopModule { }

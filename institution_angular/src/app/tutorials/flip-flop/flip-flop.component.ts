@@ -21,4 +21,5 @@ export class FlipFlopComponent implements OnInit {
   //   (this.para.nativeElement as HTMLParagraphElement).style.fontSize = `${this.fontSize}px`;
   //
   // }
+  circuitType: any;
 }

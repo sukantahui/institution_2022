@@ -9,6 +9,9 @@ import { SynchronousSequentialCircuitsComponent } from './synchronous-sequential
   declarations: [
     SynchronousSequentialCircuitsComponent
   ],
+  exports: [
+    SynchronousSequentialCircuitsComponent
+  ],
   imports: [
     CommonModule,
     SynchronousSequentialCircuitsRoutingModule

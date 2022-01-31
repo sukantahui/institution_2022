@@ -7,11 +7,9 @@ const routes: Routes = [
   { path: '', component: FlipFlopComponent, children: [
       { path: 'AsynchronousSequentialCircuits'
         , loadChildren: () => import('./asynchronous-sequential-circuits//asynchronous-sequential-circuits.module').then(m => m.AsynchronousSequentialCircuitsModule)
-        , outlet: 'flop'
       },
       { path: 'SynchronousSequentialCircuits'
         , loadChildren: () => import('./synchronous-sequential-circuits/synchronous-sequential-circuits.module').then(m => m.SynchronousSequentialCircuitsModule)
-        , outlet: 'flop'
       },
     ] },
 

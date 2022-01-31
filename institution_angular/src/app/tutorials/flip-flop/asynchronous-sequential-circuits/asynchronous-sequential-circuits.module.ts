@@ -9,6 +9,9 @@ import { AsynchronousSequentialCircuitsComponent } from './asynchronous-sequenti
   declarations: [
     AsynchronousSequentialCircuitsComponent
   ],
+  exports: [
+    AsynchronousSequentialCircuitsComponent
+  ],
   imports: [
     CommonModule,
     AsynchronousSequentialCircuitsRoutingModule
