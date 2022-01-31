@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AsynchronousSequentialCircuitsRoutingModule } from './asynchronous-sequential-circuits-routing.module';
 import { AsynchronousSequentialCircuitsComponent } from './asynchronous-sequential-circuits.component';
+import {ImageModule} from "primeng/image";
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { AsynchronousSequentialCircuitsComponent } from './asynchronous-sequenti
   ],
   imports: [
     CommonModule,
-    AsynchronousSequentialCircuitsRoutingModule
+    AsynchronousSequentialCircuitsRoutingModule,
+    ImageModule
   ]
 })
 export class AsynchronousSequentialCircuitsModule { }
