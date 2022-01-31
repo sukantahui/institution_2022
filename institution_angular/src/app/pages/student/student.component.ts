@@ -31,7 +31,7 @@ interface Alert {
 export class StudentComponent implements OnInit, OnChanges{
 
   myControl = new FormControl();
-  qualifications: string[] =['Graduate','Class V', 'Class VI'] ;
+  qualifications: string[] =['Graduate','Class V', 'Class VI','Class VII', 'Class VIII'] ;
   filteredQualifications: Observable<string[]> | undefined;
 
 
@@ -97,7 +97,7 @@ export class StudentComponent implements OnInit, OnChanges{
   visibleSidebar2: boolean = false;
   errorMessage: any;
   showErrorMessage: boolean = false;
-
+  isShown: boolean = false ; // hidden by default
   constructor(private route: ActivatedRoute
               ,public authService: AuthService
               , private messageService: MessageService
@@ -223,9 +223,30 @@ export class StudentComponent implements OnInit, OnChanges{
     this.optionSelected='Mother';
   }
   editStudent(studentData:any){
-    console.log(studentData.billingName);
+     
+    console.log("Editable data:",studentData);
+    this.isShown = ! this.isShown;
     this.studentNameFormGroup.patchValue({studentName: studentData.studentName});
     this.studentNameFormGroup.patchValue({billingName: studentData.billingName});
+
+    this.studentGuardianFormGroup.patchValue({fatherName: studentData.fatherName});
+    this.studentGuardianFormGroup.patchValue({motherName: studentData.motherName});
+    this.studentGuardianFormGroup.patchValue({guardianName: studentData.guardianName});
+
+    this.studentBasicFormGroup.patchValue({dob: studentData.dobSQL});
+    this.studentBasicFormGroup.patchValue({sex: studentData.sex});
+    this.studentBasicFormGroup.patchValue({qualification: studentData.qualification});
+
+    this.studentAddressFormGroup.patchValue({address: studentData.address});
+    this.studentAddressFormGroup.patchValue({city: studentData.city});
+    this.studentAddressFormGroup.patchValue({district: studentData.district});
+    this.studentAddressFormGroup.patchValue({stateId: studentData.stateId});
+    this.studentAddressFormGroup.patchValue({pin: studentData.pin});
+
+    this.studentContactFormGroup.patchValue({guardianContactNumber: studentData.guardianContactNumber});
+    this.studentContactFormGroup.patchValue({whatsappNumber: studentData.whatsappNumber});
+    this.studentContactFormGroup.patchValue({email: studentData.email});
+    this.studentContactFormGroup.patchValue({description: studentData.description});
   }
   ngOnInit(): void {
 
@@ -282,7 +303,10 @@ export class StudentComponent implements OnInit, OnChanges{
 
     this.ngOnChanges();
   }
+  
+  updateStudent(){
 
+  }
   saveStudent() {
 
     this.confirmationService.confirm({
@@ -342,7 +366,7 @@ export class StudentComponent implements OnInit, OnChanges{
     });
     }
 
-
+   
 
 
 
