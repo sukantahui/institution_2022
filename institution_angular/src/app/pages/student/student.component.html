@@ -311,8 +311,13 @@
                 <button mat-button (click)="stepper.reset()">
                   <i class="bi bi-arrow-clockwise" style="font-size: 1rem"></i>
                 </button>
-                <button pButton [disabled]="!isValidForm()" (click)="saveStudent()">
-                  <i class="bi bi-save" style="font-size: 1rem"> Save</i>
+                
+                <button pButton [disabled]="!isValidForm()" (click)="saveStudent()"  *ngIf="!isShown">
+                  <i class="bi bi-save" style="font-size: 1rem"> Save </i>
+                </button>
+
+                <button pButton [disabled]="!isValidForm()" (click)="updateStudent()" *ngIf="isShown">
+                  <i class="bi bi-Update" style="font-size: 1rem"> Update </i>
                 </button>
               </div>
 
@@ -451,7 +456,7 @@
             </tr>
           </ng-template>
           <ng-template pTemplate="paginatorleft">
-            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text" ></p-button>
           </ng-template>
         </p-table>
       </div>
