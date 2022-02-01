@@ -74,6 +74,8 @@ export class StudentComponent implements OnInit, OnChanges{
   stateSelected:any='';
   guardianName:any='';
   studentData: {
+    studentId?:any;
+    episodeId?: string;
     studentName?: string;
     billingName?: string;
     fatherName?: string;
@@ -160,6 +162,7 @@ export class StudentComponent implements OnInit, OnChanges{
     ];
     this.studentNameFormGroup = new FormGroup({
       studentId : new FormControl(null),
+      episodeId : new FormControl(null),
       studentName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(4)]),
       billingName : new FormControl(null, [Validators.required, Validators.maxLength(100), Validators.minLength(4)])
     });
@@ -226,6 +229,9 @@ export class StudentComponent implements OnInit, OnChanges{
      
     console.log("Editable data:",studentData);
     this.isShown = ! this.isShown;
+    this.studentNameFormGroup.patchValue({studentId: studentData.studentId});
+    this.studentNameFormGroup.patchValue({episodeId: studentData.episodeId});
+
     this.studentNameFormGroup.patchValue({studentName: studentData.studentName});
     this.studentNameFormGroup.patchValue({billingName: studentData.billingName});
 
@@ -304,9 +310,67 @@ export class StudentComponent implements OnInit, OnChanges{
     this.ngOnChanges();
   }
   
-  updateStudent(){
+  updateStudent() {
 
-  }
+    this.confirmationService.confirm({
+      message: 'Do you want to Update this record?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.studentData.studentId=this.studentNameFormGroup.value.studentId;
+        this.studentData.episodeId=this.studentNameFormGroup.value.episodeId;
+        this.studentData.studentName=this.studentNameFormGroup.value.studentName;
+        this.studentData.billingName=this.studentNameFormGroup.value.billingName;
+        this.studentData.fatherName=this.studentGuardianFormGroup.value.fatherName;
+        this.studentData.motherName=this.studentGuardianFormGroup.value.motherName;
+        this.studentData.guardianName=this.studentGuardianFormGroup.value.guardianName;
+        this.studentData.relationToGuardian=this.studentGuardianFormGroup.value.relationToGuardian;
+
+        this.studentData.dob=this.studentBasicFormGroup.value.dobSQL;
+        this.studentData.sex=this.studentBasicFormGroup.value.sex;
+        this.studentData.qualification=this.studentBasicFormGroup.value.qualification;
+
+        this.studentData.address=this.studentAddressFormGroup.value.address;
+        this.studentData.city=this.studentAddressFormGroup.value.city;
+
+        this.studentData.district=this.studentAddressFormGroup.value.district;
+        this.studentData.stateId=this.studentAddressFormGroup.value.stateId;
+        //this.studentData.stateId='10';
+        this.studentData.pin=this.studentAddressFormGroup.value.pin;
+
+        this.studentData.guardianContactNumber=this.studentContactFormGroup.value.guardianContactNumber;
+
+        this.studentData.whatsappNumber=this.studentContactFormGroup.value.whatsappNumber;
+        this.studentData.email=this.studentContactFormGroup.value.email;
+
+
+
+        this.studentService.updateStudent(this.studentData).subscribe(response => {
+
+          if (response.status === true){
+            this.showSuccess("Record Updated successfully");
+          }
+
+        },error=>{
+          this.showErrorMessage = true;
+          this.errorMessage = error.message;
+          const alerts: Alert[] = [{
+            type: 'success',
+            message: this.errorMessage,
+          }]
+          setTimeout(()=>{
+            this.showErrorMessage = false;
+          }, 20000);
+          this.showError(error.statusText);
+        })
+
+      },
+      reject: () => {
+        this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+      }
+    });
+    }
+
   saveStudent() {
 
     this.confirmationService.confirm({
@@ -365,7 +429,14 @@ export class StudentComponent implements OnInit, OnChanges{
       }
     });
     }
-
+    clearStudent(){
+      this.isShown = ! this.isShown;
+      this.studentNameFormGroup.reset();
+      this.studentGuardianFormGroup.reset();
+      this.studentBasicFormGroup.reset();
+      this.studentAddressFormGroup.reset();
+      this.studentContactFormGroup.reset();
+    }
    
 
 

@@ -228,24 +228,76 @@ class StudentController extends ApiController
         $student->is_student=1;
 
         $student = Student::find($request->input('studentId'));
-        $student->episode_id = $request->input('episodeId');
-        $student->ledger_name = $request->input('studentName');
-        $student->billing_name = $request->input('billingName');
-        $student->father_name = $request->input('fatherName');
-        $student->mother_name = $request->input('motherName');
-        $student->guardian_name = $request->input('guardianName');
-        $student->relation_to_guardian = $request->input('relationTogGuardian');
-        $student->dob = $request->input('dob');
-        $student->sex = $request->input('sex');
-        $student->address = $request->input('address');
-        $student->city = $request->input('city');
-        $student->district = $request->input('district');
-        $student->state_id= $request->input('stateId');
-        $student->pin= $request->input('pin');
-        $student->guardian_contact_number = $request->input('guardianContactNumber');
-        $student->whatsapp_number = $request->input('whatsappNumber');
-        $student->email_id = $request->input('email');
-        $student->qualification= $request->input('qualification');
+          $student->episode_id = $request->input('episodeId');
+        if ($request->input('studentName')) {
+               $student->ledger_name = $request->input('studentName');
+           }
+        if ($request->input('billingName')) {
+               $student->billing_name = $request->input('billingName');
+            }
+         if ($request->input('fatherName')) {
+                $student->father_name = $request->input('fatherName');
+            }
+
+            if ($request->input('motherName')) {
+                 $student->mother_name = $request->input('motherName');
+                }
+            if ($request->input('guardianName')) {
+                $student->guardian_name = $request->input('guardianName');
+              }
+           if ($request->input('relationTogGuardian')) {
+                          $student->relation_to_guardian = $request->input('relationTogGuardian');
+                         }
+           if ($request->input('dob')) {
+                           $student->dob = $request->input('dob');
+                         }
+            if ($request->input('sex')) {
+                         $student->sex = $request->input('sex');
+                    }
+            if ($request->input('address')) {
+                     $student->address = $request->input('address');
+                  }
+            if ($request->input('city')) {
+                        $student->city = $request->input('city');
+                                }
+            if ($request->input('district')) {
+                           $student->district = $request->input('district');
+                       }
+             if ($request->input('stateId')) {
+                         $student->state_id= $request->input('stateId');
+                                   }
+              if ($request->input('pin')) {
+                          $student->pin= $request->input('pin');
+                   }
+            if ($request->input('guardianContactNumber')) {
+                          $student->guardian_contact_number = $request->input('guardianContactNumber');
+                               }
+             if ($request->input('whatsappNumber')) {
+                            $student->whatsapp_number = $request->input('whatsappNumber');
+                                }
+              if ($request->input('email')) {
+                             $student->email_id = $request->input('email');
+                         }
+              if ($request->input('qualification')) {
+                           $student->qualification= $request->input('qualification');
+                                      }
+        //$student->ledger_name = $request->input('studentName');
+        //$student->billing_name = $request->input('billingName');
+        //$student->father_name = $request->input('fatherName');
+        //$student->mother_name = $request->input('motherName');
+        //$student->guardian_name = $request->input('guardianName');
+        //$student->relation_to_guardian = $request->input('relationTogGuardian');
+        //$student->dob = $request->input('dob');
+        //$student->sex = $request->input('sex');
+        //$student->address = $request->input('address');
+        //$student->city = $request->input('city');
+        //$student->district = $request->input('district');
+        //$student->state_id= $request->input('stateId');
+        //$student->pin= $request->input('pin');
+        //$student->guardian_contact_number = $request->input('guardianContactNumber');
+        //$student->whatsapp_number = $request->input('whatsappNumber');
+        //$student->email_id = $request->input('email');
+        //$student->qualification= $request->input('qualification');
         $student->save();
         return response()->json(['success'=>1,'data'=>new StudentResource($student)], 200,[],JSON_NUMERIC_CHECK);
 
