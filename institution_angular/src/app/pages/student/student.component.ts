@@ -100,6 +100,7 @@ export class StudentComponent implements OnInit, OnChanges{
   errorMessage: any;
   showErrorMessage: boolean = false;
   isShown: boolean = false ; // hidden by default
+  hiddenInput: boolean = false ;
   constructor(private route: ActivatedRoute
               ,public authService: AuthService
               , private messageService: MessageService
@@ -309,7 +310,38 @@ export class StudentComponent implements OnInit, OnChanges{
 
     this.ngOnChanges();
   }
-  
+  deleteStudent(studentData:any){
+    console.log("Deleteable data:",studentData.studentId);
+    this.confirmationService.confirm({
+      message: 'Do you want to Update this record?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+         this.studentService.deleteStudent(this.studentData.studentId).subscribe(response => {
+
+          if (response.status === true){
+            this.showSuccess("Record Deleted successfully");
+          }
+
+        },error=>{
+          this.showErrorMessage = true;
+          this.errorMessage = error.message;
+          const alerts: Alert[] = [{
+            type: 'success',
+            message: this.errorMessage,
+          }]
+          setTimeout(()=>{
+            this.showErrorMessage = false;
+          }, 20000);
+          this.showError(error.statusText);
+        })
+
+      },
+      reject: () => {
+        this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+      }
+    });
+  }
   updateStudent() {
 
     this.confirmationService.confirm({
