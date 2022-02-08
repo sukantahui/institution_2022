@@ -41,6 +41,7 @@ import {StorageModule} from "@ngx-pwa/local-storage";
 
 
 
+
 @NgModule({
   declarations: [
     StudentComponent,
@@ -75,7 +76,8 @@ import {StorageModule} from "@ngx-pwa/local-storage";
     SidebarModule,
     NgbModule,
     MatAutocompleteModule,
-    StorageModule
+    StorageModule,
+    
 
   ]
 })

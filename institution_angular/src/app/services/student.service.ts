@@ -88,7 +88,7 @@ export class StudentService {
   }
 
   updateStudent(studentData:any){
-    return this.http.post<any>(this.commonService.getAPI() + '/students', studentData)
+    return this.http.patch<any>(this.commonService.getAPI() + '/students', studentData)
     .pipe(catchError(this.errorService.serverError), tap(response => {
       console.log('at service update:',response);
       if (response.status === true){

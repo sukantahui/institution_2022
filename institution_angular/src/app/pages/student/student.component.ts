@@ -109,7 +109,8 @@ export class StudentComponent implements OnInit, OnChanges{
               , private confirmationService: ConfirmationService
               , private primengConfig: PrimeNGConfig
               , private storage: StorageMap
-              , private commonService: CommonService) {
+              , private commonService: CommonService,
+              ) {
 
     this.storage.get('studentNameFormGroup').subscribe((studentNameFormGroup: any) => {
       if (studentNameFormGroup){
@@ -227,9 +228,10 @@ export class StudentComponent implements OnInit, OnChanges{
     this.optionSelected='Mother';
   }
   editStudent(studentData:any){
-     
+    
+
     console.log("Editable data:",studentData);
-    this.isShown = ! this.isShown;
+    this.isShown = true;
     this.studentNameFormGroup.patchValue({studentId: studentData.studentId});
     this.studentNameFormGroup.patchValue({episodeId: studentData.episodeId});
 
@@ -240,6 +242,7 @@ export class StudentComponent implements OnInit, OnChanges{
     this.studentGuardianFormGroup.patchValue({motherName: studentData.motherName});
     this.studentGuardianFormGroup.patchValue({guardianName: studentData.guardianName});
 
+    //this.studentBasicFormGroup.patchValue({dob: this.datepipe.transform(studentData.dobSQL, 'yyyy-MM-dd')});
     this.studentBasicFormGroup.patchValue({dob: studentData.dobSQL});
     this.studentBasicFormGroup.patchValue({sex: studentData.sex});
     this.studentBasicFormGroup.patchValue({qualification: studentData.qualification});
@@ -349,6 +352,7 @@ export class StudentComponent implements OnInit, OnChanges{
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       accept: () => {
+        //this.datepipe.transform(this.date, 'yyyy-MM-dd');
         this.studentData.studentId=this.studentNameFormGroup.value.studentId;
         this.studentData.episodeId=this.studentNameFormGroup.value.episodeId;
         this.studentData.studentName=this.studentNameFormGroup.value.studentName;
@@ -358,6 +362,7 @@ export class StudentComponent implements OnInit, OnChanges{
         this.studentData.guardianName=this.studentGuardianFormGroup.value.guardianName;
         this.studentData.relationToGuardian=this.studentGuardianFormGroup.value.relationToGuardian;
 
+        //this.studentData.dob=this.studentBasicFormGroup.value.dobSQL;
         this.studentData.dob=this.studentBasicFormGroup.value.dobSQL;
         this.studentData.sex=this.studentBasicFormGroup.value.sex;
         this.studentData.qualification=this.studentBasicFormGroup.value.qualification;
@@ -462,7 +467,7 @@ export class StudentComponent implements OnInit, OnChanges{
     });
     }
     clearStudent(){
-      this.isShown = ! this.isShown;
+      this.isShown = false;
       this.studentNameFormGroup.reset();
       this.studentGuardianFormGroup.reset();
       this.studentBasicFormGroup.reset();
