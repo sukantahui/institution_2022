@@ -1,0 +1,9 @@
+[submodule "institution_2022_angular"]
+	path = institution_2022_angular
+	url = https://github.com/sreeparnadas/institution_2022_angular.git
+[submodule "institution_2022_api"]
+	path = institution_2022_api
+	url = https://github.com/sreeparnadas/institution_2022_api.git
+[submodule "sreeparnadas-production_institution_2022"]
+	path = sreeparnadas-production_institution_2022
+	url = https://github.com/sreeparnadas/sreeparnadas-production_institution_2022.git
